@@ -3,14 +3,14 @@ message.properties 작업을 위한 유틸리티 라이브러리
 
 ### 1.module
 
-#### 1.1 collect<br/>
+#### 1.1 collect
 html 파일에서 message properties를 적용해야 하는 문자열을 수집한다.
 
-#### 1.2 generate<br/>
+#### 1.2 generate
 수집된 문자열을 바탕으로 message.properties파일을 검사하여 해당 메세지의 key를 가져온다.
 search를 진행하여 존재하지 않는 message는 새로 생성한다. 
 
-#### 1.3 search<br/>
+#### 1.3 search
 message.properties파일에서 원하는 문자열을 검색한다.
 
 - (1) Map<String, Message> 형태의 맵을 생성한다.
@@ -59,5 +59,5 @@ INPUTKEY_0001 : 제휴 계약 관리
 	PROD_MANA_0011 : 제휴계약관리 
 </code></pre>
 
-#### 1.4 replace<br/>
+#### 1.4 replace
 완성된 key set을 이용하여 html내부에서 해당 문자열을 message.properties의 key로 교체한다.
