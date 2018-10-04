@@ -76,20 +76,20 @@ public class MessageTokenizer {
 		return map;
 	}
 	
-	public void printMessageList(Map<String, Message> map, Map<String, Message> res) {
-		for (Entry<String, Message> e : map.entrySet()) {
-			Message msg = e.getValue();
-			System.out.println("----찾고 싶은 메세지----");
-			System.out.println(e.getKey() + " : " + msg.getOriginMessage());
-			System.out.println("----결과----");
-			for(ResultClass resultClass : msg.resultMap.keySet()) {
-				System.out.println("\t[" + resultClass + "]");
-				for (String key : msg.resultMap.get(resultClass)) {
-					System.out.println("\t" + key + " : " + res.get(key).getOriginMessage());
-				}
-				System.out.println();
-			}
-			System.out.println();
-		}
-	}
+//	public void printMessageList(Map<String, Message> map, Map<String, Message> res) {
+//		for (Entry<String, Message> e : map.entrySet()) {
+//			Message msg = e.getValue();
+//			System.out.println("----찾고 싶은 메세지----");
+//			System.out.println(e.getKey() + " : " + msg.getOriginMessage());
+//			System.out.println("----결과----");
+//			for(ResultClass resultClass : msg.resultMap.keySet()) {
+//				System.out.println("\t[" + resultClass + "]");
+//				for (String key : msg.resultMap.get(resultClass)) {
+//					System.out.println("\t" + key + " : " + res.get(key).getOriginMessage());
+//				}
+//				System.out.println();
+//			}
+//			System.out.println();
+//		}
+//	}
 }
