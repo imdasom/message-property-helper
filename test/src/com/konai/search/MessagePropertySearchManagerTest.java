@@ -1,6 +1,6 @@
 package com.konai.search;
 
-import com.konai.common.core.MessageTokenizer;
+import com.konai.search.util.MessageTokenizer;
 import com.konai.common.util.FileUtils;
 import com.konai.common.vo.Key;
 import com.konai.search.core.MessageSearchEngine;

@@ -3,7 +3,7 @@ package com.konai.core;
 import com.konai.collect.core.MessagePropertyCollector;
 import com.konai.collect.core.PatternSearcher;
 import com.konai.common.core.Expression;
-import com.konai.common.core.MessageTokenizer;
+import com.konai.search.util.MessageTokenizer;
 import com.konai.common.util.FileUtils;
 import com.konai.common.vo.Key;
 import com.konai.common.vo.MessageProperty;
