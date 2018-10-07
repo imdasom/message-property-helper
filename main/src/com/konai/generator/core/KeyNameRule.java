@@ -1,7 +1,7 @@
 package com.konai.generator.core;
 
-import com.konai.common.domain.MessageProperty;
+import com.konai.common.core.Expression;
 
 public interface KeyNameRule {
-    String getKey(MessageProperty messageProperty);
+    String getKey(Expression expression);
 }

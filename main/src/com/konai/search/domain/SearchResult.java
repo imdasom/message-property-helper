@@ -1,4 +1,4 @@
-package com.konai.search.model;
+package com.konai.search.domain;
 
 import java.util.ArrayList;
 import java.util.HashMap;

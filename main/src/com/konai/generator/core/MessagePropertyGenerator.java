@@ -1,26 +1,25 @@
 package com.konai.generator.core;
 
-import com.konai.common.domain.Key;
-import com.konai.common.domain.MessageProperty;
-import com.konai.common.domain.Value;
+import com.konai.common.core.Expression;
+import com.konai.common.valueobject.Key;
+import com.konai.common.valueobject.MessageProperty;
+import com.konai.common.valueobject.Value;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MessagePropertyGenerator {
 
-    private KeyNameRule keyNameRule;
-
-    public MessagePropertyGenerator(KeyNameRule keyNameRule) {
-        this.keyNameRule = keyNameRule;
+    public MessageProperty generate(Expression expression, KeyNameRule keyNameRule) {
+        Key key = new Key(keyNameRule.getKey(expression));
+        Value value = new Value(expression.getValue());
+        return new MessageProperty(key, value);
     }
 
-    public List<MessageProperty> generate(List<MessageProperty> messageProperties) {
+    public List<MessageProperty> generate(List<Expression> messageProperties, KeyNameRule keyNameRule) {
         List<MessageProperty> newMessageProperties = new ArrayList<>();
-        for (MessageProperty messageProperty : messageProperties) {
-            Key key = new Key(keyNameRule.getKey(messageProperty));
-            Value value = messageProperty.getValue();
-            newMessageProperties.add(new MessageProperty(key, value));
+        for (Expression expression : messageProperties) {
+            newMessageProperties.add(generate(expression, keyNameRule));
         }
         return newMessageProperties;
     }

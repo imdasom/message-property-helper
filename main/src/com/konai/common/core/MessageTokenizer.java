@@ -1,4 +1,4 @@
-package com.konai.search.core;
+package com.konai.common.core;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -14,8 +14,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
 
-import com.konai.search.model.Message;
-import com.konai.search.model.ResultClass;
+import com.konai.common.util.StringUtils;
+import com.konai.search.domain.Message;
 
 public class MessageTokenizer {
 	
@@ -30,22 +30,13 @@ public class MessageTokenizer {
 	public Map<String, String> getMapFromInput(String[] inputMessages) throws IOException {
 		Map<String, String> map = new HashMap<String, String>();
 		for (int i = 0; i < inputMessages.length; i++) {
-			String key = "INPUTKEY_" + (getZeroPaddingNumber(i+1, 4));
+			String key = "INPUTKEY_" + (StringUtils.getZeroPaddingNumber(i+1, 4));
 			String value = inputMessages[i];
 			map.put(key, value);
 		}
 		return map;
 	}
-	
-	private String getZeroPaddingNumber(int num, int base) {
-		int count = (int) Math.log10(num);
-		String paddingNum = "";
-		for (int i = 1; i < base - count; i++) {
-			paddingNum += "0";
-		}
-		return paddingNum + num;
-	}
-	
+
 	public Map<String, String> getMapFromFile(String location) throws IOException {
 		Map<String, String> map = new HashMap<String, String>();
 		BufferedReader br = new BufferedReader(new FileReader(new File(location)));
@@ -76,7 +67,7 @@ public class MessageTokenizer {
 		return map;
 	}
 	
-//	public void printMessageList(Map<String, Message> map, Map<String, Message> res) {
+//	public void printMessageList(Map<String, Message> map, Map<String, MessageProperty> res) {
 //		for (Entry<String, Message> e : map.entrySet()) {
 //			Message msg = e.getValue();
 //			System.out.println("----찾고 싶은 메세지----");

@@ -1,9 +1,9 @@
 package com.konai.search.core;
 
-import com.konai.search.model.Message;
-import com.konai.search.model.ResultClass;
-import com.konai.search.model.SearchResult;
-import com.konai.search.model.SearchResultType;
+import com.konai.search.domain.Message;
+import com.konai.search.domain.ResultClass;
+import com.konai.search.domain.SearchResult;
+import com.konai.search.domain.SearchResultType;
 
 import java.util.ArrayList;
 import java.util.List;

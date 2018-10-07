@@ -1,9 +1,8 @@
-package com.konai.search.model;
+package com.konai.search.domain;
+
+import com.konai.common.util.StringUtils;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Message {
 	public String value;
@@ -11,6 +10,9 @@ public class Message {
 	public int numOfToken;
 
 	public Message(String value) {
+	    if(StringUtils.isEmpty(value)) {
+	        throw new NullPointerException();
+        }
 		this.value = value.replaceAll(" ", "");
 		this.tokens = value.split(" ");
 		this.numOfToken = tokens.length;

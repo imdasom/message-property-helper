@@ -1,4 +1,4 @@
-package com.konai.search.model;
+package com.konai.search.domain;
 
 public enum ResultClass {
 	TotalEqual,

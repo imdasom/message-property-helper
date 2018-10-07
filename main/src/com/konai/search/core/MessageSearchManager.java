@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import com.konai.search.model.Message;
-import com.konai.search.model.SearchResult;
+import com.konai.common.core.MessageTokenizer;
+import com.konai.search.domain.Message;
+import com.konai.search.domain.SearchResult;
 
 public class MessageSearchManager {
 	
