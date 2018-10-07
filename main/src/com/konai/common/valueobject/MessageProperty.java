@@ -1,4 +1,4 @@
-package com.konai.common.domain;
+package com.konai.common.valueobject;
 
 import java.util.Objects;
 
@@ -7,13 +7,15 @@ public class MessageProperty {
     private Value value;
 
     public MessageProperty(Key key, Value value) {
+        if(key == null || value == null) {
+            throw new NullPointerException("Key or Value is null. Key:"+key+", Value:"+value);
+        }
         this.key = key;
         this.value = value;
     }
 
-    public MessageProperty(Value value) {
-        this.key = null;
-        this.value = value;
+    public Key getKey() {
+        return key;
     }
 
     public Value getValue() {
@@ -32,5 +34,14 @@ public class MessageProperty {
     @Override
     public int hashCode() {
         return Objects.hash(key.getValue(), value.getValue());
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("MessageProperty{");
+        sb.append("key=").append(key.getValue());
+        sb.append(", value=").append(value.getValue());
+        sb.append('}');
+        return sb.toString();
     }
 }

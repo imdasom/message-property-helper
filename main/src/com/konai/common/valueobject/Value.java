@@ -1,4 +1,4 @@
-package com.konai.common.domain;
+package com.konai.common.valueobject;
 
 public class Value {
 

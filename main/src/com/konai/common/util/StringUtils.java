@@ -4,12 +4,12 @@ public class StringUtils {
 
     public static boolean isEmpty(String value) {
         if(value == null) {
-            return false;
+            return true;
         }
         if("".equals(value)) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public static String getZeroPaddingNumber(int num, int base) {
