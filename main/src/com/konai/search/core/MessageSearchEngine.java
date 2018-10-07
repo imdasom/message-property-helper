@@ -1,6 +1,6 @@
 package com.konai.search.core;
 
-import com.konai.common.valueobject.Key;
+import com.konai.common.vo.Key;
 import com.konai.search.domain.Message;
 import com.konai.search.domain.ResultClass;
 import com.konai.search.domain.SearchResult;

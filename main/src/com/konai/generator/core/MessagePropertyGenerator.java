@@ -1,9 +1,9 @@
 package com.konai.generator.core;
 
 import com.konai.common.core.Expression;
-import com.konai.common.valueobject.Key;
-import com.konai.common.valueobject.MessageProperty;
-import com.konai.common.valueobject.Value;
+import com.konai.common.vo.Key;
+import com.konai.common.vo.MessageProperty;
+import com.konai.common.vo.Value;
 
 import java.util.ArrayList;
 import java.util.List;

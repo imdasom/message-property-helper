@@ -2,7 +2,7 @@ package com.konai.search;
 
 import com.konai.common.core.MessageTokenizer;
 import com.konai.common.util.FileUtils;
-import com.konai.common.valueobject.Key;
+import com.konai.common.vo.Key;
 import com.konai.search.core.MessageSearchEngine;
 import com.konai.search.core.MessageSearchManager;
 import com.konai.search.domain.Message;
@@ -13,7 +13,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.*;
 
 public class MessagePropertySearchManagerTest {

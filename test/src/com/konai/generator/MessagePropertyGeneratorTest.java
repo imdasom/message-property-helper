@@ -1,9 +1,9 @@
 package com.konai.generator;
 
 import com.konai.common.core.Expression;
-import com.konai.common.valueobject.Key;
-import com.konai.common.valueobject.MessageProperty;
-import com.konai.common.valueobject.Value;
+import com.konai.common.vo.Key;
+import com.konai.common.vo.MessageProperty;
+import com.konai.common.vo.Value;
 import com.konai.generator.core.KeyNameRule;
 import com.konai.generator.core.MessagePropertyGenerator;
 import org.junit.Assert;

@@ -4,14 +4,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.*;
 import java.util.Map.Entry;
 
 import com.konai.common.util.StringUtils;
-import com.konai.common.valueobject.Key;
+import com.konai.common.vo.Key;
 import com.konai.search.domain.Message;
 
 public class MessageTokenizer {

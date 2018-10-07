@@ -1,4 +1,4 @@
-package com.konai.common.valueobject;
+package com.konai.common.vo;
 
 import java.util.Objects;
 

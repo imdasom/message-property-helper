@@ -1,6 +1,6 @@
 package com.konai.search.domain;
 
-import com.konai.common.valueobject.Key;
+import com.konai.common.vo.Key;
 
 import java.util.*;
 

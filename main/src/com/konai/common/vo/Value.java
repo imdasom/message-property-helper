@@ -1,29 +1,29 @@
-package com.konai.common.valueobject;
+package com.konai.common.vo;
 
 import java.util.Objects;
 
-public class Key {
+public class Value {
 
-    private String key;
+    private String value;
 
-    public Key(String key) {
-        this.key = key;
+    public Value(String value) {
+        this.value = value;
     }
 
     public String getValue() {
-        return key;
+        return value;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Key key1 = (Key) o;
-        return Objects.equals(key, key1.key);
+        Value value1 = (Value) o;
+        return Objects.equals(value, value1.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(key);
+        return Objects.hash(value);
     }
 }
