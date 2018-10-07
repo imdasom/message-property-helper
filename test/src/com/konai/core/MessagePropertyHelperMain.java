@@ -5,17 +5,25 @@ import com.konai.collect.core.PatternSearcher;
 import com.konai.common.core.Expression;
 import com.konai.common.core.MessageTokenizer;
 import com.konai.common.util.FileUtils;
+import com.konai.common.valueobject.Key;
 import com.konai.common.valueobject.MessageProperty;
+import com.konai.common.valueobject.Value;
 import com.konai.generator.PortalKeyNameRule;
 import com.konai.generator.core.KeyNameRule;
 import com.konai.generator.core.MessagePropertyGenerator;
+import com.konai.search.core.MessageSearchManager;
+import com.konai.search.domain.Message;
+import com.konai.search.domain.SearchResult;
+import com.konai.search.domain.SearchResultType;
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class MessagePropertyHelperMain {
@@ -23,27 +31,54 @@ public class MessagePropertyHelperMain {
     @Test
     public void main() throws IOException {
 
+        //module instatiate
+        MessageTokenizer tokenizer = new MessageTokenizer();
+        MessageSearchManager searcher = new MessageSearchManager();
+        MessagePropertyGenerator generator = new MessagePropertyGenerator();
+        MessagePropertyCollector<Expression, Expression> collector = new MessagePropertyCollector<>();
+
+        //resource : message properties bundle
+        String location = ".\\test\\resources\\";
+        String bundleName = "messages";
+        ResourceBundle bundle = FileUtils.getResourceBundle(location, bundleName, new Locale("ko", "KR"));
+        Map<String, String> messageProertyMap = tokenizer.getMapFromResource(bundle);
+
+        //resource : html file
         InputStream inputStream = FileUtils.getInputStream(new File(".\\test\\resources\\html\\productView.html"));
         List<String> lines = FileUtils.readLines(inputStream);
         List<Expression> expressions = lines.stream().map(Expression::new).collect(Collectors.toList());
 
-        MessageTokenizer tokenizer = new MessageTokenizer();
-        MessagePropertyGenerator generator = new MessagePropertyGenerator();
-        MessagePropertyCollector<Expression, Expression> collector = new MessagePropertyCollector<>();
-        PatternSearcher<Expression, Expression> valuePatternSearcher = new ValuePatternSearcher();
+        //regular expression pattern
         PatternSearcher<Expression, Expression> thymeleafTextPatternSearcher = new ThymeleafTextPatternSearcher();
+        PatternSearcher<Expression, Expression> valuePatternSearcher = new ValuePatternSearcher();
 
+        //key name rule
+        KeyNameRule keyNameRule = new PortalKeyNameRule("PROD_MANA", "_", messageProertyMap);
+
+        //collect
         List<Expression> thymeleafTextExpressions = collector.collect(expressions, thymeleafTextPatternSearcher);
         List<Expression> valuePatternExpressions = collector.collect(thymeleafTextExpressions, valuePatternSearcher);
 
-        String location = ".\\test\\resources\\";
-        String bundleName = "messages";
-        Map<String, String> messageProertyMap = tokenizer.getMapFromResource(location, bundleName);
-        KeyNameRule keyNameRule = new PortalKeyNameRule("PROD_MANA", "_", messageProertyMap);
+        //search
+        Map<Key, Message> resourceTokenList = tokenizer.getTokenListFromMap(messageProertyMap);
+        List<Message> valueList = valuePatternExpressions.stream()
+                .map(value -> new Message(value.getValue()))
+                .collect(Collectors.toList());
+        List<SearchResult> searchResults = searcher.search(valueList, resourceTokenList);
 
-        List<MessageProperty> messageProperties = generator.generate(valuePatternExpressions, keyNameRule);
+        //compress result
+        //List<SearchResult> compressResult = compresor.compress(ResultClass.Total, ResultSubClass.Similar, Order.First);
 
-        // MessageSearcher searcher;
+        //generate
+        List<SearchResult> failureResults = searchResults.stream()
+                .filter(searchResult -> searchResult.getResultType().equals(SearchResultType.Failuer))
+                .collect(Collectors.toList());
+        List<Expression> failureExpressions = failureResults.stream()
+                .map(searchResult -> new Expression(searchResult.getMessage().getOriginMessage()))
+                .collect(Collectors.toList());
+        List<MessageProperty> messageProperties = generator.generate(failureExpressions, keyNameRule);
+
+
         // MessageModelConverter converter;
         // MessageReplacer replacer;
 

@@ -1,5 +1,6 @@
 package com.konai.search.core;
 
+import com.konai.common.valueobject.Key;
 import com.konai.search.domain.Message;
 import com.konai.search.domain.ResultClass;
 import com.konai.search.domain.SearchResult;
@@ -12,21 +13,19 @@ import java.util.Map.Entry;
 
 public class MessageSearchEngine {
 
-	public List<SearchResult> searchMessageList(Map<String, Message> inputList, Map<String, Message> resourceList) {
+	public List<SearchResult> searchMessageList(List<Message> inputList, Map<Key, Message> resourceList) {
 	    List<SearchResult> searchResults = new ArrayList<>();
-		for (Entry<String, Message> e : inputList.entrySet()) {
-            SearchResult searchResult = searchMessage(e, resourceList);
-            searchResult.setResultType(getSearchResultType(searchResult));
+		for (Message message : inputList) {
+            SearchResult searchResult = searchMessage(message, resourceList);
             searchResults.add(searchResult);
 		}
 		return searchResults;
 	}
 	
-	private SearchResult searchMessage(Entry<String, Message> inputElement, Map<String, Message> resourceList) {
-		Message input = inputElement.getValue();
+	public SearchResult searchMessage(Message input, Map<Key, Message> resourceList) {
         SearchResult searchResult = new SearchResult(input);
-        for (Entry<String, Message> resElement : resourceList.entrySet()) {
-			String resourceKey = resElement.getKey();
+        for (Entry<Key, Message> resElement : resourceList.entrySet()) {
+			Key resourceKey = resElement.getKey();
 			Message resource = resElement.getValue();
 			if(input.value.length() <= resource.value.length()) {
 				if(MessageComparator.compareValue(resource.value, input.value)) {
@@ -46,6 +45,7 @@ public class MessageSearchEngine {
 				}
 			}
 		}
+		searchResult.setResultType(getSearchResultType(searchResult));
 		return searchResult;
 	}
 

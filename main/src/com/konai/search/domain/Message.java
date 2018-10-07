@@ -3,6 +3,7 @@ package com.konai.search.domain;
 import com.konai.common.util.StringUtils;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class Message {
 	public String value;
@@ -24,6 +25,21 @@ public class Message {
 			origin = origin + s + " ";
 		}
 		return origin;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Message message = (Message) o;
+		return getOriginMessage().equals(message.getOriginMessage());
+	}
+
+	@Override
+	public int hashCode() {
+		int result = Objects.hash(value, numOfToken);
+		result = 31 * result + Arrays.hashCode(tokens);
+		return result;
 	}
 
 	@Override

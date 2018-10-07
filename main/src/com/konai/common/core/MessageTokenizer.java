@@ -7,24 +7,29 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.ResourceBundle;
 
 import com.konai.common.util.StringUtils;
+import com.konai.common.valueobject.Key;
 import com.konai.search.domain.Message;
 
 public class MessageTokenizer {
 	
-	public Map<String, Message> getTokenListFromMap(Map<String, String> map) throws IOException {
-		Map<String, Message> messageList = new HashMap<String, Message>();
+	public Map<Key, Message> getTokenListFromMap(Map<String, String> map) throws IOException {
+		Map<Key, Message> messageList = new HashMap<Key, Message>();
 		for (Entry<String, String> entry : map.entrySet()) {
-			messageList.put(entry.getKey(), new Message(entry.getValue()));
+			messageList.put(new Key(entry.getKey()), new Message(entry.getValue()));
 		}
 		return messageList;
+	}
+
+	public List<Message> getMessageList(List<String> list) {
+		List<Message> messages = new ArrayList<>();
+		for (int i = 0; i < list.size(); i++) {
+			messages.add(new Message(list.get(i)));
+		}
+		return messages;
 	}
 	
 	public Map<String, String> getMapFromInput(String[] inputMessages) throws IOException {
@@ -49,21 +54,14 @@ public class MessageTokenizer {
 		return map;
 	}
 
-	public Map<String, String> getMapFromResource(String location, String bundleName) throws MalformedURLException {
+	public Map<String, String> getMapFromResource(ResourceBundle bundle) {
 		Map<String, String> map = new HashMap<String, String>();
-
-		File file = new File(location);
-		URL[] urls = { file.toURI().toURL() };
-		ClassLoader loader = new URLClassLoader(urls);
-		ResourceBundle bundle = ResourceBundle.getBundle(bundleName, new Locale("ko", "KR"), loader);
 		Enumeration<String> enumeration = bundle.getKeys();
-		
 		while(enumeration.hasMoreElements()) {
 			String key = (String) enumeration.nextElement();
 			String value = bundle.getString(key);
 			map.put(key, value);
 		}
-		
 		return map;
 	}
 	

@@ -1,8 +1,10 @@
 package com.konai.common.util;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.*;
 
 public class FileUtils {
 
@@ -18,5 +20,13 @@ public class FileUtils {
             lines.add(line);
         }
         return lines;
+    }
+
+    public static ResourceBundle getResourceBundle(String location, String bundleName, Locale locale) throws MalformedURLException {
+        File file = new File(location);
+        URL[] urls = { file.toURI().toURL() };
+        ClassLoader loader = new URLClassLoader(urls);
+        ResourceBundle bundle = ResourceBundle.getBundle(bundleName, locale, loader);
+        return bundle;
     }
 }
