@@ -56,8 +56,7 @@ public void findFromResourceFile() throws IOException {
     messageSearchManager.findFromResourceFile(inputDatas, location, bundleName);
 }
 </code></pre>
-<pre><code>
-<실행결과>
+<pre><code><실행결과>
 ----찾고 싶은 메세지----
 INPUTKEY_0001 : 제휴 계약 관리 
 ----결과----
