@@ -11,9 +11,9 @@ import com.konai.generator.PortalKeyNameRule;
 import com.konai.generator.core.KeyNameRule;
 import com.konai.generator.core.MessagePropertyGenerator;
 import com.konai.search.core.MessageSearchManager;
-import com.konai.search.domain.Message;
-import com.konai.search.domain.SearchResult;
-import com.konai.search.domain.SearchResultType;
+import com.konai.search.vo.Message;
+import com.konai.search.vo.SearchResult;
+import com.konai.search.vo.SearchResultType;
 import org.junit.Test;
 
 import java.io.File;

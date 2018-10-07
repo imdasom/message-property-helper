@@ -5,10 +5,10 @@ import com.konai.common.util.FileUtils;
 import com.konai.common.vo.Key;
 import com.konai.search.core.MessageSearchEngine;
 import com.konai.search.core.MessageSearchManager;
-import com.konai.search.domain.Message;
-import com.konai.search.domain.ResultClass;
-import com.konai.search.domain.SearchResult;
-import com.konai.search.domain.SearchResultType;
+import com.konai.search.vo.Message;
+import com.konai.search.vo.ResultClass;
+import com.konai.search.vo.SearchResult;
+import com.konai.search.vo.SearchResultType;
 import org.junit.Assert;
 import org.junit.Test;
 

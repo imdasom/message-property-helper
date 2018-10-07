@@ -1,4 +1,4 @@
-package com.konai.search.domain;
+package com.konai.search.vo;
 
 import com.konai.common.util.StringUtils;
 

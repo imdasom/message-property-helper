@@ -1,10 +1,10 @@
 package com.konai.search.core;
 
 import com.konai.common.vo.Key;
-import com.konai.search.domain.Message;
-import com.konai.search.domain.ResultClass;
-import com.konai.search.domain.SearchResult;
-import com.konai.search.domain.SearchResultType;
+import com.konai.search.vo.Message;
+import com.konai.search.vo.ResultClass;
+import com.konai.search.vo.SearchResult;
+import com.konai.search.vo.SearchResultType;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 
 import com.konai.common.util.StringUtils;
 import com.konai.common.vo.Key;
-import com.konai.search.domain.Message;
+import com.konai.search.vo.Message;
 
 public class MessageTokenizer {
 	

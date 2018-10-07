@@ -1,4 +1,4 @@
-package com.konai.search.domain;
+package com.konai.search.vo;
 
 public enum SearchResultType {
     Success,

@@ -1,8 +1,8 @@
 package com.konai.search.core;
 
 import com.konai.common.vo.Key;
-import com.konai.search.domain.Message;
-import com.konai.search.domain.SearchResult;
+import com.konai.search.vo.Message;
+import com.konai.search.vo.SearchResult;
 
 import java.util.List;
 import java.util.Map;
