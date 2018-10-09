@@ -1,6 +1,8 @@
 # Message Property Helper Library
 message.properties 작업을 위한 유틸리티 라이브러리
 
+![alt text](./readme-resource/message-property-generator-gui-sample.png)
+
 ### 1.module
 
 #### 1.0 common
