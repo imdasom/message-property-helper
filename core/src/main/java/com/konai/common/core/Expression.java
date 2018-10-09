@@ -9,7 +9,7 @@ public class Expression {
     private String value;
 
     public Expression(String value) {
-        if(StringUtils.isEmpty(value)) {
+        if(value == null) {
             throw new IllegalArgumentException("value is null");
         }
         this.value = value;

@@ -50,7 +50,7 @@ public class MessagePropertySearchManagerTest {
         Map<Key, Message> resourceTokenList = tokenizer.getTokenListFromMap(messageProertyMap);
 
         SearchResult result = searchEngine.searchMessage(new Message("상품명"), resourceTokenList);
-        Assert.assertEquals(SearchResultType.Success, result.getResultType());
+        Assert.assertEquals(1, result.getResultMap().get(ResultClass.TotalEqual));
     }
 
     @Test
@@ -73,7 +73,6 @@ public class MessagePropertySearchManagerTest {
         searchResult.putKeyResultMap(ResultClass.TotalSimilar, new Key("PROD_MANA_0011"));
         searchResult.putKeyResultMap(ResultClass.TotalSimilar, new Key("PROD_MANA_0012"));
         searchResult.putKeyResultMap(ResultClass.PartialEquals, new Key("PROD_MANA_0005"));
-        searchResult.setResultType(SearchResultType.Success);
         expectedResults.add(searchResult);
 
         Assert.assertEquals(expectedResults, results);

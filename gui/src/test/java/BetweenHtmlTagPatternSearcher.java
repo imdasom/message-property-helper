@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ThymeleafTextPatternSearcher implements PatternSearcher<Expression, Expression>, PatternReplacer<Expression, Expression> {
+public class BetweenHtmlTagPatternSearcher implements PatternSearcher<Expression, Expression>, PatternReplacer<Expression, Expression> {
 
-    private final String REGULA_REXPRESSION = "(th:text=\"){1}(.*?){1}(\"){1}";
+    private final String REGULA_REXPRESSION = "(<){1}(.+?){1}(>){1}(.+?){1}(</.+?>){1}";
     private final Pattern thymeleafTextExpression = Pattern.compile(REGULA_REXPRESSION);
 
     @Override
@@ -17,7 +17,7 @@ public class ThymeleafTextPatternSearcher implements PatternSearcher<Expression,
         List<Expression> expresisons = new ArrayList<>();
         Matcher matcher = thymeleafTextExpression.matcher(source.getValue());
         while(matcher.find()) {
-            String message = matcher.group(2);
+            String message = matcher.group(4);
             expresisons.add(new Expression(message));
         }
         return expresisons;
@@ -27,12 +27,13 @@ public class ThymeleafTextPatternSearcher implements PatternSearcher<Expression,
     public Expression replace(Expression destination, Expression targetExpression, Expression replacementExpression) {
         String desintation = destination.getValue();
         String target = targetExpression.getValue();
-        String replacement = "#{" + replacementExpression.getValue() + "}";
+        String replacement = "th:text=\"#{" + replacementExpression.getValue() + "}\"";
         Matcher matcher = thymeleafTextExpression.matcher(desintation);
         Expression afterReplace = destination;
         while(matcher.find()) {
-            if(matcher.group(2).contains(target)) {
-                StringBuilder sb = new StringBuilder(desintation).replace(matcher.start(2), matcher.end(2), replacement);
+            if(matcher.group(4).contains(target)) {
+                String addAttributes = matcher.group(2) + " " + replacement;
+                StringBuilder sb = new StringBuilder(desintation).replace(matcher.start(2), matcher.end(2), addAttributes);
                 afterReplace = new Expression(sb.toString());
             }
         }

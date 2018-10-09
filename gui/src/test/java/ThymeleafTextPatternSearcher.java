@@ -1,10 +1,5 @@
-package com.konai.core;
-
 import com.konai.collect.core.PatternSearcher;
 import com.konai.common.core.Expression;
-import com.konai.common.vo.Key;
-import com.konai.common.vo.MessageProperty;
-import com.konai.common.vo.Value;
 import com.konai.replace.core.PatternReplacer;
 
 import java.util.ArrayList;

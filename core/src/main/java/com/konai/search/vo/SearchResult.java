@@ -1,11 +1,9 @@
 package com.konai.search.vo;
 
+import com.konai.common.util.CollectionUtils;
 import com.konai.common.vo.Key;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 public class SearchResult {
     private Message message;
@@ -25,12 +23,28 @@ public class SearchResult {
         resultMap.put(resultClass, keyList);
     }
 
+    public Optional<Key> getKeyByLevel(ResultClass filterLevel) {
+        Key key = null;
+        for (int level = 1; level <= filterLevel.getLevel(); level++) {
+            List<Key> keyList = resultMap.get(ResultClass.getResultClassByLevel(level));
+            if(!CollectionUtils.isEmpty(keyList)) {
+                key = keyList.get(0);
+                break;
+            }
+        }
+        return Optional.ofNullable(key);
+    }
+
     public Message getMessage() {
         return message;
     }
 
-    public Map<ResultClass, List<Key>> getResultMap() {
+    public SearchResultMap getResultMap() {
         return resultMap;
+    }
+
+    public boolean isResultMapEmpty() {
+        return resultMap == null || resultMap.size() < 1;
     }
 
     @Override

@@ -1,5 +1,3 @@
-package com.konai.generator;
-
 import com.konai.common.core.Expression;
 import com.konai.common.util.StringUtils;
 import com.konai.generate.core.KeyNameRule;

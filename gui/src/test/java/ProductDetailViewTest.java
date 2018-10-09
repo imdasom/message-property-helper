@@ -2,6 +2,7 @@ import com.konai.collect.core.MessagePropertyCollector;
 import com.konai.collect.core.PatternSearcher;
 import com.konai.common.core.Expression;
 import com.konai.common.util.FileUtils;
+import com.konai.common.util.StringUtils;
 import com.konai.common.vo.Key;
 import com.konai.common.vo.MessageProperty;
 import com.konai.generate.core.KeyNameRule;
@@ -25,7 +26,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class MainLoginTest {
+public class ProductDetailViewTest {
 
     @Test
     public void main() throws IOException {
@@ -44,25 +45,25 @@ public class MainLoginTest {
         Map<String, String> messageProertyMap = tokenizer.getMapFromResource(bundle);
 
         //resource : html file
-        InputStream inputStream = FileUtils.getInputStream(new File(".\\src\\test\\resources\\html\\productView.html"));
+        InputStream inputStream = FileUtils.getInputStream(new File(".\\src\\test\\resources\\html\\productDetailView.html"));
         List<String> lines = FileUtils.readLines(inputStream);
-        List<Expression> readLineExpressions = lines.stream().map(Expression::new).collect(Collectors.toList());
+        List<Expression> readLineExpressions = lines.stream()
+                .filter(value -> !StringUtils.isEmpty(value))
+                .map(Expression::new)
+                .collect(Collectors.toList());
 
         //regular expression pattern
-        ThymeleafTextPatternSearcher thymeleafTextPatternSearcher = new ThymeleafTextPatternSearcher();
-        PatternSearcher<Expression, Expression> valuePatternSearcher = new ValuePatternSearcher();
-        ThymeleafTextValuePatterner thymeleafTextValuePatterner = new ThymeleafTextValuePatterner();
+        BetweenHtmlTagPatternSearcher betweenHtmlTagPatternSearcher = new BetweenHtmlTagPatternSearcher();
 
         //key name rule
         KeyNameRule keyNameRule = new PortalKeyNameRule("PROD_MANA", "_", messageProertyMap);
 
         //collect
-        List<Expression> thymeleafTextExpressions = collector.collect(readLineExpressions, thymeleafTextPatternSearcher);
-        List<Expression> valuePatternExpressions = collector.collect(thymeleafTextExpressions, valuePatternSearcher);
+        List<Expression> collectedExpression = collector.collect(readLineExpressions, betweenHtmlTagPatternSearcher);
 
         //search
         Map<Key, Message> resourceTokenList = tokenizer.getTokenListFromMap(messageProertyMap);
-        List<Message> valueList = valuePatternExpressions.stream()
+        List<Message> valueList = collectedExpression.stream()
                 .map(value -> new Message(value.getValue()))
                 .collect(Collectors.toList());
         List<SearchResult> searchResults = searcher.search(valueList, resourceTokenList);
@@ -79,16 +80,10 @@ public class MainLoginTest {
         //replace
         List<Expression> afterLines = replacer.replace(oldMessageProperties,
                 readLineExpressions,
-                thymeleafTextValuePatterner,
-                thymeleafTextPatternSearcher);
+                betweenHtmlTagPatternSearcher,
+                betweenHtmlTagPatternSearcher);
 
-        //replace
-        List<Expression> afterLines2 = replacer.replace(oldMessageProperties,
-                afterLines,
-                thymeleafTextValuePatterner,
-                thymeleafTextPatternSearcher);
-
-        for(Expression e : afterLines2) {
+        for(Expression e : afterLines) {
             System.out.println(e.getValue());
         }
     }

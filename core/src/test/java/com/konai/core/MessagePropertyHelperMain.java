@@ -3,6 +3,7 @@ package com.konai.core;
 import com.konai.collect.core.MessagePropertyCollector;
 import com.konai.collect.core.PatternSearcher;
 import com.konai.common.core.Expression;
+import com.konai.common.util.CollectionUtils;
 import com.konai.common.util.FileUtils;
 import com.konai.common.vo.Key;
 import com.konai.common.vo.MessageProperty;
@@ -13,9 +14,7 @@ import com.konai.generator.PortalKeyNameRule;
 import com.konai.replace.core.MessagePropertyReplacer;
 import com.konai.search.core.MessagePropertySearcher;
 import com.konai.search.util.MessageTokenizer;
-import com.konai.search.vo.Message;
-import com.konai.search.vo.SearchResult;
-import com.konai.search.vo.SearchResultType;
+import com.konai.search.vo.*;
 import org.junit.Test;
 
 import java.io.File;
@@ -69,9 +68,8 @@ public class MessagePropertyHelperMain {
         //compress result
         //List<SearchResult> compressResult = compresor.compress(ResultClass.Total, ResultSubClass.Similar, Order.First);
 
-        //generate
         List<SearchResult> failureResults = searchResults.stream()
-//                .filter(searchResult -> searchResult.getResultType().equals(SearchResultType.Failuer))
+                .filter(searchResult -> searchResult.getResultMap() == null || searchResult.getResultMap().size() < 1)
                 .collect(Collectors.toList());
         List<Expression> failureExpressions = failureResults.stream()
                 .map(searchResult -> new Expression(searchResult.getMessage().getOriginMessage()))
@@ -99,20 +97,5 @@ public class MessagePropertyHelperMain {
         for(Expression e : afterLines2) {
             System.out.println(e.getValue());
         }
-
-        // MessageModelConverter converter;
-        // MessageReplacer replacer;
-
-        // List<Message> collectMessages = collector.collect(resourcePath);
-        // List<SearchResult> searchResults = searcher.search(collectMessages, messagePropertiesFilePath);
-        // List<SearchResult> failuerResults = searchResults.stream().filter(SearchResultType.Failuer인경우);
-
-        // Map<Message, PropertyKey> generatedResult = generator.generate(failuerResults, PREFIX);
-        // FileWriter fileWriter = new FileWriter(messagePropertiesFilePath);
-        // fileWriter.writeByLine(generatedResult, function(key, value) { return "key=value"; });
-
-        // List<MessageProperty> replaceItem = converter(searchResults, generatedResult를 통해 key,value로 이뤄진 결과를 만든다);
-        // (MessageProperty는 key,value로 이루어져 있다. 파일에서 해당 value를 읽어 key로 교체할 것이다)
-        // boolean replace = replacer(resourcePath, replaceItem);
     }
 }

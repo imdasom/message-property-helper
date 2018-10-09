@@ -1,5 +1,3 @@
-package com.konai.core;
-
 import com.konai.collect.core.PatternSearcher;
 import com.konai.common.core.Expression;
 
