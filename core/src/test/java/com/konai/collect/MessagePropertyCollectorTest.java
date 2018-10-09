@@ -4,6 +4,8 @@ import com.konai.collect.core.MessagePropertyCollector;
 import com.konai.collect.core.PatternSearcher;
 import com.konai.common.core.Expression;
 import com.konai.common.util.FileUtils;
+import com.konai.core.ThymeleafTextPatternSearcher;
+import com.konai.core.ValuePatternSearcher;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

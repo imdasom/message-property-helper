@@ -21,8 +21,8 @@ public class Message {
 	
 	public String getOriginMessage() {
 		String origin = "";
-		for(String s : tokens) {
-			origin = origin + s + " ";
+		for (int i = 0; i < tokens.length; i++) {
+			origin = origin + (i > 0 ? " " : "") + tokens[i];
 		}
 		return origin;
 	}

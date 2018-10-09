@@ -1,4 +1,4 @@
-package com.konai.collect;
+package com.konai.core;
 
 import com.konai.collect.core.PatternSearcher;
 import com.konai.common.core.Expression;
@@ -8,12 +8,14 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ThymeleafTextPatternSearcher implements PatternSearcher<Expression, Expression> {
+public class ThymeleafTextValuePatterner implements PatternSearcher<Expression, Expression> {
+
+    private final String REGULA_REXPRESSION = "(th:text=\"'){1}(.*?){1}('\"){1}";
+    private final Pattern thymeleafTextExpression = Pattern.compile(REGULA_REXPRESSION);
 
     @Override
     public List<Expression> get(Expression source) {
         List<Expression> expresisons = new ArrayList<>();
-        Pattern thymeleafTextExpression = Pattern.compile("(th:text=\"){1}(.*?){1}(\"){1}");
         Matcher matcher = thymeleafTextExpression.matcher(source.getValue());
         while(matcher.find()) {
             String message = matcher.group(2);

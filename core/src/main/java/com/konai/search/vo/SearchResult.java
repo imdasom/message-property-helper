@@ -9,7 +9,6 @@ import java.util.Objects;
 
 public class SearchResult {
     private Message message;
-    private SearchResultType resultType;
     private SearchResultMap resultMap;
 
     public SearchResult(Message message) {
@@ -34,34 +33,24 @@ public class SearchResult {
         return resultMap;
     }
 
-    public SearchResultType getResultType() {
-        return resultType;
-    }
-    public void setResultType(SearchResultType resultType) {
-        this.resultType = resultType;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SearchResult that = (SearchResult) o;
         return Objects.equals(message, that.message) &&
-                resultType == that.resultType &&
                 Objects.equals(resultMap, that.resultMap);
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(message, resultType, resultMap);
+        return Objects.hash(message, resultMap);
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("SearchResult{");
         sb.append("message=").append(message);
-        sb.append(", resultType=").append(resultType);
         sb.append(", resultMap=").append(resultMap.toString());
         sb.append('}');
         return sb.toString();

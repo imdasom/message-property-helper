@@ -6,6 +6,7 @@ import com.konai.common.core.Expression;
 import com.konai.common.util.FileUtils;
 import com.konai.common.vo.Key;
 import com.konai.common.vo.MessageProperty;
+import com.konai.common.vo.Value;
 import com.konai.generate.core.KeyNameRule;
 import com.konai.generate.core.MessagePropertyGenerator;
 import com.konai.generator.PortalKeyNameRule;
@@ -20,10 +21,7 @@ import org.junit.Test;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class MessagePropertyHelperMain {
@@ -50,8 +48,9 @@ public class MessagePropertyHelperMain {
         List<Expression> readLineExpressions = lines.stream().map(Expression::new).collect(Collectors.toList());
 
         //regular expression pattern
-        PatternSearcher<Expression, Expression> thymeleafTextPatternSearcher = new ThymeleafTextPatternSearcher();
+        ThymeleafTextPatternSearcher thymeleafTextPatternSearcher = new ThymeleafTextPatternSearcher();
         PatternSearcher<Expression, Expression> valuePatternSearcher = new ValuePatternSearcher();
+        ThymeleafTextValuePatterner thymeleafTextValuePatterner = new ThymeleafTextValuePatterner();
 
         //key name rule
         KeyNameRule keyNameRule = new PortalKeyNameRule("PROD_MANA", "_", messageProertyMap);
@@ -72,14 +71,34 @@ public class MessagePropertyHelperMain {
 
         //generate
         List<SearchResult> failureResults = searchResults.stream()
-                .filter(searchResult -> searchResult.getResultType().equals(SearchResultType.Failuer))
+//                .filter(searchResult -> searchResult.getResultType().equals(SearchResultType.Failuer))
                 .collect(Collectors.toList());
         List<Expression> failureExpressions = failureResults.stream()
                 .map(searchResult -> new Expression(searchResult.getMessage().getOriginMessage()))
                 .collect(Collectors.toList());
-        List<MessageProperty> messageProperties = generator.generate(failureExpressions, keyNameRule);
+        List<MessageProperty> newMessageProperties = generator.generate(failureExpressions, keyNameRule);
 
-        List<Expression> afterLines = replacer.replace(messageProperties, readLineExpressions);
+        //old message properties
+        List<MessageProperty> oldMessageProperty = new ArrayList<>();
+        for (Map.Entry<String, String> entry : messageProertyMap.entrySet()) {
+            oldMessageProperty.add(new MessageProperty(new Key(entry.getKey()), new Value(entry.getValue())));
+        }
+
+        //replace
+        List<Expression> afterLines = replacer.replace(newMessageProperties,
+                readLineExpressions,
+                thymeleafTextValuePatterner,
+                thymeleafTextPatternSearcher);
+
+        //replace
+        List<Expression> afterLines2 = replacer.replace(oldMessageProperty,
+                afterLines,
+                thymeleafTextValuePatterner,
+                thymeleafTextPatternSearcher);
+
+        for(Expression e : afterLines2) {
+            System.out.println(e.getValue());
+        }
 
         // MessageModelConverter converter;
         // MessageReplacer replacer;

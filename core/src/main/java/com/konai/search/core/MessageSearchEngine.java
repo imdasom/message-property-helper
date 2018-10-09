@@ -46,15 +46,6 @@ public class MessageSearchEngine {
 				}
 			}
 		}
-		searchResult.setResultType(getSearchResultType(searchResult));
 		return searchResult;
 	}
-
-	private SearchResultType getSearchResultType(SearchResult searchResult) {
-        if(searchResult.getResultMap().size() > 0 ) {
-            return SearchResultType.Success;
-        } else {
-            return SearchResultType.Failuer;
-        }
-    }
 }
