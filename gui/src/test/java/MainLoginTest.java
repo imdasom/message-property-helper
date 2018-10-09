@@ -15,6 +15,7 @@ import com.konai.search.vo.SearchResult;
 import filter.FailureSearchResultFilter;
 import filter.SuccessSearchResultFilter;
 import org.junit.Test;
+import rule.PortalKeyNameRule;
 
 import java.io.File;
 import java.io.IOException;

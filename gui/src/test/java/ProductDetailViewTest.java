@@ -1,5 +1,4 @@
 import com.konai.collect.core.MessagePropertyCollector;
-import com.konai.collect.core.PatternSearcher;
 import com.konai.common.core.Expression;
 import com.konai.common.util.FileUtils;
 import com.konai.common.util.StringUtils;
@@ -16,6 +15,7 @@ import com.konai.search.vo.SearchResult;
 import filter.FailureSearchResultFilter;
 import filter.SuccessSearchResultFilter;
 import org.junit.Test;
+import rule.PortalKeyNameRule;
 
 import java.io.File;
 import java.io.IOException;
