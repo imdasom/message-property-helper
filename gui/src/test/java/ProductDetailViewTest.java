@@ -15,15 +15,13 @@ import com.konai.search.vo.SearchResult;
 import filter.FailureSearchResultFilter;
 import filter.SuccessSearchResultFilter;
 import org.junit.Test;
-import rule.PortalKeyNameRule;
+import portal.BetweenHtmlTagPatternSearcher;
+import portal.PortalKeyNameRule;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ProductDetailViewTest {
@@ -71,7 +69,8 @@ public class ProductDetailViewTest {
         // generate or get
         FailureSearchResultFilter failureFilter = new FailureSearchResultFilter();
         List<SearchResult> failureSearchReuslts = failureFilter.getFailureSearchResult(searchResults, ResultClass.TotalSimilar);
-        List<MessageProperty> newMessageProperties = failureFilter.getFailureMessageProperties(keyNameRule, failureSearchReuslts);
+        Set<SearchResult> failureSearchResultsSet = new HashSet<>(failureSearchReuslts);
+        List<MessageProperty> newMessageProperties = failureFilter.generateFailureMessageProperties(keyNameRule, failureSearchResultsSet);
         SuccessSearchResultFilter successFilter = new SuccessSearchResultFilter();
         List<SearchResult> successSearchResluts = successFilter.getSuccessSearchResult(searchResults, ResultClass.TotalSimilar);
         List<MessageProperty> oldMessageProperties = successFilter.getMessageProperties(successSearchResluts, ResultClass.TotalSimilar);

@@ -10,6 +10,9 @@ public class SearchResult {
     private SearchResultMap resultMap;
 
     public SearchResult(Message message) {
+        if(message == null) {
+            throw new NullPointerException("message is null");
+        }
         this.message = message;
         this.resultMap = new SearchResultMap();
     }
@@ -58,7 +61,7 @@ public class SearchResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(message, resultMap);
+        return Objects.hash(message.value);
     }
 
     @Override

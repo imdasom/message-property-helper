@@ -1,3 +1,5 @@
+package portal;
+
 import com.konai.collect.core.PatternSearcher;
 import com.konai.common.core.Expression;
 
