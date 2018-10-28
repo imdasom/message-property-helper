@@ -10,13 +10,13 @@ import java.util.List;
 
 public class MessagePropertyGenerator {
 
-    public MessageProperty generate(Expression expression, KeyNameRule keyNameRule) {
+    public static MessageProperty generate(Expression expression, KeyNameRule keyNameRule) {
         Key key = new Key(keyNameRule.getKey(expression));
         Value value = new Value(expression.getValue());
         return new MessageProperty(key, value);
     }
 
-    public List<MessageProperty> generate(List<Expression> messageProperties, KeyNameRule keyNameRule) {
+    public static List<MessageProperty> generate(List<Expression> messageProperties, KeyNameRule keyNameRule) {
         List<MessageProperty> newMessageProperties = new ArrayList<>();
         for (Expression expression : messageProperties) {
             newMessageProperties.add(generate(expression, keyNameRule));

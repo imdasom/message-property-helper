@@ -4,6 +4,7 @@ import com.konai.common.util.FileUtils;
 import com.konai.common.util.StringUtils;
 import com.konai.common.vo.Key;
 import com.konai.common.vo.MessageProperty;
+import com.konai.common.vo.Value;
 import com.konai.generate.core.KeyNameRule;
 import com.konai.generate.core.MessagePropertyGenerator;
 import com.konai.replace.core.MessagePropertyReplacer;
@@ -12,8 +13,7 @@ import com.konai.search.util.MessageTokenizer;
 import com.konai.search.vo.Message;
 import com.konai.search.vo.ResultClass;
 import com.konai.search.vo.SearchResult;
-import filter.FailureSearchResultFilter;
-import filter.SuccessSearchResultFilter;
+import filter.SearchResultFilter;
 import org.junit.Test;
 import portal.BetweenHtmlTagPatternSearcher;
 import portal.PortalKeyNameRule;
@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class ProductDetailViewTest {
@@ -41,6 +42,7 @@ public class ProductDetailViewTest {
         String bundleName = "messages";
         ResourceBundle bundle = FileUtils.getResourceBundle(location, bundleName, new Locale("ko", "KR"));
         Map<String, String> messageProertyMap = tokenizer.getMapFromResource(bundle);
+        Map<Key, Message> resourceTokenList = tokenizer.getTokenListFromMap(messageProertyMap);
 
         //resource : html file
         InputStream inputStream = FileUtils.getInputStream(new File(".\\src\\test\\resources\\html\\productDetailView.html"));
@@ -54,26 +56,37 @@ public class ProductDetailViewTest {
         BetweenHtmlTagPatternSearcher betweenHtmlTagPatternSearcher = new BetweenHtmlTagPatternSearcher();
 
         //key name rule
-        KeyNameRule keyNameRule = new PortalKeyNameRule("PROD_MANA", "_", messageProertyMap);
+        KeyNameRule keyNameRule = new PortalKeyNameRule("PROD_MANA", "_", resourceTokenList);
 
         //collect
         List<Expression> collectedExpression = collector.collect(readLineExpressions, betweenHtmlTagPatternSearcher);
 
         //search
-        Map<Key, Message> resourceTokenList = tokenizer.getTokenListFromMap(messageProertyMap);
         List<Message> valueList = collectedExpression.stream()
                 .map(value -> new Message(value.getValue()))
                 .collect(Collectors.toList());
         List<SearchResult> searchResults = searcher.search(valueList, resourceTokenList);
 
         // generate or get
-        FailureSearchResultFilter failureFilter = new FailureSearchResultFilter();
-        List<SearchResult> failureSearchReuslts = failureFilter.getFailureSearchResult(searchResults, ResultClass.TotalSimilar);
-        Set<SearchResult> failureSearchResultsSet = new HashSet<>(failureSearchReuslts);
-        List<MessageProperty> newMessageProperties = failureFilter.generateFailureMessageProperties(keyNameRule, failureSearchResultsSet);
-        SuccessSearchResultFilter successFilter = new SuccessSearchResultFilter();
-        List<SearchResult> successSearchResluts = successFilter.getSuccessSearchResult(searchResults, ResultClass.TotalSimilar);
-        List<MessageProperty> oldMessageProperties = successFilter.getMessageProperties(successSearchResluts, ResultClass.TotalSimilar);
+        SearchResultFilter searchResultFilter = new SearchResultFilter();
+        List<SearchResult> failureSearchReuslts = searchResultFilter.getSearchResult(searchResults, ResultClass.TotalSimilar, false);
+        List<MessageProperty> newMessageProperties = searchResultFilter.getMessageProperties(failureSearchReuslts, new Function<SearchResult, MessageProperty>() {
+            @Override
+            public MessageProperty apply(SearchResult result) {
+                Expression failureExpressions = new Expression(result.getMessage().getOriginMessage());
+                return MessagePropertyGenerator.generate(failureExpressions, keyNameRule);
+            }
+        });
+
+        List<SearchResult> successSearchResluts = searchResultFilter.getSearchResult(searchResults, ResultClass.TotalSimilar, true);
+        List<MessageProperty> oldMessageProperties = searchResultFilter.getMessageProperties(successSearchResluts, new Function<SearchResult, MessageProperty>() {
+            @Override
+            public MessageProperty apply(SearchResult result) {
+                Key key = result.getKeyByLevel(ResultClass.TotalSimilar).get();
+                Value value = new Value(result.getMessage().getOriginMessage());
+                return new MessageProperty(key, value);
+            }
+        });
         oldMessageProperties.addAll(newMessageProperties);
 
         //replace

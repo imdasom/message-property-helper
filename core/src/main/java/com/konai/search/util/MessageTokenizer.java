@@ -3,7 +3,6 @@ package com.konai.search.util;
 import com.konai.common.vo.Key;
 import com.konai.search.vo.Message;
 
-import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +11,7 @@ import java.util.ResourceBundle;
 
 public class MessageTokenizer {
 	
-	public Map<Key, Message> getTokenListFromMap(Map<String, String> map) throws IOException {
+	public Map<Key, Message> getTokenListFromMap(Map<String, String> map) {
 		Map<Key, Message> messageList = new HashMap<Key, Message>();
 		for (Entry<String, String> entry : map.entrySet()) {
 			messageList.put(new Key(entry.getKey()), new Message(entry.getValue()));

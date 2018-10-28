@@ -2,7 +2,9 @@ package portal;
 
 import com.konai.common.core.Expression;
 import com.konai.common.util.StringUtils;
+import com.konai.common.vo.Key;
 import com.konai.generate.core.KeyNameRule;
+import com.konai.search.vo.Message;
 
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -14,7 +16,7 @@ public class PortalKeyNameRule implements KeyNameRule {
     private String delimeter;
     private int lastIndex;
 
-    public PortalKeyNameRule(String prefix, String delimeter, Map<String, String> messageProertyMap) {
+    public PortalKeyNameRule(String prefix, String delimeter, Map<Key, Message> messageProertyMap) {
         this.prefix = prefix;
         this.delimeter = delimeter;
         this.lastIndex = getLastIndex(messageProertyMap);
@@ -26,11 +28,11 @@ public class PortalKeyNameRule implements KeyNameRule {
         return prefix + delimeter + suffix;
     }
 
-    private int getLastIndex(Map<String, String> messagePropertyMap) {
+    private int getLastIndex(Map<Key, Message> messagePropertyMap) {
         int maxCounter = 0;
         if(messagePropertyMap != null) {
-            for(Map.Entry<String, String> entry : messagePropertyMap.entrySet()) {
-                String key = entry.getKey();
+            for(Map.Entry<Key, Message> entry : messagePropertyMap.entrySet()) {
+                String key = entry.getKey().getValue();
                 Pattern findNumber = Pattern.compile("("+prefix+"){1}"+"("+delimeter+"){1}(.+){1}");
                 Matcher matcher = findNumber.matcher(key);
                 if (matcher.find()) {

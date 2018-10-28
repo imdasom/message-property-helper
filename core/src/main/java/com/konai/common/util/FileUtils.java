@@ -22,6 +22,7 @@ public class FileUtils {
         while((line = br.readLine()) != null) {
             lines.add(line);
         }
+        inputStream.close();
         return lines;
     }
 
