@@ -7,8 +7,9 @@ import com.konai.search.vo.SearchResult;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import properties.messages.coreengine.GenerateEngine;
+import properties.messages.coreengine.PortalMessagePropertyGenerator;
 import properties.messages.portal.PortalKeyNameRule;
+import properties.messages.portal.PortalMessagePropertySearcher;
 import properties.messages.wrapper.FileWrapper;
 import properties.messages.wrapper.ResourceBundleWrapper;
 
@@ -17,13 +18,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-public class GenerateEngineTest {
+public class PortalMessagePropertyGeneratorTest {
 
     private ResourceBundleWrapper resourceBundleWrapper;
     private FileWrapper fileWrapper;
     private KeyNameRule keyNameRule;
 
-    private static GenerateEngine generateEngine;
+    private PortalMessagePropertySearcher searcher;
 
     @Before
     public void setup() throws IOException {
@@ -39,36 +40,36 @@ public class GenerateEngineTest {
 
     @Test
     public void generateKey_띄어쓰기만다르면_같은문자로_인식하도록_하는_경우_fail_case() {
-        generateEngine = new GenerateEngine(resourceBundleWrapper, fileWrapper);
-        List<SearchResult> searchResults = generateEngine.getSearchResults();
-        List<MessageProperty> messageProperties = generateEngine.getFailureMessage(searchResults, ResultClass.TotalSimilar, keyNameRule);
+        List<SearchResult> searchResults = searcher.search(resourceBundleWrapper, fileWrapper.getExpressions());
+        PortalMessagePropertyGenerator generator = new PortalMessagePropertyGenerator();
+        List<MessageProperty> messageProperties = generator.generate(searchResults, keyNameRule, ResultClass.TotalSimilar);
         Assert.assertEquals(1, messageProperties.size());
         messageProperties.stream().forEach(System.out::println);
     }
 
     @Test
     public void generateKey_띄어쓰기만다르면_같은문자로_인식하도록_하는_경우_success_case() {
-        generateEngine = new GenerateEngine(resourceBundleWrapper, fileWrapper);
-        List<SearchResult> searchResults = generateEngine.getSearchResults();
-        List<MessageProperty> messageProperties = generateEngine.getSuccessMessages(searchResults, ResultClass.TotalSimilar);
+        List<SearchResult> searchResults = searcher.search(resourceBundleWrapper, fileWrapper.getExpressions());
+        PortalMessagePropertyGenerator generater = new PortalMessagePropertyGenerator();
+        List<MessageProperty> messageProperties = generater.generate(searchResults, keyNameRule, ResultClass.TotalSimilar);
         Assert.assertEquals(4, messageProperties.size());
         messageProperties.stream().forEach(System.out::println);
     }
 
     @Test
     public void generateKey_문자가_완전히_같아야_하는_경우_fail_case() {
-        generateEngine = new GenerateEngine(resourceBundleWrapper, fileWrapper);
-        List<SearchResult> searchResults = generateEngine.getSearchResults();
-        List<MessageProperty> messageProperties = generateEngine.getFailureMessage(searchResults, ResultClass.TotalEqual, keyNameRule);
+        List<SearchResult> searchResults = searcher.search(resourceBundleWrapper, fileWrapper.getExpressions());
+        PortalMessagePropertyGenerator generater = new PortalMessagePropertyGenerator();
+        List<MessageProperty> messageProperties = generater.generate(searchResults, keyNameRule, ResultClass.TotalEqual);
         Assert.assertEquals(4, messageProperties.size());
         messageProperties.stream().forEach(System.out::println);
     }
 
     @Test
     public void generateKey_문자가_완전히_같아야_하는_경우_success_case() {
-        generateEngine = new GenerateEngine(resourceBundleWrapper, fileWrapper);
-        List<SearchResult> searchResults = generateEngine.getSearchResults();
-        List<MessageProperty> messageProperties = generateEngine.getSuccessMessages(searchResults, ResultClass.TotalEqual);
+        List<SearchResult> searchResults = searcher.search(resourceBundleWrapper, fileWrapper.getExpressions());
+        PortalMessagePropertyGenerator generater = new PortalMessagePropertyGenerator();
+        List<MessageProperty> messageProperties = generater.generate(searchResults, keyNameRule, ResultClass.TotalEqual);
         Assert.assertEquals(1, messageProperties.size());
         messageProperties.stream().forEach(System.out::println);
     }

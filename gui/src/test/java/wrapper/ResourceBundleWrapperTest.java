@@ -2,6 +2,7 @@ package wrapper;
 
 import org.junit.Assert;
 import org.junit.Test;
+import properties.messages.wrapper.ResourceBundleWrapper;
 
 import java.io.IOException;
 import java.util.Locale;

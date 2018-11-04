@@ -3,6 +3,9 @@ package wrapper;
 import org.junit.Assert;
 import org.junit.Test;
 import properties.messages.portal.PortalSetupWrapper;
+import properties.messages.wrapper.FileWrapper;
+import properties.messages.wrapper.ResourceBundleWrapper;
+import properties.messages.wrapper.SetupWrapper;
 
 import java.io.File;
 import java.io.IOException;

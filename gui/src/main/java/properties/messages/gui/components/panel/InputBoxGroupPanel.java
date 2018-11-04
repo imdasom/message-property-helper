@@ -3,7 +3,6 @@ package properties.messages.gui.components.panel;
 import properties.messages.gui.components.GenerateDataComponentsWrapper;
 
 import javax.swing.*;
-import properties.messages.gui.components.GenerateDataComponentsWrapper;
 
 public class InputBoxGroupPanel extends JPanel {
 
@@ -15,6 +14,8 @@ public class InputBoxGroupPanel extends JPanel {
     private JTextField fileNameField = new JTextField(30);
     private JLabel outputPathLabel = new JLabel("출력위치");
     private JTextField outputPathField = new JTextField(30);
+    private JLabel outputMessagesLabel = new JLabel("생성결과");
+    private JTextArea outputMessagesField = new JTextArea(20, 30);
 
     public InputBoxGroupPanel() {
         this.setBorder(BorderFactory.createTitledBorder("입력항목"));
@@ -29,6 +30,7 @@ public class InputBoxGroupPanel extends JPanel {
                                 .addComponent(label2)
                                 .addComponent(label3)
                                 .addComponent(outputPathLabel)
+                                .addComponent(outputMessagesLabel)
                 )
                 .addGroup(
                         layout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -36,6 +38,7 @@ public class InputBoxGroupPanel extends JPanel {
                                 .addComponent(keyNameField)
                                 .addComponent(fileNameField)
                                 .addComponent(outputPathField)
+                                .addComponent(outputMessagesField)
                 )
         );
         layout.setVerticalGroup(layout.createSequentialGroup()
@@ -59,11 +62,16 @@ public class InputBoxGroupPanel extends JPanel {
                                 .addComponent(outputPathLabel)
                                 .addComponent(outputPathField)
                 )
+                .addGroup(
+                        layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(outputMessagesLabel)
+                                .addComponent(outputMessagesField)
+                )
         );
     }
 
     public GenerateDataComponentsWrapper getComponentsWrapper() {
-        return new GenerateDataComponentsWrapper(projectPathField, keyNameField, fileNameField);
+        return new GenerateDataComponentsWrapper(projectPathField, keyNameField, fileNameField, outputMessagesField);
     }
 
 }

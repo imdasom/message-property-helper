@@ -5,8 +5,6 @@ import com.konai.common.util.CollectionUtils;
 import com.konai.common.vo.MessageProperty;
 import com.konai.generate.core.KeyNameRule;
 import com.konai.search.vo.ResultClass;
-import com.konai.search.vo.SearchResult;
-import properties.messages.coreengine.GenerateEngine;
 import properties.messages.coreengine.ReplaceEngine;
 import properties.messages.gui.components.GenerateDataComponentsWrapper;
 import properties.messages.portal.*;
@@ -20,16 +18,16 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GenerateButtonClickListener implements ActionListener {
 
     private GenerateDataComponentsWrapper componentsWrapper;
-    private PortalMessagePropertyCollector collector;
 
     public GenerateButtonClickListener(GenerateDataComponentsWrapper generateDataComponentsWrapper) {
         this.componentsWrapper = generateDataComponentsWrapper;
-        this.collector = new PortalMessagePropertyCollector();
     }
 
     @Override
@@ -39,54 +37,49 @@ public class GenerateButtonClickListener implements ActionListener {
         List<File> fileList = componentsWrapper.getFileList();
 
         SetupWrapper setupWrapper = new PortalSetupWrapper();
-        ResourceBundleWrapper resourceBundleWrapper = getResourceBundleWrapper(setupWrapper, projectPath);
         List<FileWrapper> fileWrappers = getFileWrapperList(setupWrapper, fileList);
+        ResourceBundleWrapper resourceBundleWrapper = getResourceBundleWrapper(setupWrapper, projectPath);
+        KeyNameRule keyNameRule = new PortalKeyNameRule(keyName, "_", resourceBundleWrapper.getResourceMap());
+        ThymeleafTextValuePatternSearcher collectPattern = new ThymeleafTextValuePatternSearcher();
 
-        if(!CollectionUtils.isEmpty(fileWrappers)) {
-            FileWrapper fileWrapper = fileWrappers.get(0);
-            GenerateEngine generateEngine = instantiateGenerateEngine(collector, resourceBundleWrapper, fileWrapper);
-            if(generateEngine == null) {
-                showErrorMessage("cannot instantiate generate coreengine");
-                return;
-            }
-
-            List<SearchResult> searchResultList = generateEngine.getSearchResults();
-            KeyNameRule keyNameRule = new PortalKeyNameRule(keyName, "_", resourceBundleWrapper.getResourceMap());
-            List<MessageProperty> generatedMessages = generateEngine.getFailureMessage(searchResultList, ResultClass.TotalSimilar, keyNameRule);
-            List<MessageProperty> successMessages = generateEngine.getSuccessMessages(searchResultList, ResultClass.TotalSimilar);
-            List<MessageProperty> allMessageProperties = mergeList(generatedMessages, successMessages);
-
-            ReplaceEngine replaceEngine = new ReplaceEngine();
-            ThymeleafTextPatternSearcher thymeleafTextPatternReplacer = new ThymeleafTextPatternSearcher();
-            ThymeleafTextValuePatterner thymeleafTextValuePatterner = new ThymeleafTextValuePatterner();
-            BetweenHtmlTagPatternSearcher plainValuePatterner = new BetweenHtmlTagPatternSearcher();
-            List<Expression> result = replaceEngine.set(allMessageProperties, fileWrapper.getExpressions())
-                    .replace(thymeleafTextValuePatterner, thymeleafTextPatternReplacer)
-                    .replace(plainValuePatterner, plainValuePatterner)
-                    .get();
-
-            generatedMessages.stream().forEach(System.out::println);
-            result.stream().forEach(
-                    expression -> System.out.println(expression.getValue())
-            );
+        if(resourceBundleWrapper == null || CollectionUtils.isEmpty(fileWrappers)) {
+            return;
         }
-    }
 
-    private List<MessageProperty> mergeList(List<MessageProperty> generatedMessages, List<MessageProperty> successMessages) {
-        List<MessageProperty> mergedMessages = new ArrayList<>();
-        mergedMessages.addAll(generatedMessages);
-        mergedMessages.addAll(successMessages);
-        return mergedMessages;
-    }
+        FileWrapper fileWrapper = fileWrappers.get(0);
 
-    private GenerateEngine instantiateGenerateEngine(PortalMessagePropertyCollector collector, ResourceBundleWrapper resourceBundleWrapper, FileWrapper fileWrapper) {
-        GenerateEngine generateEngine;
-        if(resourceBundleWrapper != null && fileWrapper != null) {
-            generateEngine = new GenerateEngine(collector, resourceBundleWrapper, fileWrapper);
-        } else {
-            generateEngine = null;
+        PortalMessagePropertyHelper helper = new PortalMessagePropertyHelper();
+        List<MessageProperty> generatedMessages = helper.generate(
+                fileWrapper,
+                resourceBundleWrapper,
+                keyNameRule,
+                ResultClass.TotalSimilar,
+                collectPattern
+        );
+
+        Map<String, String> messageToMap = new HashMap<>();
+        for(MessageProperty messageProperty : generatedMessages) {
+            messageToMap.put(messageProperty.getKey().getValue(), messageProperty.getValue().getValue());
         }
-        return generateEngine;
+        componentsWrapper.setGeneratedMessages(messageToMap);
+
+        List<MessageProperty> allMessageProperties = new ArrayList<>();
+        allMessageProperties.addAll(resourceBundleWrapper.getResourceMapToList());
+        allMessageProperties.addAll(generatedMessages);
+
+        ReplaceEngine replaceEngine = new ReplaceEngine();
+        ThymeleafTextValuePatternSearcher thymeleafTextPatternReplacer = new ThymeleafTextValuePatternSearcher();
+        ThymeleafTextValuePatterner thymeleafTextValuePatterner = new ThymeleafTextValuePatterner();
+        BetweenHtmlTagPatternSearcher plainValuePatterner = new BetweenHtmlTagPatternSearcher();
+        List<Expression> result = replaceEngine.set(allMessageProperties, fileWrapper.getExpressions())
+                .replace(thymeleafTextValuePatterner, thymeleafTextPatternReplacer)
+                .replace(plainValuePatterner, plainValuePatterner)
+                .get();
+
+        generatedMessages.stream().forEach(System.out::println);
+        result.stream().forEach(
+                expression -> System.out.println(expression.getValue())
+        );
     }
 
     private ResourceBundleWrapper getResourceBundleWrapper(SetupWrapper setupWrapper, String projectPath) {

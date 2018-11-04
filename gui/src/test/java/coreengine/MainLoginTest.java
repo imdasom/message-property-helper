@@ -1,7 +1,6 @@
 package coreengine;
 
 import com.konai.collect.core.MessagePropertyCollector;
-import com.konai.collect.core.PatternSearcher;
 import com.konai.common.core.Expression;
 import com.konai.common.util.FileUtils;
 import com.konai.common.vo.Key;
@@ -18,9 +17,8 @@ import com.konai.search.vo.SearchResult;
 import org.junit.Test;
 import properties.messages.filter.SearchResultFilter;
 import properties.messages.portal.PortalKeyNameRule;
-import properties.messages.portal.ThymeleafTextPatternSearcher;
+import properties.messages.portal.ThymeleafTextValuePatternSearcher;
 import properties.messages.portal.ThymeleafTextValuePatterner;
-import properties.messages.portal.ValuePatternSearcher;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,10 +37,10 @@ public class MainLoginTest {
 
         //module instatiate
         MessageTokenizer tokenizer = new MessageTokenizer();
-        MessagePropertySearcher searcher = new MessagePropertySearcher();
+        MessagePropertySearcher searcher = MessagePropertySearcher.getInstance();
         MessagePropertyReplacer replacer = new MessagePropertyReplacer();
         MessagePropertyGenerator generator = new MessagePropertyGenerator();
-        MessagePropertyCollector<Expression, Expression> collector = new MessagePropertyCollector<>();
+        MessagePropertyCollector<Expression, Expression> collector = MessagePropertyCollector.getInstance();
 
         //resource : message properties bundle
         String location = ".\\src\\test\\resources\\";
@@ -57,19 +55,17 @@ public class MainLoginTest {
         List<Expression> readLineExpressions = lines.stream().map(Expression::new).collect(Collectors.toList());
 
         //regular expression pattern
-        ThymeleafTextPatternSearcher thymeleafTextPatternSearcher = new ThymeleafTextPatternSearcher();
-        PatternSearcher<Expression, Expression> valuePatternSearcher = new ValuePatternSearcher();
+        ThymeleafTextValuePatternSearcher thymeleafTextValuePatternSearcher = new ThymeleafTextValuePatternSearcher();
         ThymeleafTextValuePatterner thymeleafTextValuePatterner = new ThymeleafTextValuePatterner();
 
         //key name rule
         KeyNameRule keyNameRule = new PortalKeyNameRule("PROD_MANA", "_", resourceTokenList);
 
         //collect
-        List<Expression> thymeleafTextExpressions = collector.collect(readLineExpressions, thymeleafTextPatternSearcher);
-        List<Expression> valuePatternExpressions = collector.collect(thymeleafTextExpressions, valuePatternSearcher);
+        List<Expression> thymeleafTextExpressions = collector.collect(readLineExpressions, thymeleafTextValuePatternSearcher);
 
         //search
-        List<Message> valueList = valuePatternExpressions.stream()
+        List<Message> valueList = thymeleafTextExpressions.stream()
                 .map(value -> new Message(value.getValue()))
                 .collect(Collectors.toList());
         List<SearchResult> searchResults = searcher.search(valueList, resourceTokenList);
@@ -100,13 +96,13 @@ public class MainLoginTest {
         List<Expression> afterLines = replacer.replace(oldMessageProperties,
                 readLineExpressions,
                 thymeleafTextValuePatterner,
-                thymeleafTextPatternSearcher);
+                thymeleafTextValuePatternSearcher);
 
         //replace
         List<Expression> afterLines2 = replacer.replace(oldMessageProperties,
                 afterLines,
                 thymeleafTextValuePatterner,
-                thymeleafTextPatternSearcher);
+                thymeleafTextValuePatternSearcher);
 
         for (MessageProperty messageProperty : oldMessageProperties) {
             System.out.println(messageProperty.toString());

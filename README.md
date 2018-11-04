@@ -28,11 +28,11 @@ public interface PatternSearcher<T, U> {
 }
 </code></pre>
 <pre><code>//define regular expression or something you want to get from pattern
-PatternSearcher<Expression, Expression> thymeleafTextPatternSearcher = new ThymeleafTextPatternSearcher();
+PatternSearcher<Expression, Expression> thymeleafTextValuePatternSearcher = new ThymeleafTextPatternSearcher();
 PatternSearcher<Expression, Expression> valuePatternSearcher = new ValuePatternSearcher();
 </code></pre>
 <pre><code>//collect from list of Expression
-List<Expression> thymeleafTextExpressions = collector.collect(expressions, thymeleafTextPatternSearcher);
+List<Expression> thymeleafTextExpressions = collector.collect(expressions, thymeleafTextValuePatternSearcher);
 List<Expression> valuePatternExpressions = collector.collect(thymeleafTextExpressions, valuePatternSearcher);
 </code></pre>
 

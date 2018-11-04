@@ -3,6 +3,7 @@ package wrapper;
 import com.konai.common.core.Expression;
 import org.junit.Assert;
 import org.junit.Test;
+import properties.messages.wrapper.FileWrapper;
 
 import java.io.File;
 import java.io.IOException;

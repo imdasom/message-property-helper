@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ThymeleafTextPatternSearcher implements PatternSearcher<Expression, Expression>, PatternReplacer<Expression, Expression> {
+public class ThymeleafTextValuePatternSearcher implements PatternSearcher<Expression, Expression>, PatternReplacer<Expression, Expression> {
 
     private final String REGULA_REXPRESSION = "(th:text=\"){1}(.*?){1}(\"){1}";
     private final Pattern thymeleafTextExpression = Pattern.compile(REGULA_REXPRESSION);
@@ -20,7 +20,10 @@ public class ThymeleafTextPatternSearcher implements PatternSearcher<Expression,
         Matcher matcher = thymeleafTextExpression.matcher(source.getValue());
         while(matcher.find()) {
             String message = matcher.group(2);
-            expresisons.add(new Expression(message));
+            if(message.startsWith("'")) {
+                message = message.replaceAll("'", "");
+                expresisons.add(new Expression(message));
+            }
         }
         return expresisons;
     }

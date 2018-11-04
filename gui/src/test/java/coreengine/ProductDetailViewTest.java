@@ -37,10 +37,10 @@ public class ProductDetailViewTest {
 
         //module instatiate
         MessageTokenizer tokenizer = new MessageTokenizer();
-        MessagePropertySearcher searcher = new MessagePropertySearcher();
+        MessagePropertySearcher searcher = MessagePropertySearcher.getInstance();
         MessagePropertyReplacer replacer = new MessagePropertyReplacer();
         MessagePropertyGenerator generator = new MessagePropertyGenerator();
-        MessagePropertyCollector<Expression, Expression> collector = new MessagePropertyCollector<>();
+        MessagePropertyCollector<Expression, Expression> collector = MessagePropertyCollector.getInstance();
 
         //resource : message properties bundle
         String location = ".\\src\\test\\resources\\";

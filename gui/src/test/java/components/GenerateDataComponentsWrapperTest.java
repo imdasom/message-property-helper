@@ -2,6 +2,7 @@ package components;
 
 import org.junit.Assert;
 import org.junit.Test;
+import properties.messages.gui.components.GenerateDataComponentsWrapper;
 
 import javax.swing.*;
 import java.io.File;
