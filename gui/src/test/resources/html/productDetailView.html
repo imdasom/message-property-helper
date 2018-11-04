@@ -1,0 +1,2866 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KONA PLATFORM PORTAL</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=1100" />
+    <meta name="author" content="코나머니 | prompt Inc." />
+    <meta name="apple-mobile-web-app-title" content="코나머니" />
+    <meta name="description" content="코나머니 웹사이트입니다." />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../images/konacard_favicon.ico" />
+
+    <link type="text/css" rel="stylesheet" href="/css/common.css?v=13"/>
+    <link type="text/css" rel="stylesheet" href="/jquery-ui/jquery-ui.css"/>
+    <link type="text/css" rel="stylesheet" href="/scroll/jquery.scrollbar.css"/>
+    <link type="text/css" rel="stylesheet" href="/chosen/chosen.css"/>
+    <link type="text/css" rel="stylesheet" href="/datetime/jquery.datetimepicker.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/js/new_platform.css"/>
+
+
+
+
+
+
+
+    <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script type="text/javascript" src="/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.i18n.properties.min.js?v=2"></script>
+    <script type="text/javascript" src="/scroll/jquery.scrollbar.min.js"></script>
+    <script type="text/javascript" src="/js/promise.min.js"></script>
+    <script type="text/javascript" src="/js/fetch.js"></script>
+    <script type="text/javascript" src="/js/colResizable-1.6.js"></script>
+    <script type="text/javascript" src="/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="/chosen/chosen.jquery.js"></script>
+    <!-- script type="text/javascript" src="../../../datetime/jquery.datetimepicker.full.min.js" th:src="@{/datetime/jquery.datetimepicker.full.min.js}"></script-->
+    <script type="text/javascript" src="/datetime/jquery.datetimepicker.full.js"></script>
+    <script type="text/javascript" src="/js/modalDialog.js"></script>
+    <script type="text/javascript" src="/js/map-util.js?v=8"></script>
+    <script type="text/javascript" src="/js/common.js?v=24"></script>
+    <script type="text/javascript" src="/js/commonFetch.js?v=12"></script>
+    <script type="text/javascript" src="/js/jquery.floatThead.js"></script>
+    <script type="text/javascript" src="/js/portal-ui-helper.js?v=2.0.2"></script>
+    <script type="text/javascript" src="/js/jquery.table2excel.js"></script>
+
+
+
+
+    <script type="text/javascript" src="/js/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/popper/1.14.0/popper.min.js"></script>
+    <script type="text/javascript" src="/js/BsMultiSelect.js"></script>
+
+
+    <style>
+        .userPortalDisplayNone{display: none;}
+    </style>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-104164310-1', 'auto');
+        ga('require', 'displayfeatures');
+        ga('send', 'pageview');
+
+    </script>
+
+    <script type="text/javascript">
+        var menuStatus = "O";
+    </script>
+    <style type="text/css">
+        .checkbox-keyword1[type=checkbox]{display:none; }
+        .checkbox-keyword1[type=checkbox] + label { display: inline-block; padding: 6px 20px 6px 37px; margin: 0 5px 10px 0; text-align: center; border: 1px solid #c8e7d6; background: #ffffff url(../images/sub/btn_display_check_off_green.png) 17px 50% no-repeat; color: #6daa7d; font-size: 14px }
+        .checkbox-keyword1[type=checkbox]:checked + label{ display: inline-block; padding: 6px 20px 6px 37px; margin: 0 5px 10px 0; text-align: center; border: 1px solid #f82244; background: #ffffff url(../images/sub/btn_display_check_on.png) 17px 50% no-repeat; color: #f82244; font-size: 14px; }
+
+        table.write04 {width:100%; margin-top:20px;}
+        table.write04 tbody th {padding:10px 0 5px 0; text-align:left; vertical-align:middle; font: 15px "NotoSansKR",'나눔고딕', 'NanumGothic', "맑은 고딕", "Malgun Gothic", Dotum, '돋움', Arial, Helvetica, AppleSDGothicNeo, sans-serif; color:#000000;white-space:nowrap;}
+        table.write04 tbody th.tit {padding:10px 0 5px 0; text-align:left; vertical-align:middle; font: 15px "NotoSansKR-Thin",'나눔고딕', 'NanumGothic', "맑은 고딕", "Malgun Gothic", Dotum, '돋움', Arial, Helvetica, AppleSDGothicNeo, sans-serif; letter-spacing:-0.5px; color:#000000;white-space:nowrap;}
+        table.write04 tbody td {padding:10px 0 5px 0; vertical-align:top; text-align:left;white-space:nowrap; }
+        table.write04 tbody td.p01, table.write02 tbody th.p01 {padding-left:80px;}
+        table.write04 tbody th.top, table.write02 tbody td.top {vertical-align:top; padding-top:10px;}
+        table.write04 tbody td.p01 {padding-right:0;}
+        table.write04 tbody th.line, table.write04 tbody td.line {border-top:1px solid #f0f0f0; padding-top:40px;}
+        table.write04 tbody th.line02, table.write04 tbody td.line02 {padding-bottom:40px;}
+        table.plat_view tbody td label {display:inline-block;}
+        table.plat_view tbody .prd_w01 li {display:inline;}
+
+        .prd_h5 { margin-bottom: 30px; font: 18px "NotoSansKR-DemiLight",'나눔고딕', 'NanumGothic', "맑은 고딕", "Malgun Gothic", Dotum, '돋움', Arial, Helvetica, AppleSDGothicNeo, sans-serif; color: #000000; font-weight: bold; }
+    </style>
+    <script type="text/javascript" src="/js/package/product/productEvent.js"></script>
+</head>
+<body>
+
+<div id="content">
+    <h2 id="q_content">컨텐츠 바로가기</h2>
+    <h2 id="q_content">컨텐츠바로가기</h2>
+    <h2 id="q_content">컨텐 츠 바 로 가 기</h2>
+
+    <div class="location">
+        <h3 class="floatL" id="breadcrumbsTop">&nbsp;</h3>
+        <div id="breadcrumbs" class="area floatR">&nbsp;</div>
+    </div>
+
+    <div class="contentArea">
+        <div id="divFeeView"></div>
+        <div id="divSettleView"></div>
+        <!-- PRODUCT_FORM_01 ~ PRODUCT_FORM_01-21 -->
+        <!-- 기본 정보 -->
+        <div class="overflowH mt05">
+            <h4>기본 정보</h4>
+        </div>
+        <table class="plat_view">
+            <caption>상세정보</caption>
+            <colgroup>
+                <col width="19%" />
+                <col width="31%" />
+                <col width="19%" />
+                <col width="31%" />
+            </colgroup>
+            <tbody>
+
+            <tr>
+                <th scope="row" class="border">상품명</th>
+                <td colspan="3" class="border">개별 혜택 수정 테스트 001</td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">서비스 그룹 명</th>
+                <td colspan="3">코나카드 Design</td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">ASP / MP 정보</th>
+                <td colspan="3">코나아이주식회사/코나아이주식회사</td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <!-- 상품정보 -->
+        <div class="overflowH">
+            <h4>상품 정보</h4>
+        </div>
+        <table class="plat_view">
+            <caption>상세정보</caption>
+            <colgroup>
+                <col width="19%" />
+                <col width="31%" />
+                <col width="19%" />
+                <col width="31%" />
+            </colgroup>
+
+            <tbody>
+
+            <tr>
+                <th scope="row" class="border">카드 사용처 설정</th>
+                <td colspan="3" class="border">
+                    <span>전국 가맹점</span>
+
+                    <!-- 지정 사용처 -->
+
+
+
+                    <!-- 제외처 -->
+
+
+
+
+                </td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">온라인 결제 가능 여부</th>
+                <td colspan="3">
+
+
+                    <div>
+                        <span>모두 사용</span>
+                    </div>
+
+
+
+
+                </td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">혜택 제공 시점</th>
+                <td colspan="3">
+
+
+
+                    <!-- 혜택 그룹, 단골 할인이 있을때는 무조건 사용(결제) 할인 -->
+
+                    <div>
+                        <span>사용(결제) 할인</span>
+                    </div>
+
+
+                    <!-- 혜택 그룹, 단골 할인이 없을때 -->
+
+
+
+                    <input type="hidden" id="discountType" value="PaymentServer" />
+                </td>
+            </tr>
+            <!-- 폐쇄형일 때 -->
+            <!--
+                    <th:block th:if="${productView.templateType.getType() != 'T9'}">
+                        <th:block th:if="${!#lists.isEmpty(productView.productDiscount)}">
+                            <tr>
+                                <th scope="row" class="border" th:text="${title}">카드 혜택 제공 시점</th>
+                                <td class="border" colspan="3">
+                                    <th:block th:if="${!#lists.isEmpty(productView.productDiscount)}">
+                                        <span id="discountType" th:value="'Purchase'" th:text="#{M_0629}" th:if="${productView.productDiscount[0].discountType == 'Purchase'}">구매(발급) 할인</span>
+                                        <span th:if="${productView.productDiscount[0].discountType == 'None'}" th:text="#{M_0652}">제공 안 함</span>
+                                        <th:block th:if="${productView.productDiscount[0].discountType == 'PaymentPos' || productView.productDiscount[0].discountType == 'PaymentServer' }">
+                                            <span id="discountType" th:value="'Payment'" th:text="#{M_0648}" th:if="${productView.productDiscount[0].discountType == 'PaymentPos' || productView.productDiscount[0].discountType == 'PaymentServer' }">사용(결재) 할인</span>
+                                            <br />
+                                            <span th:if="${productView.productDiscount[0].discountType == 'PaymentPos'}" th:text="#{M_0650}">현장(POS)할인</span>
+                                            <span th:if="${productView.productDiscount[0].discountType == 'PaymentServer'}" th:text="#{M_0651}">서버 할인</span>
+                                        </th:block>
+                                        <span class="p_line" th:text="#{M_0648}" th:if="${productView.productDiscount[0].discountType != 'Purchase'}">사용(결재) 할인</span>
+                                        <span th:if="${productView.productDiscount[0].discountType == 'Purchase' && productView.productDiscount[0].discountValueType == 'Amount'}" th:text="#{M_0649}">정액 할인</span>
+                                        <span th:if="${productView.productDiscount[0].discountType == 'Purchase' && productView.productDiscount[0].discountValueType == 'Rate'}" th:text="#{M_0630}">고정 비율 할인</span>
+                                        <span th:if="${productView.productDiscount[0].discountType == 'PaymentPos'}" th:text="#{M_0650}">현장(POS)할인</span>
+                                        <span th:if="${productView.productDiscount[0].discountType == 'PaymentServer'}" th:text="#{M_0651}">서버 할인</span>
+                                        <span th:if="${productView.productDiscount[0].discountType == 'None'}" th:text="#{M_0652}">제공 안 함</span>
+                                        <span th:if="${productView.productDiscount[0].discountType != 'None'}">:</span>
+                                        <span th:if="${productView.productDiscount[0].discountType == 'Purchase' && productView.productDiscount[0].discountValueType == 'Amount'}">￦</span>
+                                        <span th:if="${productView.productDiscount[0].discountType != 'None'}" th:text="${#numbers.formatDecimal(productView.productDiscount[0].discountValue, 0, 'DEFAULT', 0, 'DEFAULT')}">10 </span>
+                                        <span th:if="${productView.productDiscount[0].discountValueType == 'Rate'}">%</span>
+                                    </th:block>
+                                    <th:block th:if="${#lists.isEmpty(productView.productDiscount)}">
+                                        <span th:text="#{M_0652}">제공 안 함</span>
+                                    </th:block>
+                                </td>
+                            </tr>
+                        </th:block>
+                    </th:block>
+             -->
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <th scope="row" th:text="'카드 할인 한도'">카드 할인 한도</th>
+                <td colspan="3">
+
+                    <p>
+                        <span>할인 조건</span>&nbsp;:&nbsp;
+
+
+
+
+
+
+
+
+                        <span>전월(1일 ~ 말일) 결제 금액 </span>
+                        <span>200,000</span>
+                        <span>원 이상 사용 시 할인 제공</span>
+
+
+                        <br/>
+
+
+                        <span style="margin-left: 68px;">당월(1월 ~ 말일) 누적 충전 금액 </span>
+                        <span>200,000</span>
+                        <span>원 이상 충전 시 할인 제공</span>
+
+
+
+
+                    </p>
+                    <p>
+                        <span>한도</span>&nbsp;:&nbsp;
+
+                        <span>월간 최대</span>
+                        <span>30,000</span>
+                        <span>원 할인 한도 제공</span>
+
+
+
+                    </p>
+                    <p>
+                        <span>유예기간</span>&nbsp;:&nbsp;
+                        <span>2</span>
+                        <span>개월</span>
+                    </p>
+
+                    <input type="hidden" id="cardDcntLimit" name="cardDcntLimit" value="30000" />
+                    <input type="hidden" id="cardDcntLimitType" name="cardDcntLimitType" value="MA" />
+                    <input type="hidden" id="conditionGracePeriod" name="conditionGracePeriod" value="2" />
+                    <input type="hidden" id="cardDcntConditionType" name="cardDcntConditionType" value="T" />
+                    <input type="hidden" id="cardDcntConditionAmt" name="cardDcntConditionAmt" value="200000" />
+                    <input type="hidden" id="prevConditionRechargeAmt" name="prevConditionRechargeAmt" value="200000" />
+                    <input type="hidden" id="templateType" name="templateType" value="T9" />
+
+                </td>
+            </tr>
+
+
+
+
+
+
+            <tr>
+                <td colspan="4">
+                    <div class="floatR"><button type="button" id="discountOrderUpdateView" class="btn_popup_s01">혜택 순서 변경</button></div>
+
+                    <div id="discountOrderByUpdateArea" style="display: none;">
+
+                        <ul id="discountOrderByUpdateIndex">
+
+                            <li>1</li>
+
+                            <li>2</li>
+
+                        </ul>
+
+                        <ul id="discountOrderByUpdate">
+
+                            <li data-discount-no="1" >개별 혜택1</li>
+
+                            <li data-discount-no="2" >개별 혜택2</li>
+
+                        </ul>
+                    </div>
+
+                </td>
+            </tr>
+
+
+
+
+
+            <tr>
+                <th scope="row">혜택 그룹</th>
+                <td colspan="3">
+
+
+                    <div class="discountBundleNameView" style="cursor:pointer;">
+                        <strong>
+                            <span>혜택 그룹명</span> :
+                            <span>코나카드 혜택</span>
+                        </strong>
+                        <span></span>
+                        (<span>2</span>)
+                    </div>
+
+                    <div class="discountBundleListView" style="display: none;">
+
+
+
+
+                        <p>
+                            <strong>
+                                <span>` 할인 혜택명(관리명) : </span>
+                                <span style="cursor: pointer; text-decoration: underline;" class="discountNameToggle">[코나] 혜택 테스트 아직 시작안됨.</span>
+                            </strong>
+                        </p>
+
+                        <div class="discountNameToggleArea" style="display: none;">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <ul>
+                                            <li>
+
+                                                <div>
+                                                    <span>결제처 유형</span>
+                                                    <span > : </span>
+
+
+                                                    <span >온오프라인</span>
+                                                </div>
+
+                                            </li>
+                                            <li>
+
+                                                <div>
+                                                    <span>혜택 구분</span>
+                                                    <span > : </span>
+
+
+                                                    <span >지역 혜택</span>
+                                                </div>
+
+                                            </li>
+                                            <li>
+
+                                                <div>
+                                                    <span>할인 구분</span>
+                                                    <span > : </span>
+
+                                                    <span >현장(POS) 할인</span>
+                                                </div>
+
+                                            </li>
+                                            <li>
+
+
+
+                                                <p>할인 혜택 제공처</p>
+                                                <span class="pl20">할인 제공 가맹점 그룹</span>
+                                                <span > : </span>
+
+
+
+                                                <span>QA최현준그룹2 </span>
+
+
+
+
+
+                                            </li>
+                                            <li>
+
+
+
+                                                <span class="pl20">할인 제외처 가맹점 그룹</span>
+                                                <span > : </span>
+
+
+                                                <span>-</span>
+
+
+
+
+
+                                            </li>
+                                            <li>
+
+
+
+                                                <span class="pl20">가맹점 안내</span>
+                                                <span > : </span>
+
+                                                <span>QA최현준그룹2</span>
+
+
+
+
+                                            </li>
+                                            <li>
+
+
+
+
+
+                                                <span>할인 및 제휴 계약</span>
+                                                <span > : </span>
+
+                                                <!-- 제공 할인 및 제휴 계약 -->
+
+                                                <!-- 후정산인 경우 -->
+                                                <span>
+
+
+
+
+        <!-- 후정산인 경우 -->
+        <span>
+
+
+                <span>후정산 - 할인 금액 </span>
+
+            <span>3,000원(</span>
+            <span style="font-weight:bold; color:green">
+                <span>플랫폼 제공자 100.0% , </span>
+                <span>가맹점 0.0%</span>
+
+                <span>  |  유지기간:  </span>
+                <span>2018/10/01~</span>
+                <span>2018/12/31</span>
+            </span>
+            <span>)</span>
+        </span>
+
+
+
+        </span>
+
+
+
+                                            </li>
+                                            <li>
+
+
+                                                <span style="margin-left: 110px;">할인 제공 설정</span>
+                                                <span> : </span>
+
+                                                <span>할인 금액</span>
+
+
+                                            </li>
+                                            <li>
+
+
+                                                <span style="margin-left: 110px;">할인방식</span>
+                                                <span> : </span>
+                                                <span>즉시 할인</span>
+
+
+
+                                            </li>
+                                            <li>
+
+
+                                                <div>
+
+
+                                                    <span style="margin-left: 110px;" >계약정보</span> - <a href="#" class="contractInfoView" id="1078" style="color: #0070C0; border-bottom: 0.5px solid #0070C0">T_GS 25시 </a>
+
+                                                    (<span>2017/11/19~2019/11/30</span>)
+
+                                                    <div class="contractPopupHtml" data-contract-type-name="T_GS 25시 " data-contract-type="G" style="display: none;" >
+                                                        <span class="contractTypeValueText">계약 구분 : 후정산</span>
+                                                        <span class="contractDateValueText">계약 기간 : 20171119~20191130</span>
+                                                        <span class="playerNameValueText">제휴사 : testkonami(6058620372)</span>
+
+
+                                                        <span class="discountRateGValueText">계약 할인율 : 0.0%</span>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </li>
+                                            <!--<li>
+                                                <th:block th:replace="/product/discountViewFragment :: discountHistoryListFragment(title='혜택 수정 이력 표시', discountGroupCheck='true' , discountList=${discountInfo} , 'null')"/>
+                                            </li>-->
+
+
+                                            <p>
+                                                <span>타임 할인 혜택</span>
+                                                <span> : </span>
+                                                <span>제공 안 함</span>
+                                            </p>
+
+
+
+
+                                            <!-- REQUEST_* 테이블에서 읽어올 때 -->
+
+                                            <!-- 일반 테이블에서 읽어올 때 -->
+
+
+
+
+
+
+                                            <li>
+
+
+
+
+                                                <div>
+                                                    <span>혜택 별 할인 한도</span>
+                                                    <span> : </span>
+                                                    <!--누적 금액 -->
+
+                                                    <!--누적 횟수 -->
+
+                                                    <!--월간 금액 -->
+
+                                                    <!--월간 횟수 -->
+
+                                                    <!-- 무제한 -->
+                                                    <span>무제한</span>
+
+
+                                                    <!-- 1회 할인 한도 -->
+
+                                                    <p style="margin-left: 112px;">
+                                                        <span>1회 할인 한도 - 무제한</span>
+                                                    </p>
+
+                                                    <p style="margin-left: 112px;">
+                                                        <span>최소 결제 금액 조건 - 해당 가맹점에서 3,000원 이상 결제 시 할인 가능</span>
+                                                    </p>
+                                                    <!-- 전월 사용 금액 조건은 카드별혜택 선택 시에만 노출된다 -->
+
+                                                    <!-- 전월 실적 여부 -->
+
+                                                    <p style="margin-left: 112px;">
+                                                        <span>전월 실적 - 미포함</span>
+                                                    </p>
+                                                </div>
+
+
+
+
+                                            </li>
+                                            <li>
+
+
+                                                <span>혜택 제공 기간</span>
+                                                <span> : </span>
+                                                <span>2018/10/01</span>
+                                                <span> - </span>
+                                                <span>2018/12/31</span>
+                                                까지
+
+
+                                            </li>
+                                            <li><p style="margin-top: 12px;">APP 전시 설정</p></li>
+                                            <li>
+
+                                                <div>
+                                                    <p><span class="pl20">전시 할인처명</span> : <span  >전시 할인처명</span></p>
+                                                    <p><span class="pl20">전시 혜택명</span> : <span  >전시 혜택명</span></p>
+                                                </div>
+
+                                            </li>
+                                            <li>
+
+
+
+                                                <span class="pl20">혜택 소개</span>
+                                                <span> : </span>
+
+
+                                                <span>혜택 소개</span>
+
+
+
+
+                                            </li>
+                                            <li>
+
+
+
+                                                <span class="pl20">혜택 안내</span>
+                                                <span> : </span>
+                                                <span>혜택 안내</span>
+
+
+
+                                            </li>
+                                            <li>
+
+
+
+
+
+
+
+                                            </li>
+                                            <li>
+
+
+
+                                                <div>
+                                                    <p style="margin-top: 12px;">태그 정보</p>
+                                                    <p>
+                                                        <span class="pl20">혜택 분류 - </span> <span>패션</span>
+                                                    </p>
+
+
+                                                    <div style="margin-top: 12px;">
+                                                        <span>혜택 이미지 : </span><a href="/common/fileDownloadForPublic?fileNo=13512&amp;sn=1" class="under" style="text-decoration: underline;">kakao_card_thumb.png</a>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+
+
+
+
+                        <p>
+                            <strong>
+                                <span>` 할인 혜택명(관리명) : </span>
+                                <span style="cursor: pointer; text-decoration: underline;" class="discountNameToggle">0프로 혜택</span>
+                            </strong>
+                        </p>
+
+                        <div class="discountNameToggleArea" style="display: none;">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <ul>
+                                            <li>
+
+                                                <div>
+                                                    <span>결제처 유형</span>
+                                                    <span > : </span>
+                                                    <span >오프라인</span>
+
+
+                                                </div>
+
+                                            </li>
+                                            <li>
+
+                                                <div>
+                                                    <span>혜택 구분</span>
+                                                    <span > : </span>
+
+                                                    <span >기본 혜택</span>
+
+                                                </div>
+
+                                            </li>
+                                            <li>
+
+                                                <div>
+                                                    <span>할인 구분</span>
+                                                    <span > : </span>
+                                                    <span >서버 할인</span>
+
+                                                </div>
+
+                                            </li>
+                                            <li>
+
+
+
+                                                <p>할인 혜택 제공처</p>
+                                                <span class="pl20">할인 제공 가맹점 그룹</span>
+                                                <span > : </span>
+
+
+
+                                                <span>tsstss </span>
+
+
+
+
+
+                                            </li>
+                                            <li>
+
+
+
+                                                <span class="pl20">할인 제외처 가맹점 그룹</span>
+                                                <span > : </span>
+
+
+                                                <span>-</span>
+
+
+
+
+
+                                            </li>
+                                            <li>
+
+
+
+                                                <span class="pl20">가맹점 안내</span>
+                                                <span > : </span>
+
+                                                <span>123</span>
+
+
+
+
+                                            </li>
+                                            <li>
+
+
+
+
+
+                                                <span>할인 및 제휴 계약</span>
+                                                <span > : </span>
+
+                                                <!-- 제공 할인 및 제휴 계약 -->
+                                                <span>
+
+
+
+
+        <!-- 제공 할인 및 제휴 계약 -->
+        <span>
+
+                <span>선매입(선정산) - 할인율 </span>
+
+
+            <span>0.00</span><span>%</span>
+        </span>
+
+
+
+        </span>
+                                                <!-- 후정산인 경우 -->
+
+
+
+
+                                            </li>
+                                            <li>
+
+
+                                                <span style="margin-left: 110px;">할인 제공 설정</span>
+                                                <span> : </span>
+                                                <span>할인율</span>
+
+
+
+                                            </li>
+                                            <li>
+
+
+                                                <span style="margin-left: 110px;">할인방식</span>
+                                                <span> : </span>
+                                                <span>즉시 할인</span>
+
+
+
+                                            </li>
+                                            <li>
+
+
+                                                <div>
+
+
+                                                    <span style="margin-left: 110px;" >계약정보</span> - <a href="#" class="contractInfoView" id="1075" style="color: #0070C0; border-bottom: 0.5px solid #0070C0">T_영풍문고</a>
+
+                                                    (<span>2017/11/18~2019/11/30</span>)
+
+                                                    <div class="contractPopupHtml" data-contract-type-name="T_영풍문고" data-contract-type="P" style="display: none;" >
+                                                        <span class="contractTypeValueText">계약 구분 : 선매입</span>
+                                                        <span class="contractDateValueText">계약 기간 : 20171118~20191130</span>
+                                                        <span class="playerNameValueText">제휴사 : testkonami(6058620372)</span>
+
+                                                        <span class="amountIssuedValueText">발행 금액 : 10000000</span>
+                                                        <span class="discountRatePValueText">매입 할인율 : 14.0%</span>
+                                                        <span class="stockAmountValueText">재고 보유금액 : 10000000(100.0)</span>
+
+
+                                                    </div>
+                                                </div>
+
+
+                                            </li>
+                                            <!--<li>
+                                                <th:block th:replace="/product/discountViewFragment :: discountHistoryListFragment(title='혜택 수정 이력 표시', discountGroupCheck='true' , discountList=${discountInfo} , 'null')"/>
+                                            </li>-->
+
+
+                                            <p>
+                                                <span>타임 할인 혜택</span>
+                                                <span> : </span>
+                                                <span>제공 안 함</span>
+                                            </p>
+
+
+
+
+                                            <!-- REQUEST_* 테이블에서 읽어올 때 -->
+
+                                            <!-- 일반 테이블에서 읽어올 때 -->
+
+
+
+
+
+
+                                            <li>
+
+
+
+
+                                                <div>
+                                                    <span>혜택 별 할인 한도</span>
+                                                    <span> : </span>
+                                                    <!--누적 금액 -->
+
+                                                    <!--누적 횟수 -->
+
+                                                    <!--월간 금액 -->
+
+                                                    <!--월간 횟수 -->
+
+                                                    <!-- 무제한 -->
+                                                    <span>무제한</span>
+
+
+                                                    <!-- 1회 할인 한도 -->
+
+                                                    <p style="margin-left: 112px;">
+                                                        <span>1회 할인 한도 - 무제한</span>
+                                                    </p>
+
+                                                    <p style="margin-left: 112px;">
+                                                        <span>최소 결제 금액 조건 - 해당 가맹점에서 0원 이상 결제 시 할인 가능</span>
+                                                    </p>
+                                                    <!-- 전월 사용 금액 조건은 카드별혜택 선택 시에만 노출된다 -->
+
+                                                    <!-- 전월 실적 여부 -->
+                                                    <p style="margin-left: 112px;">
+                                                        <span>전월 실적 - 포함</span>
+                                                    </p>
+
+                                                </div>
+
+
+
+
+                                            </li>
+                                            <li>
+
+
+                                                <span>혜택 제공 기간</span>
+                                                <span> : </span>
+                                                <span>2018/09/17</span>
+                                                <span> - </span>
+                                                <span>2018/11/30</span>
+                                                까지
+
+
+                                            </li>
+                                            <li><p style="margin-top: 12px;">APP 전시 설정</p></li>
+                                            <li>
+
+                                                <div>
+                                                    <p><span class="pl20">전시 할인처명</span> : <span  >123</span></p>
+                                                    <p><span class="pl20">전시 혜택명</span> : <span  >123</span></p>
+                                                </div>
+
+                                            </li>
+                                            <li>
+
+
+
+                                                <span class="pl20">혜택 소개</span>
+                                                <span> : </span>
+
+
+                                                <span>123</span>
+
+
+
+
+                                            </li>
+                                            <li>
+
+
+
+                                                <span class="pl20">혜택 안내</span>
+                                                <span> : </span>
+                                                <span>123</span>
+
+
+
+                                            </li>
+                                            <li>
+
+
+
+
+                                                <span class="pl20">유의 사항</span>
+                                                <span> : </span>
+                                                <span>123</span>
+
+
+
+
+                                            </li>
+                                            <li>
+
+
+
+                                                <div>
+                                                    <p style="margin-top: 12px;">태그 정보</p>
+                                                    <p>
+                                                        <span class="pl20">혜택 분류 - </span> <span>까페/디저트</span>
+                                                    </p>
+                                                    <p>
+                                                        <span class="pl20">직접 입력 태그1 - </span> <span>1</span>
+                                                    </p>
+                                                    <p>
+                                                        <span class="pl20">직접 입력 태그2 - </span> <span>1</span>
+                                                    </p>
+                                                    <div style="margin-top: 12px;">
+                                                        <span>혜택 이미지 : </span><a href="/common/fileDownloadForPublic?fileNo=13786&amp;sn=1" class="under" style="text-decoration: underline;">1.jpg</a>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+
+
+
+                    </div>
+
+
+
+                </td>
+            </tr>
+
+
+
+
+
+
+
+            <!-- <th:block th:if="${!#lists.isEmpty(productView.productDiscount)}"> -->
+            <!-- <th:block th:each="i : ${#numbers.sequence(0, productView.productDiscount.size() - 1)}" th:if="${ productView.productDiscount[i].discountType == 'PaymentServer' }"> -->
+
+
+            <tr class="productDiscountArea">
+                <th scope="row" rowspan="2">혜택 구성1</th>
+                <td colspan="3" style="font-size: 15px; font-weight: 600;color: #000;background: #f8f9fa;padding: 5px 30px 5px 30px;">
+
+                    <span style="font-weight:bold; color:blue">(앱 노출 순서: 1)</span>
+
+                    혜택 이름(관리명)  : <span>개별 혜택1</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+
+                    <ul>
+                        <li>
+
+                            <div>
+                                <span>결제처 유형</span>
+                                <span > : </span>
+                                <span >오프라인</span>
+
+
+                            </div>
+
+                        </li>
+                        <li>
+
+                            <div>
+                                <span>혜택 구분</span>
+                                <span > : </span>
+
+                                <span >기본 혜택</span>
+
+                            </div>
+
+                        </li>
+                        <li>
+
+                            <div>
+                                <span>할인 구분</span>
+                                <span > : </span>
+                                <span >서버 할인</span>
+
+                            </div>
+
+                        </li>
+                        <li>
+
+
+
+                            <p>할인 혜택 제공처</p>
+                            <span class="pl20">할인 제공 가맹점 그룹</span>
+                            <span > : </span>
+
+
+
+                            <span>QA최현준_그룹11 </span>
+
+
+
+
+
+                        </li>
+                        <li>
+
+
+
+                            <span class="pl20">할인 제외처 가맹점 그룹</span>
+                            <span > : </span>
+
+
+                            <span>-</span>
+
+
+
+
+
+                        </li>
+                        <li>
+
+
+
+                            <span class="pl20">가맹점 안내</span>
+                            <span > : </span>
+
+                            <span>123</span>
+
+
+
+
+                        </li>
+                        <li>
+
+
+
+
+
+                            <span>할인 및 제휴 계약</span>
+                            <span > : </span>
+
+                            <!-- 제공 할인 및 제휴 계약 -->
+
+                            <!-- 후정산인 경우 -->
+                            <span>
+
+
+
+
+        <!-- 후정산인 경우 -->
+        <span>
+
+                <span>후정산 - 할인율 </span>
+
+
+            <span>30.00%(</span>
+            <span style="font-weight:bold; color:green">
+                <span>플랫폼 제공자 30.0% , </span>
+                <span>가맹점 0.0%</span>
+
+                <span>  |  유지기간:  </span>
+                <span>2018/09/17~</span>
+                <span>2018/11/30</span>
+            </span>
+            <span>)</span>
+        </span>
+
+
+
+        </span>
+
+
+
+                        </li>
+                        <li>
+
+
+                            <span style="margin-left: 110px;">할인 제공 설정</span>
+                            <span> : </span>
+                            <span>할인율</span>
+
+
+
+                        </li>
+                        <li>
+
+
+                            <span style="margin-left: 110px;">할인방식</span>
+                            <span> : </span>
+                            <span>즉시 할인</span>
+
+
+
+                        </li>
+                        <li>
+
+
+
+
+
+                        </li>
+                        <!--
+                        <li>
+                            <th:block th:replace="/product/discountViewFragment :: discountHistoryListFragment(title='혜택 수정 이력 표시', discountGroupCheck='false' , discountList=${discountListInfo} , discountHistory=${productView.productDiscountHistory} )" />
+                        </li>
+                        -->
+                        <li>
+
+
+                            <p>
+                                <span>타임 할인 혜택</span>
+                                <span> : </span>
+                                <span>제공 안 함</span>
+                            </p>
+
+
+
+
+                            <!-- REQUEST_* 테이블에서 읽어올 때 -->
+
+                            <!-- 일반 테이블에서 읽어올 때 -->
+
+
+
+
+
+
+                        </li>
+                        <li>
+
+
+
+
+                            <div>
+                                <span>혜택 별 할인 한도</span>
+                                <span> : </span>
+                                <!--누적 금액 -->
+
+                                <!--누적 횟수 -->
+
+                                <!--월간 금액 -->
+
+                                <!--월간 횟수 -->
+
+                                <!-- 무제한 -->
+                                <span>무제한</span>
+
+
+                                <!-- 1회 할인 한도 -->
+
+                                <p style="margin-left: 112px;">
+                                    <span>1회 할인 한도 - 무제한</span>
+                                </p>
+
+                                <p style="margin-left: 112px;">
+                                    <span>최소 결제 금액 조건 - 해당 가맹점에서 0원 이상 결제 시 할인 가능</span>
+                                </p>
+                                <!-- 전월 사용 금액 조건은 카드별혜택 선택 시에만 노출된다 -->
+
+                                <!-- 전월 실적 여부 -->
+
+                                <p style="margin-left: 112px;">
+                                    <span>전월 실적 - 미포함</span>
+                                </p>
+                            </div>
+
+
+
+
+                        </li>
+                        <li>
+
+
+                            <span>혜택 제공 기간</span>
+                            <span> : </span>
+                            <span>2018/09/17</span>
+                            <span> - </span>
+                            <span>2018/11/30</span>
+                            까지
+
+
+                        </li>
+                        <li><p style="margin-top: 12px;">APP 전시 설정</p></li>
+                        <li>
+
+                            <div>
+                                <p><span class="pl20">전시 할인처명</span> : <span  >123</span></p>
+                                <p><span class="pl20">전시 혜택명</span> : <span  >123</span></p>
+                            </div>
+
+                        </li>
+                        <li>
+
+
+
+                            <span class="pl20">혜택 소개</span>
+                            <span> : </span>
+
+
+                            <span>123</span>
+
+
+
+
+                        </li>
+                        <li>
+
+
+
+                            <span class="pl20">혜택 안내</span>
+                            <span> : </span>
+                            <span>123</span>
+
+
+
+                        </li>
+                        <li>
+
+
+
+
+                            <span class="pl20">유의 사항</span>
+                            <span> : </span>
+                            <span>123</span>
+
+
+
+
+                        </li>
+                        <li>
+
+
+
+                            <div>
+                                <p style="margin-top: 12px;">태그 정보</p>
+                                <p>
+                                    <span class="pl20">혜택 분류 - </span> <span>까페/디저트</span>
+                                </p>
+                                <p>
+                                    <span class="pl20">직접 입력 태그1 - </span> <span>123</span>
+                                </p>
+                                <p>
+                                    <span class="pl20">직접 입력 태그2 - </span> <span>123</span>
+                                </p>
+                                <div style="margin-top: 12px;">
+                                    <span>혜택 이미지 : </span><a href="/common/fileDownloadForPublic?fileNo=13788&amp;sn=1" class="under" style="text-decoration: underline;">kakao_card_thumb.png</a>
+                                </div>
+                            </div>
+
+
+
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+            <tr class="productDiscountArea">
+                <th scope="row" rowspan="2">혜택 구성2</th>
+                <td colspan="3" style="font-size: 15px; font-weight: 600;color: #000;background: #f8f9fa;padding: 5px 30px 5px 30px;">
+
+                    <span style="font-weight:bold; color:blue">(앱 노출 순서: 2)</span>
+
+                    혜택 이름(관리명)  : <span>개별 혜택2</span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+
+                    <ul>
+                        <li>
+
+                            <div>
+                                <span>결제처 유형</span>
+                                <span > : </span>
+                                <span >오프라인</span>
+
+
+                            </div>
+
+                        </li>
+                        <li>
+
+                            <div>
+                                <span>혜택 구분</span>
+                                <span > : </span>
+                                <span >스페셜 혜택</span>
+
+
+                            </div>
+
+                        </li>
+                        <li>
+
+                            <div>
+                                <span>할인 구분</span>
+                                <span > : </span>
+                                <span >서버 할인</span>
+
+                            </div>
+
+                        </li>
+                        <li>
+
+
+
+                            <p>할인 혜택 제공처</p>
+                            <span class="pl20">할인 제공 가맹점 그룹</span>
+                            <span > : </span>
+
+
+
+                            <span>QA최현준그룹2 </span>
+
+
+
+
+
+                        </li>
+                        <li>
+
+
+
+                            <span class="pl20">할인 제외처 가맹점 그룹</span>
+                            <span > : </span>
+
+
+                            <span>-</span>
+
+
+
+
+
+                        </li>
+                        <li>
+
+
+
+                            <span class="pl20">가맹점 안내</span>
+                            <span > : </span>
+
+                            <span>ㅋㅋ</span>
+
+
+
+
+                        </li>
+                        <li>
+
+
+
+
+
+                            <span>할인 및 제휴 계약</span>
+                            <span > : </span>
+
+                            <!-- 제공 할인 및 제휴 계약 -->
+
+                            <!-- 후정산인 경우 -->
+                            <span>
+
+
+
+
+        <!-- 후정산인 경우 -->
+        <span>
+
+
+                <span>후정산 - 할인 금액 </span>
+
+            <span>3,000원(</span>
+            <span style="font-weight:bold; color:green">
+                <span>플랫폼 제공자 100.0% , </span>
+                <span>가맹점 0.0%</span>
+
+                <span>  |  유지기간:  </span>
+                <span>2018/09/18~</span>
+                <span>2018/11/30</span>
+            </span>
+            <span>)</span>
+        </span>
+
+
+
+        </span>
+
+
+
+                        </li>
+                        <li>
+
+
+                            <span style="margin-left: 110px;">할인 제공 설정</span>
+                            <span> : </span>
+
+                            <span>할인 금액</span>
+
+
+                        </li>
+                        <li>
+
+
+                            <span style="margin-left: 110px;">할인방식</span>
+                            <span> : </span>
+                            <span>즉시 할인</span>
+
+
+
+                        </li>
+                        <li>
+
+
+
+
+
+                        </li>
+                        <!--
+                        <li>
+                            <th:block th:replace="/product/discountViewFragment :: discountHistoryListFragment(title='혜택 수정 이력 표시', discountGroupCheck='false' , discountList=${discountListInfo} , discountHistory=${productView.productDiscountHistory} )" />
+                        </li>
+                        -->
+                        <li>
+
+
+                            <p>
+                                <span>타임 할인 혜택</span>
+                                <span> : </span>
+                                <span>제공 안 함</span>
+                            </p>
+
+
+
+
+                            <!-- REQUEST_* 테이블에서 읽어올 때 -->
+
+                            <!-- 일반 테이블에서 읽어올 때 -->
+
+
+
+
+
+
+                        </li>
+                        <li>
+
+
+
+
+                            <div>
+                                <span>혜택 별 할인 한도</span>
+                                <span> : </span>
+                                <!--누적 금액 -->
+
+                                <!--누적 횟수 -->
+
+                                <!--월간 금액 -->
+                                <span>월간 제한 한도 - 최대 <span>10,000</span>원 까지 할인 가능</span>
+                                <!--월간 횟수 -->
+
+                                <!-- 무제한 -->
+
+
+
+                                <!-- 1회 할인 한도 -->
+                                <p style="margin-left: 112px;">
+                                    <span>1회 할인 한도 - 최대 5,000원 까지 할인 가능</span>
+                                </p>
+
+
+                                <p style="margin-left: 112px;">
+                                    <span>최소 결제 금액 조건 - 해당 가맹점에서 3,000원 이상 결제 시 할인 가능</span>
+                                </p>
+                                <!-- 전월 사용 금액 조건은 카드별혜택 선택 시에만 노출된다 -->
+
+                                <!-- 전월 실적 여부 -->
+                                <p style="margin-left: 112px;">
+                                    <span>전월 실적 - 포함</span>
+                                </p>
+
+                            </div>
+
+
+
+
+                        </li>
+                        <li>
+
+
+                            <span>혜택 제공 기간</span>
+                            <span> : </span>
+                            <span>2018/09/18</span>
+                            <span> - </span>
+                            <span>2018/11/30</span>
+                            까지
+
+
+                        </li>
+                        <li><p style="margin-top: 12px;">APP 전시 설정</p></li>
+                        <li>
+
+                            <div>
+                                <p><span class="pl20">전시 할인처명</span> : <span  >111</span></p>
+                                <p><span class="pl20">전시 혜택명</span> : <span  >222</span></p>
+                            </div>
+
+                        </li>
+                        <li>
+
+
+
+                            <span class="pl20">혜택 소개</span>
+                            <span> : </span>
+
+
+                            <span>333</span>
+
+
+
+
+                        </li>
+                        <li>
+
+
+
+                            <span class="pl20">혜택 안내</span>
+                            <span> : </span>
+                            <span>444</span>
+
+
+
+                        </li>
+                        <li>
+
+
+
+
+                            <span class="pl20">유의 사항</span>
+                            <span> : </span>
+                            <span>555</span>
+
+
+
+
+                        </li>
+                        <li>
+
+
+
+                            <div>
+                                <p style="margin-top: 12px;">태그 정보</p>
+                                <p>
+                                    <span class="pl20">혜택 분류 - </span> <span>까페/디저트</span>
+                                </p>
+                                <p>
+                                    <span class="pl20">직접 입력 태그1 - </span> <span>1</span>
+                                </p>
+                                <p>
+                                    <span class="pl20">직접 입력 태그2 - </span> <span>2</span>
+                                </p>
+                                <div style="margin-top: 12px;">
+                                    <span>혜택 이미지 : </span><a href="/common/fileDownloadForPublic?fileNo=13787&amp;sn=1" class="under" style="text-decoration: underline;">kakao_card_thumb.png</a>
+                                </div>
+                            </div>
+
+
+
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <th scope="row">카드 타입</th>
+                <td colspan="3">
+
+
+
+
+
+
+
+                    <div>
+                        <span>연결 카드</span>
+                    </div>
+
+
+
+
+                    <div><span>모바일 결제 앱에 등록 : 가능</span></div>
+
+
+
+
+                </td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">충전 가능 여부</th>
+                <td colspan="3">
+                    <div>
+                        <div>
+                            <p>충전 가능(충전형)</p>
+                            <span>금액 충전 방식</span>
+                            <span> : </span>
+                            <span>입력 금액 충전</span>
+                            <span> , </span>
+
+
+                            <span>초기 충전 금액</span>&nbsp;:
+                            <span>없음</span>
+
+
+
+                        </div>
+
+                    </div>
+
+                </td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">충전처 설정</th>
+                <td colspan="3">
+
+                    <div>
+                        <!-- <span th:text="#{M_1238}">오프라인 충전 처 설정</span> : <span th:text="#{M_0662}">불가능</span> -->
+                        <span>불가능</span>
+                        <br/>
+                        <span>충전처</span> : <span>온라인</span>
+                    </div>
+
+                </td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">카드 유효 기간</th>
+                <td colspan="3">
+                    <!-- <span th:text="${productView.eftvPeriodType=='1'}? #{M_0216} : #{M_0217}">구매 시점</span> -->
+
+                    <div>
+                        <p>특정 일자</p>
+
+
+
+                        <span>2033/01</span>
+
+
+
+
+
+                        <span>까지</span>
+                    </div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">카드 발급 제한</th>
+                <td colspan="3">
+                    <span>무제한</span>
+
+                </td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">카드 판매기간</th>
+                <td colspan="3">
+                    <span>무제한</span>
+
+                </td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">환불 가능</th>
+
+                <td colspan="3">불가능</td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">금액전환</th>
+                <td colspan="3">
+                    <p>코나머니로 전환 : 가능</p>
+
+                    <p>옵션카드로 전환 : 가능</p>
+
+                </td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">발행사</th>
+                <td colspan="3">코나아이 주식회사</td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">부가서비스 제공</th>
+                <td colspan="3">
+                    <span>제공 안 함</span>
+                </td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">부가서비스 상세</th>
+                <td colspan="3">
+                    <span>-</span>
+                    <!-- 공통::부가서비스:포인트 정보 -->
+
+                    <!-- 부가서비스:스탬프 정보 -->
+
+                    <!-- 부가서비스:쿠폰 정보 -->
+
+                </td>
+            </tr>
+
+            </tbody>
+            <tbody>
+
+            <tr>
+                <th scope="row">사용 지역/정보</th>
+
+                <td colspan="3">123</td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">상품 분류</th>
+
+                <td colspan="3">카페/디저트</td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">카드 소개</th>
+
+                <td colspan="3">123</td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">카드 혜택</th>
+
+                <td colspan="3">123</td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">유의사항</th>
+
+                <td colspan="3">
+                    <span>이 상품은 모바일 결제 앱에 등록하여 사용할 수 있습니다.<br />상기 혜택은 제휴사 사정에 따라 변경될 수 있습니다.</span>
+                </td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">지급보증 또는 피해보상계약<br /> 체결에 관한 사항</th>
+
+                <td colspan="3">본 상품은 지급보증 및 피해보상보험 계약 없이 코나아이 주식회사의 신용으로 발행되었습니다.</td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <div class="overflowH mt05">
+            <h4>태그 정보</h4>
+        </div>
+        <table class="plat_view">
+            <caption>태그 정보</caption>
+            <colgroup>
+                <col width="19%" />
+                <col width="81%" />
+            </colgroup>
+            <tbody>
+
+            <tr>
+                <th scope="row" class="border">키워드</th>
+                <td colspan="3" class="border">도넛</td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">직접 입력 태그</th>
+                <td colspan="3">-</td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <!-- 증빙자료 첨부 -->
+
+        <!-- end of PRODUCT_FORM_01 ~ PRODUCT_FORM_01-21-->
+
+        <!-- 수수료 -->
+        <div class="overflowH">
+            <h4>수수료</h4>
+        </div>
+        <div id="prodFee"></div>
+
+        <!-- 카드 이미지 -->
+        <div class="overflowH mt05">
+            <h4>카드 이미지 변경</h4>
+        </div>
+        <table class="plat_view">
+            <caption>카드 이미지 변경</caption>
+            <colgroup>
+                <col width="19%" />
+                <col width="31%" />
+                <col width="19%" />
+                <col width="31%" />
+            </colgroup>
+            <tbody>
+
+            <tr>
+                <th scope="row" class="border">카드 이미지</th>
+                <td class="border">
+                    <span class="pcard_img mr10"><a href="#"><img id="cardImgId" src="http://kmdfiles.prompt.co.kr/service/WEB/2018/9/17/file_31c7a8cc3498445f932959d23312f737_1537180643084.png" alt="" /></a></span>
+
+                    <span class="">card_img.png (960x600, 10KB)</span>
+
+
+                </td>
+                <th scope="row" class="border">섬네일 이미지</th>
+                <td class="border">
+                    <span class="plogo_img mr10"><a href="#"><img id="thumbImgId" src="http://kmdfiles.prompt.co.kr/service/WEB/2018/9/17/file_ab7fa481ea78499e8d3231c8d24f04dc_1537180643766.png" alt="" /></a></span>
+
+                    <span>card_thumb.png (960x600, 10KB)</span>
+
+
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <div class="overflowH">
+            <h4>카드 충전 방식</h4>
+        </div>
+        <table class="plat_view">
+            <caption>상세정보</caption>
+            <colgroup>
+                <col width="19%"/>
+                <col width="31%"/>
+                <col width="19%"/>
+                <col width="31%"/>
+            </colgroup>
+            <tbody>
+
+            <tr>
+                <th scope="row" class="border">카드 충전 방식</th>
+                <!--
+                <th:block th:if="${productView.templateType.getType() == 'T9'}">
+                    <td colspan="3" class="border" th:if="${productView.offlineRechargeYn == 'Y'}" th:text="#{M_0810}+'/'+#{M_0811}">온라인/오프라인</td>
+                    <td colspan="3" class="border" th:if="${productView.offlineRechargeYn == 'N'}" th:text="#{M_0810}">온라인</td>
+                </th:block>
+                -->
+                <!-- <th:block th:unless="${productView.templateType.getType() == 'T9'}"> -->
+                <td colspan="3" class="border" >모든수단충전가능</td>
+
+
+
+
+
+
+
+
+
+                <!-- </th:block> -->
+            </tr>
+
+            </tbody>
+        </table>
+
+        <!-- BIN 유형 코드 -->
+        <div class="overflowH">
+            <h4>BIN 유형 코드</h4>
+        </div>
+        <table class="plat_view">
+            <caption>상세정보</caption>
+            <colgroup>
+                <col width="19%" />
+                <col width="31%" />
+                <col width="19%" />
+                <col width="31%" />
+            </colgroup>
+            <tbody>
+
+            <tr>
+                <th scope="row" class="border">BIN 유형 코드</th>
+                <td colspan="3" class="border">0</td>
+
+
+
+
+
+
+
+
+
+            </tr>
+
+            </tbody>
+        </table>
+        <!-- 외부 BIN 대역 -->
+        <div class="overflowH">
+            <h4 >외부 BIN 대역</h4> <!-- TODO 다국어 -->
+        </div>
+        <table class="qna_list mb60">
+            <caption>목록</caption>
+            <colgroup>
+                <col width="40%" />
+                <col width="30%" />
+                <col width="30%" />
+            </colgroup>
+            <thead>
+            <tr>
+                <th scope="col">매입 대행사</th> <!-- TODO 다국어 -->
+                <th scope="col">Token BIN</th>
+                <th scope="col">ASP 회원사 구분</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+                <td>BC</td>
+                <td>946044</td>
+                <td>0</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- 교통카드 설정 -->
+
+
+        <!-- 출입카드 설정 -->
+
+
+        <!-- 결제 구성  -->
+        <div class="overflowH">
+            <h4>결제 구성</h4>
+        </div>
+        <table class="plat_view">
+            <caption>상세정보</caption>
+            <colgroup>
+                <col width="19%" />
+                <col width="31%" />
+                <col width="19%" />
+                <col width="31%" />
+            </colgroup>
+            <tbody>
+
+            <tr>
+                <th scope="row" class="border">바코드 구성</th>
+                <!-- BCCARD 추가 안되어 있는 것 같아서 임시로 switch-case문으로 처리 -->
+                <!-- <td colspan="3" class="border" th:each="list : ${PARTNER_NAME_TYPES}" th:if="${list.sclasCd == productInfo.partnerName}" th:text="${list.clasNm}">-</td> -->
+                <td colspan="3" class="border">
+
+                    <span>BCCARD</span>
+
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <!-- 특이사항 -->
+        <div class="overflowH">
+            <h4>특이사항</h4>
+        </div>
+        <table class="plat_view">
+            <caption>상세정보</caption>
+            <colgroup>
+                <col width="19%" />
+                <col width="31%" />
+                <col width="19%" />
+                <col width="31%" />
+            </colgroup>
+            <tbody>
+
+            <tr>
+                <th scope="row" class="border">메모</th>
+                <td colspan="3" class="border">-</td>
+                <td colspan="3" class="border">
+                    <span></span>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <!-- 상태 및 이력 -->
+        <div class="overflowH">
+            <h4>상태 및 이력</h4>
+        </div>
+        <table class="plat_view">
+            <caption>상세정보</caption>
+            <colgroup>
+                <col width="19%" />
+                <col width="31%" />
+                <col width="19%" />
+                <col width="31%" />
+            </colgroup>
+            <tbody>
+
+            <tr>
+                <th scope="row" class="border">상태 및 이력</th>
+                <td colspan="3" class="border">
+
+
+                    <p class="floatL mt5">판매중</p>
+
+
+
+                    <ul class="floatL ml20">
+                        <li class="floatL mr10"><button type="button" id="btProdSalesStop" class="btn_popup_s01">판매 중지</button></li>
+
+                        <!-- li class="floatL mr10"><button type="button" class="btn_popup_s01" th:text="#{M_0759}">판매기간 종료</button></li -->
+                    </ul>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <!-- 목록 -->
+        <table class="qna_list mb60">
+            <caption>목록</caption>
+            <colgroup>
+                <col width="40%" />
+                <col width="30%" />
+                <col width="30%" />
+            </colgroup>
+            <thead>
+            <tr>
+                <th scope="col">이력</th>
+                <th scope="col">일시</th>
+                <th scope="col">담당자</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+
+                <td>승인완료</td>
+
+                <td>2018/09/17 19:37:25</td>
+                <td>관리자(admin@konai.com)</td>
+            </tr>
+            <tr>
+                <td>승인대기</td>
+
+
+                <td>2018/09/17 19:36:12</td>
+                <td>코나아이주식회사(merchant@konamoney.com)</td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <form id="formProdView" name="formProdView" method="post">
+            <input type="hidden" id="pageSize" 		name="pageSize" value="50"/>
+            <input type="hidden" id="pageNum" 		name="pageNum" 	value="1"/>
+
+            <input type="hidden" id="productNo" 	name="productNo" value="953365002024000"/>
+            <input type="hidden" id="paramPartnerNo" name="paramPartnerNo" value=""/>
+            <input type="hidden" id="productSearchType" name="productSearchType" value="" />
+            <input type="hidden" id="productSearchValue" name="productSearchValue" value="" />
+            <input type="hidden" id="productStatus" name="productStatus" value="" />
+            <input type="hidden" id="productRechargeType" name="productRechargeType" value="" />
+            <input type="hidden" id="calendar1" 	name="calendar1" value="2018/04/07" />
+            <input type="hidden" id="calendar2" 	name="calendar2" value="2018/10/07" />
+            <input type="hidden" id="dateType" 		name="dateType" value="0400" />
+            <input type="hidden" id="roleType" 		name="roleType" value="0300" />
+            <input type="hidden" id="productStatusType" name="productStatusType" value="" />
+            <input type="hidden" id="type" name="type" value="" />
+
+            <input type="hidden" id="status" name="status" value=""/>
+            <input type="hidden" id="konaAspNo" name="konaAspNo" value="953365000000000"/>
+        </form>
+
+        <!-- 계약 상세 정보 팝업 -->
+        <div id="contractInfoView"></div>
+
+        <!-- 혜택 순서 변경 팝업 -->
+        <div id="discountOrderUpdatePopupView"></div>
+
+        <p class="floatL">
+            <button type="button" id="btList" class="btn_border_gray">이전</button>
+        </p>
+        <p class="floatR">
+            <button type="button" id="btProdEdit" class="btn_gray">수정</button>
+        </p>
+    </div>
+</div>
+
+</div>
+</div>
+
+<hr/>
+
+<div><div id="footerArea">
+    <div id="footer">
+        <p class="copyright">COPYRIGHT <strong class="t_red">KONA</strong> <strong>C</strong>O., LTD. ALL RIGHTS RESERVED.</p>
+    </div>
+</div></div>
+
+<div id="da"></div>
+<div id="dl"></div>
+<div id="divLoading" style="display: none;">
+    <img src="../images/common/load01.png" id="imgLoading" alt="" />
+</div>
+</body>
+
+<script type="text/javascript">
+
+    $(function(){
+        var mainLayout = {
+            //초기화
+            init: function(){
+                this.cache();
+                this.bindEvent();
+                this.mainInit();
+                return this;
+            },
+            //변수 선언
+            cache : function(){
+                this.$imgLoading	= $("#imgLoading");
+
+                this.$loadingTimer 	= 0;
+            },
+            //이벤트 연결
+            bindEvent : function(){
+
+            },
+            //초기 작업
+            mainInit : function(){
+                $("#da").append("<div id='da'></div>").load("/common/alert");
+                $("#dl").load("/servicemain/loginExtension", function(){
+                    Top.topInit();
+                });
+
+                //다국어 메세지 가져오기
+                this.getMessageProperties();
+
+                // Table Column Resizing
+                //this.setTableColumnResizing();
+            },
+            //다국어 메세지 가져오기
+            getMessageProperties: function(){
+                //다국어 호출
+                $.i18n.properties({
+                    name:'messages',
+                    path:'../common/properties/',
+                    mode:'both',
+                    language:"ko",
+                    callback: function() {
+                        //메세지가 완료되는 시점에 재로딩..
+                        $.getScript( '/js/jquery.validate.js', 'js/common.js' , 'js/modalDialog.js' , 'js/commonFetch.js' );
+                    }
+                });
+            },
+            //조회 로딩바 셋팅
+            setLoadingBar : function() {
+                mainLayout.setLoadingInterval();
+                mainLayout.loadingBar = setInterval(mainLayout.setLoadingInterval, 200);
+            },
+            //로딩바 interval 함수
+            setLoadingInterval : function(){
+                mainLayout.$loadingTimer ++;
+                mainLayout.$imgLoading.attr("src", "../images/common/load0" + mainLayout.$loadingTimer + ".png");
+
+                var imgIndex = ""
+                switch(mainLayout.$loadingTimer){
+                    case 1 :
+                        break;
+                    case 2 :
+                        break;
+                    case 3 :
+                        break;
+                    case 4 :
+                        mainLayout.$loadingTimer = 0;
+                        break;
+                }
+            },
+            //조회 로딩바 클리어
+            clearLoadingBar : function() {
+                mainLayout.$loadingTimer = 0;
+                mainLayout.$imgLoading.attr("src", "../images/common/load01.png");
+                clearInterval(mainLayout.loadingBar);
+            }
+            ,
+            // 모든 Table Resizing 처리
+            setTableColumnResizing : function() {
+
+                $("table").colResizable({
+                    liveDrag:true,
+                    gripInnerHtml:"<div class='grip'></div>",
+                    draggingClass:"dragging",
+                    resizeMode:'overflow'
+                });
+            }
+        }
+
+        window.mainLayout = mainLayout.init();
+
+    });
+</script>
+
+<script type="text/javascript">
+    $(function(){
+        var ProdView = {
+            //초기화
+            init: function(){
+                this.cache();
+                this.bindEvent();
+                this.boardInit();
+                return this;
+            },
+            //변수 선언
+            cache : function(){
+                this.$productNo = $("#productNo");
+                this.$btList 	= $("#btList");
+                this.$formProdView 	= $("#formProdView");
+                this.$tbodyProdView = $("#tbodyProdView");
+                this.$calendar1 = $("#calendar1");
+                this.$calendar2 = $("#calendar2");
+                this.$calendarButtonArea = $("#calendarButtonArea");
+                this.$btClear 	= $("#btClear");
+                this.$divPartner 	= $("#divPartner");
+                this.$btPartnerPop 	= $("#btPartnerPop");
+                this.$prodFee 	= $("#prodFee");
+
+                this.$pageNum 	= $("#pageNum");
+                this.$pageSize 	= $("#pageSize");
+                this.$addrPagingTop	= $("#addrPagingTop");
+                this.$addrPagingBottom 	= $("#addrPagingBottom");
+                this.$spanCnt1 	= $("#spanCnt1");
+                this.$spanCnt2 	= $("#spanCnt2");
+                this.$prodCnt1 	= $("#prodCnt1");
+                this.$prodCnt2 	= $("#prodCnt2");
+                this.$prodCnt3 	= $("#prodCnt3");
+                this.$prodCnt4 	= $("#prodCnt4");
+                this.$btnSettleView 		= $("[name=btnSettleView]");
+                this.$btnFeeView			= $("[name=btnFeeView]");
+                this.$btProdEdit	= $("#btProdEdit");
+
+                this.$cardImgId	= $("#cardImgId");
+                this.$thumbImgId= $("#thumbImgId");
+                this.$btProdSalesStop= $("#btProdSalesStop");
+                this.$btProdReSales= $("#btProdReSales");
+                this.$contractInfoView = $("#contractInfoView");
+                this.$discountOrderUpdatePopupView = $("#discountOrderUpdatePopupView");
+                this.$divFeeView	 		= $("#divFeeView");
+                this.$divSettleView		= $("#divSettleView");
+
+            },
+            //이벤트 연결
+            bindEvent : function(){
+                this.$btPartnerPop.bind("click", 	this.fcPartnerSearchPopUp2);
+                //FromTo 달력 포커스 이벤트
+                this.$calendar1.bind("focus", function(){CommonJs.clearCalendarButton(ProdView.$calendarButtonArea);});
+                this.$calendar2.bind("focus", function(){CommonJs.clearCalendarButton(ProdView.$calendarButtonArea);});
+                //this.$btSelect.bind("click", this.fnIdCheck);
+
+                this.$btList.bind("click", this.fnPrevClick);
+                this.$btProdEdit.bind("click", this.fnProdEdit);
+
+                this.$btProdSalesStop.bind("click", this.fnProdSalesStop);
+                this.$btProdReSales.bind("click", this.fnProdReSales);
+
+                this.$btnFeeView.bind("click"		, this.btnFeeViewClickEvent);
+                this.$btnSettleView.bind("click"	, this.btnSettleViewClickEvent);
+            },
+            //초기 작업
+            boardInit : function(){
+                ProdView.$contractInfoView.load("/common/contractInfoViewPopup");
+                ProdView.$discountOrderUpdatePopupView.load("/common/discountOrderUpdatePopup");
+                ProdView.$divFeeView.load("/operate/feeView");
+                ProdView.$divSettleView.load("/operate/feeSettlementView");
+
+                //수수료
+                var maPlayerInfos        = [];
+                ProdView.fnFeeMakeNew("prod", maPlayerInfos);
+
+                CommonJs.autoImgResize($("#cardImgId"), 300);
+                CommonJs.autoImgResize($("#thumbImgId"), 200);
+            },
+            //서버 전송
+            fnIdCheck : function(){
+                FetchJs.fetch({
+                    url : "/product/fetch/ProdView",
+                    method : "POST",
+                    returnType : "json",
+                    body : JSON.stringify(ProdView.$formProdView.formToJson())
+                }).then(function(data) {//success
+                }, function(error) {//reject
+                    ModalJs.alert(error);
+                });
+            },
+            //상세 클릭
+            fnPrevClick : function(){
+                ProdView.$formProdView.attr("action", "/product/prodList");
+                ProdView.$formProdView.submit();
+            },
+
+            //API에서 가져온 파트너별 수수료 리스트를 세팅하는 함수
+            fnFeeMakeNew : function(type, data) {
+
+                CommonJs.log("type===========>"+type);
+                CommonJs.log("data===========>"+data);
+
+                var targetFee = "";
+                if (type == "prod") {
+                    targetFee = ProdView.$prodFee;
+                }
+
+                //FEE 내역을 못가져오는 경우가 있음..!!!!!
+                if (CommonJs.isNull(data)) {
+                    targetFee.empty();
+                    targetFee.append("<div class='ml10 mb30'><p>등록된 수수료가 없습니다.</p></div>");
+                    return false;
+                }
+
+                var sMsg_0316 = "\uB4F1\uB85D";
+                var sMsg_0154 = "\uC218\uC218\uB8CC \uBA85\uCE6D";
+                var sMsg_0845 = "\uC218\uC218\uB8CC \uC124\uBA85"; // "수수료 설명";
+                var sMsg_0159 = "\uC815\uC0B0 \uCF54\uB4DC"; //M_0159=정산 코드
+                var sMsg_0005 = "\uAC80\uC0C9"; //T_0005=검색
+                var sMsg_0147 = "\uC785\uB825"; //M_0147=입력
+                var sMsg_0846 = "\uC218\uC218\uB8CC \uC720\uD6A8 \uC2DC\uC791\uC77C"; //"수수료 유효 시작일";
+                var sMsg_0548 = "\uB2EC\uB825";
+                var sMsg_0847 = "\uC218\uC218\uB8CC \uC720\uD6A8 \uB9CC\uB8CC\uC77C"; //"수수료 유효 만료일";
+                var sMsg_0152 = "\uAC70\uB798 \uC720\uD615"; //M_0152=거래 유형
+                var sMsg_0848 = "\uCC38\uACE0 \uCF54\uB4DC"; //"참고 코드";
+                var sMsg_0849 = "\uC801\uC6A9 \uC720\uD615"; //"적용 유형";
+                var sMsg_0850 = "\uC815\uC0B0 \uC815\uCC45"; //"정산 정책";
+                var sMsg_0851 = "\uC120\uCDE8\/\uD6C4\uCDE8 \uC5EC\uBD80"; //"선취/후취 여부";
+                var sMsg_0852 = "\uACFC\uC138 \uC720\uD615"; //"과세 유형";
+                var sMsg_0126 = "\uD30C\uD2B8\uB108 ID"; //파트너 ID
+                var sMsg_0748 = "\uC0C1\uD488 ID"; //상품 ID
+                var sMsg_0164 = "\uC0C1\uC138\uBCF4\uAE30";
+
+                // 수수료 생성..
+                var nSize = data.length;
+
+                targetFee.empty();
+
+                if(nSize == 0) {
+                    // 테이블 지우기..
+                    targetFee.append("<div class='ml10 mb30'><p>등록된 수수료가 없습니다.</p></div>");
+                }
+
+                for (var i = 0; i < nSize ; i++) {
+                    var iDx = i + 1;
+
+                    //FEE 리스트 중 첫번째 건만 윗 테두리 표시하고 나머지 건은 윗 테두리 표시 안함..
+                    var classBorder = 'class="border"';
+                    if (i > 0) {
+                        classBorder = '';
+                    }
+
+                    var sInnerHtml  = '<div name="'+type+'FeeDetail">';
+                    sInnerHtml 	   	+= '<input type="hidden" id="'+type+'Id"  name="'+type+'Id" 	value="'+iDx+'">';
+                    sInnerHtml      += '<table class="plat_view">';
+                    sInnerHtml      += '	<caption>'+sMsg_0316+'</caption>';
+                    sInnerHtml      += '	<colgroup>';
+                    sInnerHtml      += '		<col width="20%" />';
+                    sInnerHtml      += '		<col width="30%" />';
+                    sInnerHtml      += '		<col width="20%" />';
+                    sInnerHtml      += '		<col width="30%" />';
+                    sInnerHtml      += '	</colgroup>';
+
+                    sInnerHtml      += '	<tbody>';
+                    /* 1. 수수료 명칭, 수수료 설명 */
+                    var itemName = CommonJs.nullToEmpty(data[i].itemName);
+                    if (CommonJs.isNull(itemName)) {
+                        itemName = "-";
+                    }
+
+                    var feeDescription = CommonJs.nullToEmpty(data[i].feeDescription);
+                    if (CommonJs.isNull(feeDescription)) {
+                        feeDescription = "-";
+                    }
+
+                    sInnerHtml      += '	<tr>';
+                    sInnerHtml      += '		<th scope="row" '+classBorder+'>'+sMsg_0154+'</th>';
+                    sInnerHtml      += '		<td '+classBorder+'>'+itemName+'</td>';
+                    sInnerHtml      += '		<th scope="row" '+classBorder+'>'+sMsg_0845+'</th>';
+                    sInnerHtml      += '		<td '+classBorder+'>'+feeDescription+'</td>';
+                    sInnerHtml      += '	</tr>';
+
+                    /* 2. 정산코드 */
+                    sInnerHtml      += '	<tr>';
+                    sInnerHtml      += '		<th scope="row"><label for="clearingCd">'+sMsg_0159+'</label></th>';
+                    sInnerHtml      += '		<td colspan="3" >';
+                    sInnerHtml      += CommonJs.nullToEmpty(data[i].clearingCd);
+                    sInnerHtml      += ' 			<button type="button" name="btnFeeView" class="btn_part_more"><span>'+sMsg_0164+'</span></button>';
+                    sInnerHtml 	    += '   		<input type="hidden" id="'+type+'ClearingCd'+iDx+'" name="'+type+'ClearingCd'+iDx+'" value="'+data[i].clearingCd+'">';
+                    sInnerHtml 	    += '   		<input type="hidden" id="feeItemId'+iDx+'" name="feeItemId'+iDx+'" value="'+data[i].feeItemId+'">';
+                    sInnerHtml      += '		</td>';
+                    sInnerHtml      += '	</tr>';
+
+                    /* 3. 수수료 유효시작일, 수수료 유효 만료일 */
+                    sInnerHtml      += '	<tr>';
+                    sInnerHtml      += '		<th scope="row"><label for="'+type+'EffectiveDate'+iDx+'">'+sMsg_0846+'</label></th>';
+                    sInnerHtml      += '		<td>';
+
+                    var effectiveDate = (CommonJs.substring(data[i].effectiveDate,0,14));
+                    effectiveDate = CommonJs.strToDate(CommonJs.nullToEmpty(effectiveDate));
+
+                    sInnerHtml      += 			CommonJs.getMaskFormatString(effectiveDate, "yyyy/MM/dd HH:mm");
+                    sInnerHtml      += '		</td>';
+                    sInnerHtml      += '		<th scope="row"><label for="'+type+'EffectiveDate'+iDx+'">'+sMsg_0847+'</label></th>';
+                    sInnerHtml      += '		<td>';
+
+                    var expiryDate = (CommonJs.substring(data[i].expiryDate,0,14));
+                    expiryDate = CommonJs.strToDate(CommonJs.nullToEmpty(expiryDate));
+
+                    sInnerHtml      += 			CommonJs.getMaskFormatString(expiryDate, "yyyy/MM/dd HH:mm")
+                    sInnerHtml      += '		</td>';
+                    sInnerHtml      += '	</tr>';
+
+                    /* 4. 거래유형, 참고코드 */
+                    sInnerHtml      += '	<tr>';
+                    sInnerHtml      += '		<th scope="row"><label for="'+type+'ProcessingCd'+iDx+'">'+sMsg_0152+'</label></th>';
+                    sInnerHtml      += '		<td>';
+
+                    sInnerHtml      += CommonJs.getCommonCode([{"lclasCd":"2160","mclasCd":"0000","sclasCd":"211900","konaCd":null,"clasNm":"APP\uCDA9\uC804","clasNm1":"APP\uCDA9\uC804","clasNm2":"APP\uCDA9\uC804","clasNm3":"APP\uCDA9\uC804","sortNo":"1","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"210000","konaCd":null,"clasNm":"\uC624\uD504\uB77C\uC778\uCDA9\uC804","clasNm1":"\uC624\uD504\uB77C\uC778\uCDA9\uC804","clasNm2":"\uC624\uD504\uB77C\uC778\uCDA9\uC804","clasNm3":"\uC624\uD504\uB77C\uC778\uCDA9\uC804","sortNo":"5","remark":"IAS PROCESSING \nCODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"211908","konaCd":null,"clasNm":"\uC790\uB3D9\uCDA9\uC804","clasNm1":"\uC790\uB3D9\uCDA9\uC804","clasNm2":"\uC790\uB3D9\uCDA9\uC804","clasNm3":"\uC790\uB3D9\uCDA9\uC804","sortNo":"10","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"403908","konaCd":null,"clasNm":"Admin \uC120\uBB3C","clasNm1":"Admin \uC120\uBB3C","clasNm2":"Admin \uC120\uBB3C","clasNm3":"Admin \uC120\uBB3C","sortNo":"15","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"213900","konaCd":null,"clasNm":"Admin\uCDA9\uC804","clasNm1":"Admin\uCDA9\uC804","clasNm2":"Admin\uCDA9\uC804","clasNm3":"Admin\uCDA9\uC804","sortNo":"16","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"210008","konaCd":null,"clasNm":"\uB300\uB7C9\uCDA9\uC804(SE)","clasNm1":"\uB300\uB7C9\uCDA9\uC804(SE)","clasNm2":"\uB300\uB7C9\uCDA9\uC804(SE)","clasNm3":"\uB300\uB7C9\uCDA9\uC804(SE)","sortNo":"20","remark":"IAS \nPROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"214000","konaCd":null,"clasNm":"\uC218\uAE30_\uCDA9\uC804","clasNm1":"\uC218\uAE30_\uCDA9\uC804","clasNm2":"\uC218\uAE30_\uCDA9\uC804","clasNm3":"\uC218\uAE30_\uCDA9\uC804","sortNo":"22","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"010010","konaCd":null,"clasNm":"\uACC4\uC88C\uD658\uBD88","clasNm1":"\uACC4\uC88C\uD658\uBD88","clasNm2":"\uACC4\uC88C\uD658\uBD88","clasNm3":"\uACC4\uC88C\uD658\uBD88","sortNo":"25","remark":"IAS PROCESSING \nCODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"010000","konaCd":null,"clasNm":"\uC624\uD504\uB77C\uC778\uD658\uBD88","clasNm1":"\uC624\uD504\uB77C\uC778\uD658\uBD88","clasNm2":"\uC624\uD504\uB77C\uC778\uD658\uBD88","clasNm3":"\uC624\uD504\uB77C\uC778\uD658\uBD88","sortNo":"30","remark":"IAS PROCESSING \nCODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"011908","konaCd":null,"clasNm":"\uC794\uC561\uC774\uB3D9(\uB9CC\uB8CC)-","clasNm1":"\uC794\uC561\uC774\uB3D9(\uB9CC\uB8CC)-","clasNm2":"\uC794\uC561\uC774\uB3D9(\uB9CC\uB8CC)-","clasNm3":"\uC794\uC561\uC774\uB3D9(\uB9CC\uB8CC)-","sortNo":"35","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"010808","konaCd":null,"clasNm":"\uC794\uC561\uC774\uB3D9(\uB9CC\uB8CC)+","clasNm1":"\uC794\uC561\uC774\uB3D9(\uB9CC\uB8CC)+","clasNm2":"\uC794\uC561\uC774\uB3D9(\uB9CC\uB8CC)+","clasNm3":"\uC794\uC561\uC774\uB3D9(\uB9CC\uB8CC)+","sortNo":"40","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"010810","konaCd":null,"clasNm":"\uACC4\uC88C\uD658\uBD88(\uB9CC\uB8CC)","clasNm1":"\uACC4\uC88C\uD658\uBD88(\uB9CC\uB8CC)","clasNm2":"\uACC4\uC88C\uD658\uBD88(\uB9CC\uB8CC)","clasNm3":"\uACC4\uC88C\uD658\uBD88(\uB9CC\uB8CC)","sortNo":"45","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"010800","konaCd":null,"clasNm":"\uB300\uB7C9\uD658\uBD88(SE)","clasNm1":"\uB300\uB7C9\uD658\uBD88(SE)","clasNm2":"\uB300\uB7C9\uD658\uBD88(SE)","clasNm3":"\uB300\uB7C9\uD658\uBD88(SE)","sortNo":"50","remark":"IAS \nPROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"000000","konaCd":null,"clasNm":"\uACB0\uC81C ","clasNm1":"\uACB0\uC81C ","clasNm2":"\uACB0\uC81C ","clasNm3":"\uACB0\uC81C ","sortNo":"55","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"400000","konaCd":null,"clasNm":"\uC794\uC561\uC774\uB3D9(\uAD6C)-","clasNm1":"\uC794\uC561\uC774\uB3D9(\uAD6C)-","clasNm2":"\uC794\uC561\uC774\uB3D9(\uAD6C)-","clasNm3":"\uC794\uC561\uC774\uB3D9(\uAD6C)-","sortNo":"60","remark":"IAS PROCESSING \nCODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"400008","konaCd":null,"clasNm":"\uC794\uC561\uC774\uB3D9(\uAD6C)+","clasNm1":"\uC794\uC561\uC774\uB3D9(\uAD6C)+","clasNm2":"\uC794\uC561\uC774\uB3D9(\uAD6C)+","clasNm3":"\uC794\uC561\uC774\uB3D9(\uAD6C)+","sortNo":"65","remark":"IAS PROCESSING \nCODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"401908","konaCd":null,"clasNm":"\uC120\uBB3C\uBC1B\uAE30","clasNm1":"\uC120\uBB3C\uBC1B\uAE30","clasNm2":"\uC120\uBB3C\uBC1B\uAE30","clasNm3":"\uC120\uBB3C\uBC1B\uAE30","sortNo":"70","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"401900","konaCd":null,"clasNm":"\uC120\uBB3C\uBCF4\uB0B4\uAE30 ","clasNm1":"\uC120\uBB3C\uBCF4\uB0B4\uAE30 ","clasNm2":"\uC120\uBB3C\uBCF4\uB0B4\uAE30 ","clasNm3":"\uC120\uBB3C\uBCF4\uB0B4\uAE30 ","sortNo":"72","remark":"IAS PROCESSING \nCODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"011900","konaCd":null,"clasNm":"\uC794\uC561\uC774\uB3D9(\uC635\uC158\uCE74\uB4DC)","clasNm1":"\uC794\uC561\uC774\uB3D9(\uC635\uC158\uCE74\uB4DC)","clasNm2":"\uC794\uC561\uC774\uB3D9(\uC635\uC158\uCE74\uB4DC)","clasNm3":"\uC794\uC561\uC774\uB3D9(\uC635\uC158\uCE74\uB4DC)","sortNo":"75","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"010008","konaCd":null,"clasNm":"\uC794\uC561\uC774\uB3D9(\uAE30\uBCF8\uCE74\uB4DC)","clasNm1":"\uC794\uC561\uC774\uB3D9(\uAE30\uBCF8\uCE74\uB4DC)","clasNm2":"\uC794\uC561\uC774\uB3D9(\uAE30\uBCF8\uCE74\uB4DC)","clasNm3":"\uC794\uC561\uC774\uB3D9(\uAE30\uBCF8\uCE74\uB4DC)","sortNo":"80","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"014000","konaCd":null,"clasNm":"\uC218\uAE30_\uC794\uC561\uC774\uB3D9-","clasNm1":"\uC218\uAE30_\uC794\uC561\uC774\uB3D9-","clasNm2":"\uC218\uAE30_\uC794\uC561\uC774\uB3D9-","clasNm3":"\uC218\uAE30_\uC794\uC561\uC774\uB3D9-","sortNo":"83","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"014008","konaCd":null,"clasNm":"\uC218\uAE30_\uC794\uC561\uC774\uB3D9+","clasNm1":"\uC218\uAE30_\uC794\uC561\uC774\uB3D9+","clasNm2":"\uC218\uAE30_\uC794\uC561\uC774\uB3D9+","clasNm3":"\uC218\uAE30_\uC794\uC561\uC774\uB3D9+","sortNo":"84","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"021910","konaCd":null,"clasNm":"APP\uCDA9\uC804\uCDE8\uC18C","clasNm1":"APP\uCDA9\uC804\uCDE8\uC18C","clasNm2":"APP\uCDA9\uC804\uCDE8\uC18C","clasNm3":"APP\uCDA9\uC804\uCDE8\uC18C","sortNo":"85","remark":"IAS \nPROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"014010","konaCd":null,"clasNm":"\uC218\uAE30_\uACC4\uC88C\uD658\uBD88","clasNm1":"\uC218\uAE30_\uACC4\uC88C\uD658\uBD88","clasNm2":"\uC218\uAE30_\uACC4\uC88C\uD658\uBD88","clasNm3":"\uC218\uAE30_\uACC4\uC88C\uD658\uBD88","sortNo":"86","remark":"IAS \nPROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"200800","konaCd":null,"clasNm":"\uB9E4\uC785 \uCDE8\uC18C ","clasNm1":"\uB9E4\uC785 \uCDE8\uC18C ","clasNm2":"\uB9E4\uC785 \uCDE8\uC18C ","clasNm3":"\uB9E4\uC785 \uCDE8\uC18C ","sortNo":"86","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"004000","konaCd":null,"clasNm":"\uC218\uAE30_\uACB0\uC81C","clasNm1":"\uC218\uAE30_\uACB0\uC81C","clasNm2":"\uC218\uAE30_\uACB0\uC81C","clasNm3":"\uC218\uAE30_\uACB0\uC81C","sortNo":"87","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"020810","konaCd":null,"clasNm":"\uC790\uB3D9\uCDA9\uC804\uCDE8\uC18C","clasNm1":"\uC790\uB3D9\uCDA9\uC804\uCDE8\uC18C","clasNm2":"\uC790\uB3D9\uCDA9\uC804\uCDE8\uC18C","clasNm3":"\uC790\uB3D9\uCDA9\uC804\uCDE8\uC18C","sortNo":"90","remark":"IAS PROCESSING \nCODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"901001","konaCd":null,"clasNm":"ARS \uC778\uC99D \uC218\uC218\uB8CC","clasNm1":"ARS \uC778\uC99D \uC218\uC218\uB8CC","clasNm2":"ARS \uC778\uC99D \uC218\uC218\uB8CC","clasNm3":"ARS \uC778\uC99D \uC218\uC218\uB8CC","sortNo":"91","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-04-27 18:48:35.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"901002","konaCd":null,"clasNm":"\uC608\uAE08\uC8FC \uC131\uBA85 \uC870\uD68C \uC218\uC218\uB8CC","clasNm1":"\uC608\uAE08\uC8FC \uC131\uBA85 \uC870\uD68C \uC218\uC218\uB8CC","clasNm2":"\uC608\uAE08\uC8FC \uC131\uBA85 \uC870\uD68C \uC218\uC218\uB8CC","clasNm3":"\uC608\uAE08\uC8FC \uC131\uBA85 \uC870\uD68C \uC218\uC218\uB8CC","sortNo":"92","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-04-27 18:48:35.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"901003","konaCd":null,"clasNm":"\uC608\uAE08\uC8FC \uC2E4\uBA85 \uC870\uD68C \uC218\uC218\uB8CC","clasNm1":"\uC608\uAE08\uC8FC \uC2E4\uBA85 \uC870\uD68C \uC218\uC218\uB8CC","clasNm2":"\uC608\uAE08\uC8FC \uC2E4\uBA85 \uC870\uD68C \uC218\uC218\uB8CC","clasNm3":"\uC608\uAE08\uC8FC \uC2E4\uBA85 \uC870\uD68C \uC218\uC218\uB8CC","sortNo":"93","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-04-27 18:48:35.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"901004","konaCd":null,"clasNm":"Offline \uC608\uCE58\uAE08 \uCDA9\uC804\uAE08","clasNm1":"Offline \uC608\uCE58\uAE08 \uCDA9\uC804\uAE08","clasNm2":"Offline \uC608\uCE58\uAE08 \uCDA9\uC804\uAE08","clasNm3":"Offline \uC608\uCE58\uAE08 \uCDA9\uC804\n\uAE08","sortNo":"94","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"901005","konaCd":null,"clasNm":"Offline \uC608\uCE58\uAE08 \uD658\uBD88\uAE08","clasNm1":"Offline \uC608\uCE58\uAE08 \uD658\uBD88\uAE08","clasNm2":"Offline \uC608\uCE58\uAE08 \uD658\uBD88\uAE08","clasNm3":"Offline \uC608\uCE58\uAE08 \uD658\uBD88\n\uAE08","sortNo":"95","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2017-05-02 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"213908","konaCd":null,"clasNm":"System\uCDA9\uC804","clasNm1":"System\uCDA9\uC804","clasNm2":"System\uCDA9\uC804","clasNm3":"System\uCDA9\uC804","sortNo":"96","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-03-20 16:13:11.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"014110","konaCd":null,"clasNm":"\uC218\uAE30_\uACC4\uC88C\uD658\uBD88(\uB9CC\uB8CC)","clasNm1":"\uC218\uAE30_\uACC4\uC88C\uD658\uBD88(\uB9CC\uB8CC)","clasNm2":"\uC218\uAE30_\uACC4\uC88C\uD658\uBD88(\uB9CC\uB8CC)","clasNm3":"\uC218\uAE30_\uACC4\uC88C\uD658\uBD88(\uB9CC\uB8CC)","sortNo":"97","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-03-20 16:13:12.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"014108","konaCd":null,"clasNm":"\uC218\uAE30_\uC794\uC561\uC774\uB3D9(\uB9CC\uB8CC)+","clasNm1":"\uC218\uAE30_\uC794\uC561\uC774\uB3D9(\uB9CC\uB8CC)+","clasNm2":"\uC218\uAE30_\uC794\uC561\uC774\uB3D9(\uB9CC\uB8CC)+","clasNm3":"\uC218\uAE30_\uC794\uC561\uC774\uB3D9(\uB9CC\uB8CC)+","sortNo":"98","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-03-20 16:13:14.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"014100","konaCd":null,"clasNm":"\uC218\uAE30_\uC794\uC561\uC774\uB3D9(\uB9CC\uB8CC)-","clasNm1":"\uC218\uAE30_\uC794\uC561\uC774\uB3D9(\uB9CC\uB8CC)-","clasNm2":"\uC218\uAE30_\uC794\uC561\uC774\uB3D9(\uB9CC\uB8CC)-","clasNm3":"\uC218\uAE30_\uC794\uC561\uC774\uB3D9(\uB9CC\uB8CC)-","sortNo":"99","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-04-24 16:26:33.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"000090","konaCd":null,"clasNm":"\uB9E4\uC785","clasNm1":"\uB9E4\uC785","clasNm2":"\uB9E4\uC785","clasNm3":"\uB9E4\uC785","sortNo":"100","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-07-18 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"400800","konaCd":null,"clasNm":"\uC794\uC561\uC774\uB3D9-","clasNm1":"\uC794\uC561\uC774\uB3D9-","clasNm2":"\uC794\uC561\uC774\uB3D9-","clasNm3":"\uC794\uC561\uC774\uB3D9-","sortNo":"101","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-07-26 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"400808","konaCd":null,"clasNm":"\uC794\uC561\uC774\uB3D9+","clasNm1":"\uC794\uC561\uC774\uB3D9+","clasNm2":"\uC794\uC561\uC774\uB3D9+","clasNm3":"\uC794\uC561\uC774\uB3D9+","sortNo":"102","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-07-26 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"400060","konaCd":null,"clasNm":"\uC1A1\uAE08\uD558\uAE30","clasNm1":"\uC1A1\uAE08\uD558\uAE30","clasNm2":"\uC1A1\uAE08\uD558\uAE30","clasNm3":"\uC1A1\uAE08\uD558\uAE30","sortNo":"103","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-07-26 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"016008","konaCd":null,"clasNm":"\uC1A1\uAE08\uD68C\uC218","clasNm1":"\uC1A1\uAE08\uD68C\uC218","clasNm2":"\uC1A1\uAE08\uD68C\uC218","clasNm3":"\uC1A1\uAE08\uD68C\uC218","sortNo":"104","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-07-26 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"406008","konaCd":null,"clasNm":"\uC1A1\uAE08\uBC1B\uAE30","clasNm1":"\uC1A1\uAE08\uBC1B\uAE30","clasNm2":"\uC1A1\uAE08\uBC1B\uAE30","clasNm3":"\uC1A1\uAE08\uBC1B\uAE30","sortNo":"105","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-07-26 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"090000","konaCd":null,"clasNm":"\uCE74\uB4DC\uD615 \uCFE0\uD3F0 \uAD6C\uB9E4-","clasNm1":"\uCE74\uB4DC\uD615 \uCFE0\uD3F0 \uAD6C\uB9E4-","clasNm2":"\uCE74\uB4DC\uD615 \uCFE0\uD3F0 \uAD6C\uB9E4-","clasNm3":"\uCE74\uB4DC\uD615 \uCFE0\uD3F0 \uAD6C\uB9E4-","sortNo":"106","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-07-26 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"090008","konaCd":null,"clasNm":"\uCE74\uB4DC\uD615 \uCFE0\uD3F0 \uAD6C\uB9E4+","clasNm1":"\uCE74\uB4DC\uD615 \uCFE0\uD3F0 \uAD6C\uB9E4+","clasNm2":"\uCE74\uB4DC\uD615 \uCFE0\uD3F0 \uAD6C\uB9E4+","clasNm3":"\uCE74\uB4DC\uD615 \uCFE0\uD3F0 \uAD6C\uB9E4+","sortNo":"107","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-07-26 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"400009","konaCd":null,"clasNm":"\uCFE0\uD3F0\uAD6C\uB9E4","clasNm1":"\uCFE0\uD3F0\uAD6C\uB9E4","clasNm2":"\uCFE0\uD3F0\uAD6C\uB9E4","clasNm3":"\uCFE0\uD3F0\uAD6C\uB9E4","sortNo":"108","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-08-24 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"010900","konaCd":null,"clasNm":"\uCFE0\uD3F0\uD658\uBD88","clasNm1":"\uCFE0\uD3F0\uD658\uBD88","clasNm2":"\uCFE0\uD3F0\uD658\uBD88","clasNm3":"\uCFE0\uD3F0\uD658\uBD88","sortNo":"109","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-08-24 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"010839","konaCd":null,"clasNm":"\uBB34\uC0C1\uCE74\uB4DC\uD3D0\uAE30","clasNm1":"\uBB34\uC0C1\uCE74\uB4DC\uD3D0\uAE30","clasNm2":"\uBB34\uC0C1\uCE74\uB4DC\uD3D0\uAE30","clasNm3":"\uBB34\uC0C1\uCE74\uB4DC\uD3D0\uAE30","sortNo":"110","remark":"IAS ProcessingCode","useYn":"Y","regDt":"2018-08-27 10:35:45.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"020839","konaCd":null,"clasNm":"\uC794\uC561\uD68C\uC218 (\uC77C\uBD80)","clasNm1":"\uC794\uC561\uD68C\uC218 (\uC77C\uBD80)","clasNm2":"\uC794\uC561\uD68C\uC218 (\uC77C\uBD80)","clasNm3":"\uC794\uC561\uD68C\uC218 (\uC77C\uBD80)","sortNo":"111","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-10-25 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"243900","konaCd":null,"clasNm":"Admin \uCDA9\uC804 (\uBC95\uC778)","clasNm1":"Admin \uCDA9\uC804 (\uBC95\uC778)","clasNm2":"Admin \uCDA9\uC804 (\uBC95\uC778)","clasNm3":"Admin \uCDA9\uC804 (\uBC95\uC778)","sortNo":"112","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-10-25 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"243908","konaCd":null,"clasNm":"Admin \uC790\uB3D9\uCDA9\uC804 (\uBC95\uC778)","clasNm1":"Admin \uC790\uB3D9\uCDA9\uC804 (\uBC95\uC778)","clasNm2":"Admin \uC790\uB3D9\uCDA9\uC804 (\uBC95\uC778)","clasNm3":"Admin \uC790\uB3D9\uCDA9\uC804 (\uBC95\uC778)","sortNo":"113","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-10-25 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"410000","konaCd":null,"clasNm":"ASP \uC1A1\uAE08\uD558\uAE30","clasNm1":"ASP \uC1A1\uAE08\uD558\uAE30","clasNm2":"ASP \uC1A1\uAE08\uD558\uAE30","clasNm3":"ASP \uC1A1\uAE08\uD558\uAE30","sortNo":"114","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-10-25 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2160","mclasCd":"0000","sclasCd":"410008","konaCd":null,"clasNm":"ASP \uC1A1\uAE08\uBC1B\uAE30","clasNm1":"ASP \uC1A1\uAE08\uBC1B\uAE30","clasNm2":"ASP \uC1A1\uAE08\uBC1B\uAE30","clasNm3":"ASP \uC1A1\uAE08\uBC1B\uAE30","sortNo":"115","remark":"IAS PROCESSING CODE","useYn":"Y","regDt":"2018-10-25 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null}], CommonJs.nullToEmpty(data[i].processingCd));
+
+                    sInnerHtml      += '		</td>';
+                    sInnerHtml      += '		<th scope="row"><label for="referenceCd" >'+sMsg_0848+'</label></th>';
+                    sInnerHtml      += '		<td>'+CommonJs.nullToEmpty(data[i].referenceCd)+'</td>';
+                    sInnerHtml      += '	</tr>';
+
+                    /* 5. 적용유형, 정산 정책 */
+                    sInnerHtml      += '	<tr>';
+                    sInnerHtml      += '		<th scope="row"><label for="'+type+'RoleCd'+iDx+'" >'+sMsg_0849+'</label></th>';
+                    sInnerHtml      += '		<td>';
+
+                    sInnerHtml      += CommonJs.getCommonCode([{"lclasCd":"2280","mclasCd":"0000","sclasCd":"PP","konaCd":"RC","clasNm":"\uD50C\uB7AB\uD3FC \uC81C\uACF5\uC790","clasNm1":"\uD50C\uB7AB\uD3FC \uC81C\uACF5\uC790","clasNm2":"\uD50C\uB7AB\uD3FC \uC81C\uACF5\uC790","clasNm3":"\uD50C\uB7AB\uD3FC \uC81C\uACF5\uC790","sortNo":"1","remark":"API-\uC218\uC218\uB8CC\uC720\uD615-\uC801\uC6A9\uD30C\uD2B8\uB108 \uC720\uD615","useYn":"Y","regDt":"2017-05-09 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2280","mclasCd":"0000","sclasCd":"AP","konaCd":"RC","clasNm":"ASP","clasNm1":"ASP","clasNm2":"ASP","clasNm3":"ASP","sortNo":"5","remark":"API-\uC218\uC218\uB8CC\uC720\uD615-\uC801\uC6A9\uD30C\uD2B8\uB108 \uC720\uD615","useYn":"Y","regDt":"2017-05-09 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2280","mclasCd":"0000","sclasCd":"MC","konaCd":"RC","clasNm":"\uAC00\uB9F9\uC810","clasNm1":"\uAC00\uB9F9\uC810","clasNm2":"\uAC00\uB9F9\uC810","clasNm3":"\uAC00\uB9F9\uC810","sortNo":"10","remark":"API-\uC218\uC218\uB8CC\uC720\uD615-\uC801\uC6A9\uD30C\uD2B8\uB108 \uC720\uD615","useYn":"Y","regDt":"2017-05-09 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2280","mclasCd":"0000","sclasCd":"MP","konaCd":"RC","clasNm":"MP","clasNm1":"MP","clasNm2":"MP","clasNm3":"MP","sortNo":"15","remark":"API-\uC218\uC218\uB8CC\uC720\uD615-\uC801\uC6A9\uD30C\uD2B8\uB108 \uC720\uD615","useYn":"Y","regDt":"2017-05-09 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2280","mclasCd":"0000","sclasCd":"MA","konaCd":"RC","clasNm":"MA","clasNm1":"MA","clasNm2":"MA","clasNm3":"MA","sortNo":"20","remark":"API-\uC218\uC218\uB8CC\uC720\uD615-\uC801\uC6A9\uD30C\uD2B8\uB108 \uC720\uD615","useYn":"Y","regDt":"2017-05-09 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2280","mclasCd":"0000","sclasCd":"RC","konaCd":"RC","clasNm":"\uCDA9\uC804\uC0C1","clasNm1":"\uCDA9\uC804\uC0C1","clasNm2":"\uCDA9\uC804\uC0C1","clasNm3":"\uCDA9\uC804\uC0C1","sortNo":"25","remark":"API-\uC218\uC218\uB8CC\uC720\uD615-\uC801\uC6A9\uD30C\uD2B8\uB108 \uC720\uD615","useYn":"Y","regDt":"2017-05-09 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2280","mclasCd":"0000","sclasCd":"IS","konaCd":"RC","clasNm":"\uBC1C\uD589\uC0AC","clasNm1":"\uBC1C\uD589\uC0AC","clasNm2":"\uBC1C\uD589\uC0AC","clasNm3":"\uBC1C\uD589\uC0AC","sortNo":"30","remark":"API-\uC218\uC218\uB8CC\uC720\uD615-\uC801\uC6A9\uD30C\uD2B8\uB108 \uC720\uD615","useYn":"Y","regDt":"2017-05-09 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2280","mclasCd":"0000","sclasCd":"AQ","konaCd":"RC","clasNm":"\uB9E4\uC785\uB300\uD589\uC0AC","clasNm1":"\uB9E4\uC785\uB300\uD589\uC0AC","clasNm2":"\uB9E4\uC785\uB300\uD589\uC0AC","clasNm3":"\uB9E4\uC785\uB300\uD589\uC0AC","sortNo":"35","remark":"API-\uC218\uC218\uB8CC\uC720\uD615-\uC801\uC6A9\uD30C\uD2B8\uB108 \uC720\uD615","useYn":"Y","regDt":"2017-05-09 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2280","mclasCd":"0000","sclasCd":"US","konaCd":"RC","clasNm":"\uD68C\uC6D0","clasNm1":"\uD68C\uC6D0","clasNm2":"\uD68C\uC6D0","clasNm3":"\uD68C\uC6D0","sortNo":"40","remark":"API-\uC218\uC218\uB8CC\uC720\uD615-\uC801\uC6A9\uD30C\uD2B8\uB108 \uC720\uD615","useYn":"Y","regDt":"2017-05-09 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2280","mclasCd":"0000","sclasCd":"PD","konaCd":"RC","clasNm":"\uC0C1\uD488","clasNm1":"\uC0C1\uD488","clasNm2":"\uC0C1\uD488","clasNm3":"\uC0C1\uD488","sortNo":"45","remark":"API-\uC218\uC218\uB8CC\uC720\uD615-\uC801\uC6A9\uD30C\uD2B8\uB108 \uC720\uD615","useYn":"Y","regDt":"2017-05-09 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2280","mclasCd":"0000","sclasCd":"ES","konaCd":"RC","clasNm":"\uC678\uBD80 \uC11C\uBE44\uC2A4","clasNm1":"\uC678\uBD80 \uC11C\uBE44\uC2A4","clasNm2":"\uC678\uBD80 \uC11C\uBE44\uC2A4","clasNm3":"\uC678\uBD80 \uC11C\uBE44\uC2A4","sortNo":"50","remark":"API-\uC218\uC218\uB8CC\uC720\uD615-\uC801\uC6A9\uD30C\uD2B8\uB108 \uC720\uD615","useYn":"Y","regDt":"2017-05-09 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null}], CommonJs.nullToEmpty(data[i].roleCd));
+
+                    sInnerHtml      += '		</td>';
+                    sInnerHtml      += '		<th scope="row"><label for="'+type+'settlePolicyCd'+iDx+'" >'+sMsg_0850+'</label></th>';
+                    sInnerHtml      += '		<td>';
+                    sInnerHtml      += CommonJs.nullToEmpty(data[i].settlePolicyCd);
+                    sInnerHtml      += '           <button type="button" name="btnSettleView" class="btn_part_more"><span>'+sMsg_0164+'</span></button>';
+                    sInnerHtml      += '			<input type="text" id="'+type+'SettlePolicyCd'+iDx+'" name="'+type+'SettlePolicyCd'+iDx+'" class="hid" value="'+CommonJs.nullToEmpty(data[i].settlePolicyCd)+'"/>';
+                    sInnerHtml      += '		</td>';
+                    sInnerHtml      += '	</tr>';
+
+                    /* 6. 선취/후최여부, 과세유형 */
+                    sInnerHtml      += '	<tr>';
+                    sInnerHtml      += '		<th scope="row"><label for="'+type+'TakeInAdvanceYN'+iDx+'" >'+sMsg_0851+'</label></th>';
+                    sInnerHtml      += '		<td>';
+
+                    sInnerHtml      += CommonJs.getCommonCode([{"lclasCd":"2630","mclasCd":"0000","sclasCd":"Y","konaCd":null,"clasNm":"\uC608","clasNm1":"\uC608","clasNm2":"\uC608","clasNm3":"\uC608","sortNo":"1","remark":"\uC608\/\uC544\uB2C8\uC694 \uAD6C\uBD84(\uC0AC\uC6A9\uC5EC\uBD80)","useYn":"Y","regDt":"2017-05-25 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2630","mclasCd":"0000","sclasCd":"N","konaCd":null,"clasNm":"\uC544\uB2C8\uC694","clasNm1":"\uC544\uB2C8\uC694","clasNm2":"\uC544\uB2C8\uC694","clasNm3":"\uC544\uB2C8\uC694","sortNo":"2","remark":"\uC608\/\uC544\uB2C8\uC694 \uAD6C\uBD84(\uC0AC\uC6A9\uC5EC\uBD80)","useYn":"Y","regDt":"2017-05-25 00:00:00.0","regId":"9999","regIp":"9999","modDt":null,"modId":null,"modIp":null}], CommonJs.nullToEmpty(data[i].takeInAdvanceYN));
+
+                    sInnerHtml      += '		</td>';
+                    sInnerHtml      += '		<th scope="row"><label for="'+type+'TaxationCd'+iDx+'" >'+sMsg_0852+'</label></th>';
+                    sInnerHtml      += '		<td>';
+
+                    sInnerHtml      += CommonJs.getCommonCode([{"lclasCd":"2950","mclasCd":"0000","sclasCd":"01","konaCd":null,"clasNm":"\uACFC\uC138 - \uBD80\uAC00\uC138 \uD3EC\uD568","clasNm1":"\uACFC\uC138 - \uBD80\uAC00\uC138 \uD3EC\uD568","clasNm2":"\uACFC\uC138 - \uBD80\uAC00\uC138 \uD3EC\uD568","clasNm3":"\uACFC\uC138 - \uBD80\uAC00\uC138 \uD3EC\uD568","sortNo":"1","remark":"TAXTATION_TYPE","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2950","mclasCd":"0000","sclasCd":"02","konaCd":null,"clasNm":"\uBA74\uC138","clasNm1":"\uBA74\uC138","clasNm2":"\uBA74\uC138","clasNm3":"\uBA74\uC138","sortNo":"5","remark":"TAXTATION_TYPE","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2950","mclasCd":"0000","sclasCd":"03","konaCd":null,"clasNm":"\uACFC\uC138 - \uBD80\uAC00\uC138 \uBCC4\uB3C4","clasNm1":"\uACFC\uC138 - \uBD80\uAC00\uC138 \uBCC4\uB3C4","clasNm2":"\uACFC\uC138 - \uBD80\uAC00\uC138 \uBCC4\uB3C4","clasNm3":"\uACFC\uC138 - \uBD80\uAC00\uC138 \uBCC4\uB3C4","sortNo":"10","remark":"TAXTATION_TYPE","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2950","mclasCd":"0000","sclasCd":"98","konaCd":null,"clasNm":"UNSPECIFIED","clasNm1":"UNSPECIFIED","clasNm2":"UNSPECIFIED","clasNm3":"UNSPECIFIED","sortNo":"15","remark":"TAXTATION_TYPE","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2950","mclasCd":"0000","sclasCd":"99","konaCd":null,"clasNm":"NONE","clasNm1":"NONE","clasNm2":"NONE","clasNm3":"NONE","sortNo":"20","remark":"TAXTATION_TYPE","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null}], CommonJs.nullToEmpty(data[i].taxationCd));
+
+                    sInnerHtml      += '		</td>';
+                    sInnerHtml      += '	</tr>';
+
+                    /* 7. 파트너ID - 상품에서 호출할때에만 보임 */
+                    sInnerHtml      += '	<tr>';
+                    sInnerHtml      += '		<th scope="row"><label>'+sMsg_0126+'</label></th>';
+                    sInnerHtml      += '		<td>';
+
+                    var playerId = CommonJs.nullToEmpty(data[i].playerId);
+                    if (playerId == "ALL") {
+
+                        sInnerHtml      += CommonJs.getCommonCode([{"lclasCd":"2930","mclasCd":"0000","sclasCd":"ALL","konaCd":null,"clasNm":"\uC804\uCCB4","clasNm1":"\uC804\uCCB4","clasNm2":"\uC804\uCCB4","clasNm3":"\uC804\uCCB4","sortNo":"1","remark":"\uD50C\uB808\uC774\uC5B4 \uC9C0\uC815 Type","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2930","mclasCd":"0000","sclasCd":"UNSPECIFIED","konaCd":null,"clasNm":"\uBBF8\uC9C0\uC815","clasNm1":"\uBBF8\uC9C0\uC815","clasNm2":"\uBBF8\uC9C0\uC815","clasNm3":"\uBBF8\uC9C0\uC815","sortNo":"5","remark":"\uD50C\uB808\uC774\uC5B4 \uC9C0\uC815 Type","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2930","mclasCd":"0000","sclasCd":"SPECIFIED","konaCd":null,"clasNm":"\uC9C0\uC815","clasNm1":"\uC9C0\uC815","clasNm2":"\uC9C0\uC815","clasNm3":"\uC9C0\uC815","sortNo":"10","remark":"\uD50C\uB808\uC774\uC5B4 \uC9C0\uC815 Type","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null}], CommonJs.nullToEmpty(data[i].playerId));
+
+                    } else {
+                        if (playerId != "ALL") {
+
+                            sInnerHtml      += CommonJs.getCommonCode([{"lclasCd":"2930","mclasCd":"0000","sclasCd":"ALL","konaCd":null,"clasNm":"\uC804\uCCB4","clasNm1":"\uC804\uCCB4","clasNm2":"\uC804\uCCB4","clasNm3":"\uC804\uCCB4","sortNo":"1","remark":"\uD50C\uB808\uC774\uC5B4 \uC9C0\uC815 Type","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2930","mclasCd":"0000","sclasCd":"UNSPECIFIED","konaCd":null,"clasNm":"\uBBF8\uC9C0\uC815","clasNm1":"\uBBF8\uC9C0\uC815","clasNm2":"\uBBF8\uC9C0\uC815","clasNm3":"\uBBF8\uC9C0\uC815","sortNo":"5","remark":"\uD50C\uB808\uC774\uC5B4 \uC9C0\uC815 Type","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2930","mclasCd":"0000","sclasCd":"SPECIFIED","konaCd":null,"clasNm":"\uC9C0\uC815","clasNm1":"\uC9C0\uC815","clasNm2":"\uC9C0\uC815","clasNm3":"\uC9C0\uC815","sortNo":"10","remark":"\uD50C\uB808\uC774\uC5B4 \uC9C0\uC815 Type","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null}], "SPECIFIED");
+
+                        }
+                    }
+
+                    sInnerHtml      += '		</td>';
+
+                    var playerIdInfoHtml = '';
+                    var playerVal = CommonJs.nullToEmpty(data[i].playerId);
+                    if (playerId == "ALL") {
+                        playerIdInfoHtml = 'style="display:none;"';
+                        playerVal		   = '';
+                    }
+
+                    sInnerHtml      += '		<td colspan="2">';
+                    sInnerHtml      += '			<span id="playerIdInfo" '+playerIdInfoHtml+'>';
+                    sInnerHtml      +=playerVal;
+                    sInnerHtml      += '				<input type="hidden" id="'+type+'PlayerIdCustomName'+iDx+'" name="'+type+'PlayerIdCustomName'+iDx+'" class="input1 w90" readonly="readonly"  value="'+playerVal+'"/>';
+                    sInnerHtml      += '			</span>';
+                    sInnerHtml      += '		</td>';
+
+                    sInnerHtml      += '	</tr>';
+
+
+                    /* 8. 상품ID - 파트너에서 호출할때에만 보임*/
+                    sInnerHtml      += '	<tr style="display:none;">';
+                    sInnerHtml      += '		<th scope="row"><label>'+sMsg_0748+'</label></th>';
+                    sInnerHtml      += '		<td>';
+
+                    var productId = CommonJs.nullToEmpty(data[i].productId);
+                    if (productId == "ALL") {
+
+                        sInnerHtml      += CommonJs.getCommonCode([{"lclasCd":"2930","mclasCd":"0000","sclasCd":"ALL","konaCd":null,"clasNm":"\uC804\uCCB4","clasNm1":"\uC804\uCCB4","clasNm2":"\uC804\uCCB4","clasNm3":"\uC804\uCCB4","sortNo":"1","remark":"\uD50C\uB808\uC774\uC5B4 \uC9C0\uC815 Type","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2930","mclasCd":"0000","sclasCd":"UNSPECIFIED","konaCd":null,"clasNm":"\uBBF8\uC9C0\uC815","clasNm1":"\uBBF8\uC9C0\uC815","clasNm2":"\uBBF8\uC9C0\uC815","clasNm3":"\uBBF8\uC9C0\uC815","sortNo":"5","remark":"\uD50C\uB808\uC774\uC5B4 \uC9C0\uC815 Type","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2930","mclasCd":"0000","sclasCd":"SPECIFIED","konaCd":null,"clasNm":"\uC9C0\uC815","clasNm1":"\uC9C0\uC815","clasNm2":"\uC9C0\uC815","clasNm3":"\uC9C0\uC815","sortNo":"10","remark":"\uD50C\uB808\uC774\uC5B4 \uC9C0\uC815 Type","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null}], CommonJs.nullToEmpty(data[i].productId));
+
+                    } else {
+                        if (productId != "ALL") {
+
+                            sInnerHtml      += CommonJs.getCommonCode([{"lclasCd":"2930","mclasCd":"0000","sclasCd":"ALL","konaCd":null,"clasNm":"\uC804\uCCB4","clasNm1":"\uC804\uCCB4","clasNm2":"\uC804\uCCB4","clasNm3":"\uC804\uCCB4","sortNo":"1","remark":"\uD50C\uB808\uC774\uC5B4 \uC9C0\uC815 Type","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2930","mclasCd":"0000","sclasCd":"UNSPECIFIED","konaCd":null,"clasNm":"\uBBF8\uC9C0\uC815","clasNm1":"\uBBF8\uC9C0\uC815","clasNm2":"\uBBF8\uC9C0\uC815","clasNm3":"\uBBF8\uC9C0\uC815","sortNo":"5","remark":"\uD50C\uB808\uC774\uC5B4 \uC9C0\uC815 Type","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null},{"lclasCd":"2930","mclasCd":"0000","sclasCd":"SPECIFIED","konaCd":null,"clasNm":"\uC9C0\uC815","clasNm1":"\uC9C0\uC815","clasNm2":"\uC9C0\uC815","clasNm3":"\uC9C0\uC815","sortNo":"10","remark":"\uD50C\uB808\uC774\uC5B4 \uC9C0\uC815 Type","useYn":"Y","regDt":"2017-06-02 00:00:00.0","regId":"99999","regIp":"99999","modDt":null,"modId":null,"modIp":null}], "SPECIFIED");
+
+                        }
+                    }
+
+                    sInnerHtml      += '		</td>';
+
+                    var productIdInfoHtml = '';
+                    var productVal = CommonJs.nullToEmpty(data[i].productId);
+                    if (productId == "ALL") {
+                        productIdInfoHtml = 'style="display:none;"';
+                        productVal		   = '';
+                    }
+
+                    sInnerHtml      += '		<td colspan="2">';
+                    sInnerHtml      += '			<span id="productIdInfo" '+productIdInfoHtml+'>';
+                    sInnerHtml      +=productVal;
+                    sInnerHtml      += '				<input type="hidden" id="'+type+'ProductIdCustomName'+iDx+'" name="'+type+'ProductIdCustomName'+iDx+'" class="input1 w90" readonly="readonly"  value="'+productVal+'"/>';
+                    sInnerHtml      += '			</span>';
+                    sInnerHtml      += '		</td>';
+
+                    sInnerHtml      += '	</tr>';
+
+                    targetFee.append(sInnerHtml);
+
+                    $("#"+type+"ProcessingCd"+iDx).chosen({disable_search:true});
+                    $("#"+type+"RoleCd"+iDx).chosen({disable_search:true});
+                    $("#"+type+"TakeInAdvanceYN"+iDx).chosen({disable_search:true});
+                    $("#"+type+"TaxationCd"+iDx).chosen({disable_search:true});
+                    $("#"+type+"PlayerId"+iDx).chosen({disable_search:true});
+                    $("#"+type+"ProductId"+iDx).chosen({disable_search:true});
+
+                    CommonJs.datetimepicker($("#"+type+"EffectiveDate"+iDx), 1);
+                    CommonJs.datetimepicker($("#"+type+"ExpiryDate"+iDx), 1);
+                }
+                $("[name=btnFeeSearch]").unbind('click');
+                $("[name=btnSettleSearch]").unbind('click');
+                $("[name=productId]").unbind('click');
+                $("[name=playerId]").unbind('click');
+                $("[name=btnPlayerSearch]").unbind('click');
+                $("[name=btnProductSearch]").unbind('click');
+                $("[name=btnFeeSearch]").bind("click"		, ProdView.btnFeeSearchClickEvent);
+                $("[name=btnSettleSearch]").bind("click"	, ProdView.btnSettleSearchClickEvent);
+                $("[name=productId]").bind("change"			, ProdView.productTypeChangeEvent);
+                $("[name=playerId]").bind("change"			, ProdView.playerTypeChangeEvent);
+                $("[name=btnPlayerSearch]").bind("click"	, ProdView.btnPlayerSearchClickEvent);
+                $("[name=btnProductSearch]").bind("click"	, ProdView.btnProductSearchClickEvent);
+
+                $("[name=btnFeeView]").unbind('click');
+                $("[name=btnSettleView]").unbind('click');
+                $("[name=btnFeeView]").bind("click"		, ProdView.btnFeeViewClickEvent);
+                $("[name=btnSettleView]").bind("click"		, ProdView.btnSettleViewClickEvent);
+
+
+            },
+
+            //수정화면 호출
+            fnProdEdit : function(){
+                if(Top.menuAuthChk("5") == false) {
+                    ModalJs.alert("권한이 없는 계정입니다.");
+                    return;
+                }
+                ProdView.$formProdView.attr("action", "/product/prodEdit");
+                ProdView.$formProdView.submit();
+            },
+
+            // 수수료 상세(팝업)
+            btnFeeViewClickEvent : function(e){
+                var bizTypeBtn = $(this);
+
+                ProdView.$bizTypeBtn = bizTypeBtn;
+
+                CommonJs.log("bizTypeBtn>>>>>>>"+ProdView.$bizTypeBtn);
+
+                var feeCd 				= bizTypeBtn.next().val();
+                var feeItemId 					= bizTypeBtn.next().next().val();
+                FeeView.$divPopupFeeView.data("feeItemId"				, feeItemId);
+                FeeView.$divPopupFeeView.data("feeCd"					, feeCd);
+                FeeView.callModal(ProdView.feeCallback);
+            },
+
+            // 수수료 팝업 닫기 후 이벤트 설정..
+            feeCallback : function(param){
+
+            },
+
+
+            // 정산주기 상세(팝업)
+            btnSettleViewClickEvent : function(e){
+
+                var bizTypeBtn = $(this);
+
+                ProdView.$bizTypeBtn = bizTypeBtn;
+
+                var defaultSettlePolicy 		= bizTypeBtn.next().val();
+                CommonJs.log("defaultSettlePolicy>>>>>>>>>"+defaultSettlePolicy);
+
+                FeeSettleView.$divPopupFeeSettleView.data("defaultSettlePolicy"		, defaultSettlePolicy);
+                FeeSettleView.callModal(ProdView.settleCallback);
+            },
+
+            // 정산주기 상세 팝업 닫기 후 이벤트 설정..
+            settleCallback : function(param){
+                //팝업 닫기 후 이벤트 설정..
+                CommonJs.log("settlementPolicyCode ==> " 		+ param.settlementPolicyCode);
+            },
+
+            //판매중지
+            fnProdSalesStop : function(){
+                //변경하시겠...
+                ModalJs.confirm("\uBCC0\uACBD\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?").then(function (tBoolean){
+                    if(tBoolean){
+                        $("#status").val("02"); //상품의 상태  * 00: VOID / 01: ACTIVE / 02: SUSPENDED / 03: PENDING / 04: DELETED
+                        FetchJs.fetch({
+                            url : "/product/fetch/prodStatUpdate",
+                            method : "POST",
+                            returnType : "json",
+                            body : JSON.stringify(ProdView.$formProdView.formToJson())
+                        }).then(function(data) {//success
+                            //리스트로
+                            ModalJs.alert("승인 완료되었습니다.").then( function(){
+                                var productNo = "953365002024000";
+                                ProdView.$productNo.val(productNo);
+                                ProdView.$formProdView.attr("action", "/product/prodView");
+                                //ProdView.$formProdView.attr("action", "/product/prodList");
+                                ProdView.$formProdView.submit();
+                            });	//성공적으로 저장하였습니다.
+                        }, function(error) {//reject
+                            ModalJs.alert(error);
+                        });
+                    }
+                });
+            },
+
+            //재판매
+            fnProdReSales : function(){
+                //변경하시겠...
+                ModalJs.confirm("\uBCC0\uACBD\uD558\uC2DC\uACA0\uC2B5\uB2C8\uAE4C?").then(function (tBoolean){
+                    if(tBoolean){
+                        $("#status").val("01"); //상품의 상태  * 00: VOID / 01: ACTIVE / 02: SUSPENDED / 03: PENDING / 04: DELETED
+
+                        FetchJs.fetch({
+                            url : "/product/fetch/prodStatUpdate",
+                            method : "POST",
+                            returnType : "json",
+                            body : JSON.stringify(ProdView.$formProdView.formToJson())
+                        }).then(function(data) {//success
+                            //리스트로
+                            ModalJs.alert("승인 완료되었습니다.").then( function(){
+                                var productNo = "953365002024000";
+                                ProdView.$productNo.val(productNo);
+                                ProdView.$formProdView.attr("action", "/product/prodView");
+                                //ProdView.$formProdView.attr("action", "/product/prodList");
+                                ProdView.$formProdView.submit();
+                            });	//성공적으로 저장하였습니다.
+                        }, function(error) {//reject
+                            ModalJs.alert(error);
+                        });
+                    }
+                });
+            },
+
+            //계약 팝업 Callback
+            contractInfoViewCallback : function(param){
+
+            }
+        }
+        window.ProdView = ProdView.init();
+
+
+        $(document)
+
+
+        //외부쿠폰 목록을 엑셀로 만들어 받는다
+            .on('click','.couponExtList',function(e){
+                e.preventDefault();
+
+                var couponExtList = [];		//서버에 보낼 쿠폰 데이터
+                var productCuponList = [];
+                if( !CommonJs.isNull(productCuponList) ){
+                    var tempCouponExtList = [];	//상품번호로 모든 쿠폰을 가지고 오기 때문에 걸러낸다
+                    for( var i=0;i<productCuponList.length;i++ ){
+                        if( $(this).data('couponNo') == productCuponList[i].couponNo ){
+                            tempCouponExtList = productCuponList[i].couponExtList;
+                            break;
+                        }
+                    }
+                    for( var i=0;i<tempCouponExtList.length;i++ ){
+                        if( $(this).data('couponNo') == tempCouponExtList[i].couponNo ){
+                            couponExtList.push(tempCouponExtList[i]);
+                        }
+                    }
+                }
+                if( couponExtList.length > 0 ){
+                    var $form = $("<form/>");
+                    for( var i=0;i<couponExtList.length;i++ ){
+                        $form.append('<input type="hidden" name="couponExtList['+i+'].coupon" value="'+ couponExtList[i].coupon +'" />');
+                        $form.append('<input type="hidden" name="couponExtList['+i+'].pin" value="'+ couponExtList[i].pin +'" />');
+                    }
+                    $form.attr("action", "/product/couponExtExcelDownload").attr("method","post").appendTo("body").submit();
+                }
+            })
+
+            //계약 정보 팝업
+            .on('click', '.contractInfoView',function(e){
+                e.preventDefault();
+
+                var $thisObj = $(this).closest('div').find('.contractPopupHtml');
+                var contractType = $thisObj.data('contractType');
+
+                var appendHtml = '';
+                appendHtml += $thisObj.find('.contractTypeValueText').text()+'\n';
+                appendHtml += $thisObj.find('.contractDateValueText').text()+'\n';
+                appendHtml += $thisObj.find('.playerNameValueText').text()+'\n';
+                if( contractType == 'P' ){
+                    appendHtml += $thisObj.find('.amountIssuedValueText').text()+'\n';
+                    appendHtml += $thisObj.find('.discountRatePValueText').text()+'\n';
+                    appendHtml += $thisObj.find('.stockAmountValueText').text()+'\n';
+                }else if( contractType == 'G' ){
+                    appendHtml += $thisObj.find('.discountRateGValueText').text();
+                }
+
+                ContractInfoViewPopup.$divContractInfoView.data("contractTypeName", $thisObj.data('contractTypeName') );
+                ContractInfoViewPopup.$divContractInfoView.find('textarea[name="contractTextArea"]').html( appendHtml );
+
+                ContractInfoViewPopup.callModal(ProdView.contractInfoViewCallback);
+            })
+
+
+            //혜택 순서 변경
+            .on('click', '#discountOrderUpdateView',function(e){
+                $('#discountOrderByUpdateIndexAppendArea').html($('#discountOrderByUpdateIndex').html());
+                $('#discountOrderByUpdateAppendArea').html($('#discountOrderByUpdate').html());
+                DiscountInfoViewPopup.$productNo = ProdView.$productNo.val();
+                DiscountInfoViewPopup.callModal(ProdView.contractInfoViewCallback);
+            })
+            .on('click', '.discountBundleNameView', function () {
+                $(this).closest('div').next().toggle(500);
+            })
+            //혜택 그룹 토글
+            .on('click','.discountNameToggle',function(){
+                $(this).closest('p').next().toggle(500);
+            })
+    });
+</script>
+
+</html>
