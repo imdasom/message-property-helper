@@ -29,7 +29,7 @@ public class MessageTokenizer {
 		return map;
 	}
 
-//	public void printMessageList(Map<String, Message> map, Map<String, MessageProperty> res) {
+//	public void printMessageList(Map<String, Message> map, Map<String, KeyValue> res) {
 //		for (Entry<String, Message> e : map.entrySet()) {
 //			Message msg = e.getValue();
 //			System.out.println("----찾고 싶은 메세지----");
