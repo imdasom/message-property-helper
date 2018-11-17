@@ -1,7 +1,7 @@
 package properties.messages.filter;
 
 import com.konai.common.vo.Key;
-import com.konai.common.vo.MessageProperty;
+import com.konai.common.vo.KeyValue;
 import com.konai.search.vo.ResultClass;
 import com.konai.search.vo.SearchResult;
 
@@ -36,8 +36,8 @@ public class SearchResultFilter {
         return isSuccess;
     }
 
-    public List<MessageProperty> getMessageProperties(List<SearchResult> searchResults, Function<SearchResult, MessageProperty> get) {
-        List<MessageProperty> messageProperties = searchResults.stream()
+    public List<KeyValue> getMessageProperties(List<SearchResult> searchResults, Function<SearchResult, KeyValue> get) {
+        List<KeyValue> messageProperties = searchResults.stream()
                 .map(get)
                 .collect(Collectors.toList());
         return messageProperties;

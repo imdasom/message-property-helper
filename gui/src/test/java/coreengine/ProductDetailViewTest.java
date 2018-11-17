@@ -1,17 +1,17 @@
 package coreengine;
 
-import com.konai.collect.core.MessagePropertyCollector;
+import com.konai.collect.core.KeyValueCollector;
 import com.konai.common.core.Expression;
 import com.konai.common.util.FileUtils;
 import com.konai.common.util.StringUtils;
 import com.konai.common.vo.Key;
-import com.konai.common.vo.MessageProperty;
+import com.konai.common.vo.KeyValue;
 import com.konai.common.vo.Value;
 import com.konai.generate.core.KeyNameRule;
-import com.konai.generate.core.MessagePropertyGenerator;
-import com.konai.replace.core.MessagePropertyReplacer;
-import com.konai.search.core.MessagePropertySearcher;
-import com.konai.search.util.MessageTokenizer;
+import com.konai.generate.core.KeyValueGenerator;
+import com.konai.replace.core.KeyValueReplacer;
+import com.konai.search.core.KeyValueSearcher;
+import com.konai.search.util.KeyValueTokenizer;
 import com.konai.search.vo.Message;
 import com.konai.search.vo.ResultClass;
 import com.konai.search.vo.SearchResult;
@@ -36,11 +36,11 @@ public class ProductDetailViewTest {
     public void main() throws IOException {
 
         //module instatiate
-        MessageTokenizer tokenizer = new MessageTokenizer();
-        MessagePropertySearcher searcher = MessagePropertySearcher.getInstance();
-        MessagePropertyReplacer replacer = new MessagePropertyReplacer();
-        MessagePropertyGenerator generator = new MessagePropertyGenerator();
-        MessagePropertyCollector<Expression, Expression> collector = MessagePropertyCollector.getInstance();
+        KeyValueTokenizer tokenizer = new KeyValueTokenizer();
+        KeyValueSearcher searcher = KeyValueSearcher.getInstance();
+        KeyValueReplacer replacer = new KeyValueReplacer();
+        KeyValueGenerator generator = new KeyValueGenerator();
+        KeyValueCollector collector = KeyValueCollector.getInstance();
 
         //resource : message properties bundle
         String location = ".\\src\\test\\resources\\";
@@ -67,29 +67,26 @@ public class ProductDetailViewTest {
         List<Expression> collectedExpression = collector.collect(readLineExpressions, betweenHtmlTagPatternSearcher);
 
         //search
-        List<Message> valueList = collectedExpression.stream()
-                .map(value -> new Message(value.getValue()))
-                .collect(Collectors.toList());
-        List<SearchResult> searchResults = searcher.search(valueList, resourceTokenList);
+        List<SearchResult> searchResults = searcher.search(collectedExpression, resourceTokenList);
 
         // generate or get
         SearchResultFilter searchResultFilter = new SearchResultFilter();
         List<SearchResult> failureSearchReuslts = searchResultFilter.getSearchResult(searchResults, ResultClass.TotalSimilar, false);
-        List<MessageProperty> newMessageProperties = searchResultFilter.getMessageProperties(failureSearchReuslts, new Function<SearchResult, MessageProperty>() {
+        List<KeyValue> newMessageProperties = searchResultFilter.getMessageProperties(failureSearchReuslts, new Function<SearchResult, KeyValue>() {
             @Override
-            public MessageProperty apply(SearchResult result) {
+            public KeyValue apply(SearchResult result) {
                 Expression failureExpressions = new Expression(result.getMessage().getOriginMessage());
-                return MessagePropertyGenerator.generate(failureExpressions, keyNameRule);
+                return KeyValueGenerator.generate(failureExpressions, keyNameRule);
             }
         });
 
         List<SearchResult> successSearchResluts = searchResultFilter.getSearchResult(searchResults, ResultClass.TotalSimilar, true);
-        List<MessageProperty> oldMessageProperties = searchResultFilter.getMessageProperties(successSearchResluts, new Function<SearchResult, MessageProperty>() {
+        List<KeyValue> oldMessageProperties = searchResultFilter.getMessageProperties(successSearchResluts, new Function<SearchResult, KeyValue>() {
             @Override
-            public MessageProperty apply(SearchResult result) {
+            public KeyValue apply(SearchResult result) {
                 Key key = result.getKeyByLevel(ResultClass.TotalSimilar).get();
                 Value value = new Value(result.getMessage().getOriginMessage());
-                return new MessageProperty(key, value);
+                return new KeyValue(key, value);
             }
         });
         oldMessageProperties.addAll(newMessageProperties);

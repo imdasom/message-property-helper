@@ -1,25 +1,28 @@
 package com.konai.collect.core;
 
+import com.konai.common.core.Expression;
+import com.konai.common.core.PatternSearcher;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MessagePropertyCollector<INPUT_TYPE, OUTPUT_TYPE> {
+public class KeyValueCollector {
 
-    private static MessagePropertyCollector collector;
+    private static KeyValueCollector collector;
 
-    private MessagePropertyCollector() {}
+    private KeyValueCollector() {}
 
-    public static MessagePropertyCollector getInstance() {
+    public static KeyValueCollector getInstance() {
         if(collector == null) {
-            collector = new MessagePropertyCollector();
+            collector = new KeyValueCollector();
         }
         return collector;
     }
 
-    public List<OUTPUT_TYPE> collect(List<INPUT_TYPE> sources, PatternSearcher<INPUT_TYPE, OUTPUT_TYPE> patternSearcher) {
-        List<OUTPUT_TYPE> results = new ArrayList<>();
-        for(INPUT_TYPE inputValue : sources) {
-            List<OUTPUT_TYPE> matchResults = patternSearcher.get(inputValue);
+    public List<Expression> collect(List<Expression> sources, PatternSearcher patternSearcher) {
+        List<Expression> results = new ArrayList<>();
+        for(Expression inputValue : sources) {
+            List<Expression> matchResults = patternSearcher.get(inputValue);
             results.addAll(matchResults);
         }
         return results;

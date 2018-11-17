@@ -2,11 +2,11 @@ package com.konai.common.vo;
 
 import java.util.Objects;
 
-public class MessageProperty {
+public class KeyValue {
     private Key key;
     private Value value;
 
-    public MessageProperty(Key key, Value value) {
+    public KeyValue(Key key, Value value) {
         if(key == null || value == null) {
             throw new NullPointerException("Key or Value is null. Key:"+key+", Value:"+value);
         }
@@ -26,7 +26,7 @@ public class MessageProperty {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MessageProperty that = (MessageProperty) o;
+        KeyValue that = (KeyValue) o;
         return Objects.equals(key.getValue(), that.key.getValue()) &&
                 Objects.equals(value.getValue(), that.value.getValue());
     }
@@ -38,7 +38,7 @@ public class MessageProperty {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("MessageProperty{");
+        final StringBuilder sb = new StringBuilder("KeyValue{");
         sb.append("key=").append(key.getValue());
         sb.append(", value=").append(value.getValue());
         sb.append('}');

@@ -1,15 +1,15 @@
 package properties.messages.portal;
 
-import com.konai.collect.core.PatternSearcher;
+import com.konai.common.core.PatternSearcher;
 import com.konai.common.core.Expression;
-import com.konai.replace.core.PatternReplacer;
+import com.konai.common.core.PatternReplacer;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ThymeleafTextValuePatternSearcher implements PatternSearcher<Expression, Expression>, PatternReplacer<Expression, Expression> {
+public class ThymeleafTextValuePatternSearcher implements PatternSearcher, PatternReplacer {
 
     private final String REGULA_REXPRESSION = "(th:text=\"){1}(.*?){1}(\"){1}";
     private final Pattern thymeleafTextExpression = Pattern.compile(REGULA_REXPRESSION);

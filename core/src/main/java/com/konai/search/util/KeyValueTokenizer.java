@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
 
-public class MessageTokenizer {
+public class KeyValueTokenizer {
 	
 	public Map<Key, Message> getTokenListFromMap(Map<String, String> map) {
 		Map<Key, Message> messageList = new HashMap<Key, Message>();

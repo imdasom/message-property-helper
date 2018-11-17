@@ -1,6 +1,4 @@
-package com.konai.replace.core;
-
-import com.konai.common.core.Expression;
+package com.konai.common.core;
 
 public interface PatternReplacer {
      Expression replace(Expression destination, Expression target, Expression replacement);

@@ -15,7 +15,8 @@ public class GenerateDataComponentsWrapperTest {
         GenerateDataComponentsWrapper generateDataComponentsWrapper = new GenerateDataComponentsWrapper(
                 new JTextField(),
                 new JTextField(),
-                new JTextField()
+                new JTextField(),
+                new JTextArea()
         );
         List<File> files = generateDataComponentsWrapper.getFileList();
         File file1 = files.get(0);

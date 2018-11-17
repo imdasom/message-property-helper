@@ -1,27 +1,32 @@
 package com.konai.search.core;
 
+import com.konai.common.core.Expression;
 import com.konai.common.vo.Key;
 import com.konai.search.vo.Message;
 import com.konai.search.vo.SearchResult;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-public class MessagePropertySearcher {
+public class KeyValueSearcher {
 
-	private static MessagePropertySearcher searcher;
+	private static KeyValueSearcher searcher;
 
-	private MessagePropertySearcher() {}
+	private KeyValueSearcher() {}
 
-	public static MessagePropertySearcher getInstance() {
+	public static KeyValueSearcher getInstance() {
 		if(searcher == null) {
-			searcher = new MessagePropertySearcher();
+			searcher = new KeyValueSearcher();
 		}
 		return searcher;
 	}
 
-	public List<SearchResult> search(List<Message> valueList, Map<Key, Message> resourceTokenList) {
-		MessageSearchEngine messageFinderProcessor = new MessageSearchEngine();
+	public List<SearchResult> search(List<Expression> expressionList, Map<Key, Message> resourceTokenList) {
+		List<Message> valueList = expressionList.stream()
+				.map(value -> new Message(value.getValue()))
+				.collect(Collectors.toList());
+		KeyValueSearchEngine messageFinderProcessor = new KeyValueSearchEngine();
 		List<SearchResult> searchResults = messageFinderProcessor.searchMessageList(valueList, resourceTokenList);
 		return searchResults;
 	}

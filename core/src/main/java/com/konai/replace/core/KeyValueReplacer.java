@@ -1,20 +1,21 @@
 package com.konai.replace.core;
 
-import com.konai.collect.core.PatternSearcher;
+import com.konai.common.core.PatternReplacer;
+import com.konai.common.core.PatternSearcher;
 import com.konai.common.core.Expression;
 import com.konai.common.vo.Key;
-import com.konai.common.vo.MessageProperty;
+import com.konai.common.vo.KeyValue;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class MessagePropertyReplacer {
+public class KeyValueReplacer {
 
-    public List<Expression> replace(List<MessageProperty> resourceExpression,
+    public List<Expression> replace(List<KeyValue> resourceExpression,
                                     List<Expression> targetExpressions,
-                                    PatternSearcher<Expression, Expression> patternSearcher,
-                                    PatternReplacer<Expression, Expression> patternReplacer) {
+                                    PatternSearcher patternSearcher,
+                                    PatternReplacer patternReplacer) {
         List<Expression> afterReplaces = new ArrayList<>();
         for (Expression targetExpression : targetExpressions) {
             List<Expression> matchValues = patternSearcher.get(targetExpression);
@@ -24,7 +25,7 @@ public class MessagePropertyReplacer {
         return afterReplaces;
     }
 
-    private Expression replaceValues(List<MessageProperty> resourceExpression, Expression targetExpression, List<Expression> matchValues, PatternReplacer patternReplacer) {
+    private Expression replaceValues(List<KeyValue> resourceExpression, Expression targetExpression, List<Expression> matchValues, PatternReplacer patternReplacer) {
         Expression expression = targetExpression;
         for(Expression matchValue : matchValues) {
             expression = replaceValue(expression, matchValue, resourceExpression, patternReplacer);
@@ -32,7 +33,7 @@ public class MessagePropertyReplacer {
         return expression;
     }
 
-    private Expression replaceValue(Expression targetExpression, Expression matchValue, List<MessageProperty> resourceExpression, PatternReplacer<Expression, Expression> patternReplacer) {
+    private Expression replaceValue(Expression targetExpression, Expression matchValue, List<KeyValue> resourceExpression, PatternReplacer patternReplacer) {
         Optional<Key> maybeKey = getKey(matchValue, resourceExpression);
         if(maybeKey.isPresent()) {
             targetExpression = patternReplacer.replace(targetExpression, matchValue, new Expression(maybeKey.get().getValue()));
@@ -40,10 +41,10 @@ public class MessagePropertyReplacer {
         return new Expression(targetExpression.getValue());
     }
 
-    private Optional<Key> getKey(Expression expression, List<MessageProperty> resourceExpression) {
+    private Optional<Key> getKey(Expression expression, List<KeyValue> resourceExpression) {
         String value = expression.getValue();
         Key key = null;
-        for (MessageProperty resource : resourceExpression) {
+        for (KeyValue resource : resourceExpression) {
             if(resource.getValue().getValue().equals(value)) {
                 key = resource.getKey();
                 break;

@@ -1,6 +1,4 @@
-package com.konai.collect.core;
-
-import com.konai.common.core.Expression;
+package com.konai.common.core;
 
 import java.util.List;
 

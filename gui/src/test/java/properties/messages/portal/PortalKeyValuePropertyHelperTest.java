@@ -1,8 +1,7 @@
 package properties.messages.portal;
 
-import com.konai.collect.core.PatternSearcher;
-import com.konai.common.core.Expression;
-import com.konai.common.vo.MessageProperty;
+import com.konai.common.core.PatternSearcher;
+import com.konai.common.vo.KeyValue;
 import com.konai.generate.core.KeyNameRule;
 import com.konai.search.vo.ResultClass;
 import org.junit.Assert;
@@ -17,15 +16,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
-public class PortalMessagePropertyHelperTest {
+public class PortalKeyValuePropertyHelperTest {
 
     FileWrapper fileWrapper;
     ResourceBundleWrapper resourceBundleWrapper;
     KeyNameRule keyNameRule;
 
     //regular expression pattern
-    PatternSearcher<Expression, Expression> collectPattern = new ThymeleafTextValuePatternSearcher();
-    PatternSearcher<Expression, Expression> thymeleafTextValuePatterner = new ThymeleafTextValuePatterner();
+    PatternSearcher collectPattern = new ThymeleafTextValuePatternSearcher();
+    PatternSearcher thymeleafTextValuePatterner = new ThymeleafTextValuePatterner();
 
 
     @Before
@@ -43,9 +42,9 @@ public class PortalMessagePropertyHelperTest {
     @Test
     public void testGenerate() {
         PortalMessagePropertyHelper helper = new PortalMessagePropertyHelper();
-        List<MessageProperty> messagePropertyList = helper.generate(fileWrapper, resourceBundleWrapper, keyNameRule, ResultClass.TotalSimilar, collectPattern);
-        System.out.println(Arrays.deepToString(messagePropertyList.toArray()));
-        Assert.assertEquals(4, messagePropertyList.size());
+        List<KeyValue> keyValueList = helper.generate(fileWrapper, resourceBundleWrapper, keyNameRule, ResultClass.TotalSimilar, collectPattern);
+        System.out.println(Arrays.deepToString(keyValueList.toArray()));
+        Assert.assertEquals(4, keyValueList.size());
     }
 
 }

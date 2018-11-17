@@ -2,7 +2,6 @@ package properties.messages.portal;
 
 import properties.messages.wrapper.FileWrapper;
 import properties.messages.wrapper.ResourceBundleWrapper;
-import properties.messages.wrapper.SetupWrapper;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,9 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class PortalSetupWrapper implements SetupWrapper {
+public class PortalSetupWrapper{
 
-    @Override
     public ResourceBundleWrapper getResourceBundleWrapper(String projectPath) throws IOException {
         String resourceLocation = "\\src\\test\\resources\\";
         String fullLocation = projectPath + resourceLocation;
@@ -23,7 +21,6 @@ public class PortalSetupWrapper implements SetupWrapper {
         return resourceBundleWrapper;
     }
 
-    @Override
     public List<FileWrapper> getFileWrappers(List<File> files) throws IOException {
         List<FileWrapper> fileWrappers = new ArrayList<>();
         for(File file : files) {

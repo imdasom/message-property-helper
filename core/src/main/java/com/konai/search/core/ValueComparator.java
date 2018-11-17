@@ -1,6 +1,6 @@
 package com.konai.search.core;
 
-public class StringComparator {
+public class ValueComparator {
 
     public static boolean compareTotalToken(String[] baseTokens, String[] comparedTokens) {
         if(baseTokens.length != comparedTokens.length) {

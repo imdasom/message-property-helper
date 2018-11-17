@@ -1,6 +1,6 @@
 package properties.messages.gui.components;
 
-import com.konai.common.vo.MessageProperty;
+import com.konai.common.vo.KeyValue;
 
 import javax.swing.*;
 import java.io.File;
@@ -14,7 +14,7 @@ public class GenerateDataComponentsWrapper {
     private JTextField keyNameField;
     private JTextField fileNameField;
     private JTextArea outputMessagesField;
-    private List<MessageProperty> generatedMessages;
+    private List<KeyValue> generatedMessages;
 
     public GenerateDataComponentsWrapper(JTextField projectPathField, JTextField keyNameField, JTextField fileNameField, JTextArea outputMessagesField) {
         this.projectPathField = projectPathField;

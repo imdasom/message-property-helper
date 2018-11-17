@@ -5,7 +5,6 @@ import org.junit.Test;
 import properties.messages.portal.PortalSetupWrapper;
 import properties.messages.wrapper.FileWrapper;
 import properties.messages.wrapper.ResourceBundleWrapper;
-import properties.messages.wrapper.SetupWrapper;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +19,7 @@ public class SetupWrapperTest {
     @Test
     public void setupResourceBundelWrapper() throws IOException {
         String location = "\\src\\test\\resources\\";
-        SetupWrapper setupWrapper = new PortalSetupWrapper();
+        PortalSetupWrapper setupWrapper = new PortalSetupWrapper();
         ResourceBundleWrapper resourceBundleWrapper = setupWrapper.getResourceBundleWrapper(projectPath + location);
         Assert.assertEquals(17, resourceBundleWrapper.getResourceMap().size());
 //        keyNameRule = new PortalKeyNameRule("PROD_MANA", "_", resourceBundleWrapper.getResourceMap());
@@ -31,7 +30,7 @@ public class SetupWrapperTest {
         File file = new File(projectPath + "\\src\\test\\resources\\html\\" + fileNameRegularExpression);
         List<File> htmlFiles = new ArrayList<>();
         htmlFiles.add(file);
-        SetupWrapper setupWrapper = new PortalSetupWrapper();
+        PortalSetupWrapper setupWrapper = new PortalSetupWrapper();
         List<FileWrapper> fileWrapperList = setupWrapper.getFileWrappers(htmlFiles);
         Assert.assertEquals(1, fileWrapperList.size());
     }

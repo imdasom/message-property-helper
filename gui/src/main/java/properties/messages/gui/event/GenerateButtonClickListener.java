@@ -2,15 +2,16 @@ package properties.messages.gui.event;
 
 import com.konai.common.core.Expression;
 import com.konai.common.util.CollectionUtils;
-import com.konai.common.vo.MessageProperty;
+import com.konai.common.vo.KeyValue;
 import com.konai.generate.core.KeyNameRule;
 import com.konai.search.vo.ResultClass;
-import properties.messages.coreengine.ReplaceEngine;
 import properties.messages.gui.components.GenerateDataComponentsWrapper;
-import properties.messages.portal.*;
+import properties.messages.portal.PortalKeyNameRule;
+import properties.messages.portal.PortalMessagePropertyHelper;
+import properties.messages.portal.PortalSetupWrapper;
+import properties.messages.portal.ThymeleafTextValuePatternSearcher;
 import properties.messages.wrapper.FileWrapper;
 import properties.messages.wrapper.ResourceBundleWrapper;
-import properties.messages.wrapper.SetupWrapper;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -36,7 +37,7 @@ public class GenerateButtonClickListener implements ActionListener {
         String keyName = componentsWrapper.getKeyName();
         List<File> fileList = componentsWrapper.getFileList();
 
-        SetupWrapper setupWrapper = new PortalSetupWrapper();
+        PortalSetupWrapper setupWrapper = new PortalSetupWrapper();
         List<FileWrapper> fileWrappers = getFileWrapperList(setupWrapper, fileList);
         ResourceBundleWrapper resourceBundleWrapper = getResourceBundleWrapper(setupWrapper, projectPath);
         KeyNameRule keyNameRule = new PortalKeyNameRule(keyName, "_", resourceBundleWrapper.getResourceMap());
@@ -49,7 +50,7 @@ public class GenerateButtonClickListener implements ActionListener {
         FileWrapper fileWrapper = fileWrappers.get(0);
 
         PortalMessagePropertyHelper helper = new PortalMessagePropertyHelper();
-        List<MessageProperty> generatedMessages = helper.generate(
+        List<KeyValue> generatedMessages = helper.generate(
                 fileWrapper,
                 resourceBundleWrapper,
                 keyNameRule,
@@ -57,32 +58,27 @@ public class GenerateButtonClickListener implements ActionListener {
                 collectPattern
         );
 
-        Map<String, String> messageToMap = new HashMap<>();
-        for(MessageProperty messageProperty : generatedMessages) {
-            messageToMap.put(messageProperty.getKey().getValue(), messageProperty.getValue().getValue());
-        }
-        componentsWrapper.setGeneratedMessages(messageToMap);
-
-        List<MessageProperty> allMessageProperties = new ArrayList<>();
+        List<KeyValue> allMessageProperties = new ArrayList<>();
         allMessageProperties.addAll(resourceBundleWrapper.getResourceMapToList());
         allMessageProperties.addAll(generatedMessages);
 
-        ReplaceEngine replaceEngine = new ReplaceEngine();
-        ThymeleafTextValuePatternSearcher thymeleafTextPatternReplacer = new ThymeleafTextValuePatternSearcher();
-        ThymeleafTextValuePatterner thymeleafTextValuePatterner = new ThymeleafTextValuePatterner();
-        BetweenHtmlTagPatternSearcher plainValuePatterner = new BetweenHtmlTagPatternSearcher();
-        List<Expression> result = replaceEngine.set(allMessageProperties, fileWrapper.getExpressions())
-                .replace(thymeleafTextValuePatterner, thymeleafTextPatternReplacer)
-                .replace(plainValuePatterner, plainValuePatterner)
-                .get();
+        List<Expression> result = helper.replace(allMessageProperties, fileWrapper);
 
+        // print out replace result
         generatedMessages.stream().forEach(System.out::println);
         result.stream().forEach(
                 expression -> System.out.println(expression.getValue())
         );
+
+        // set text area genereated key-value
+        Map<String, String> messageToMap = new HashMap<>();
+        for(KeyValue keyValue : generatedMessages) {
+            messageToMap.put(keyValue.getKey().getValue(), keyValue.getValue().getValue());
+        }
+        componentsWrapper.setGeneratedMessages(messageToMap);
     }
 
-    private ResourceBundleWrapper getResourceBundleWrapper(SetupWrapper setupWrapper, String projectPath) {
+    private ResourceBundleWrapper getResourceBundleWrapper(PortalSetupWrapper setupWrapper, String projectPath) {
         ResourceBundleWrapper resourceBundleWrapper = null;
         try {
             resourceBundleWrapper = setupWrapper.getResourceBundleWrapper(projectPath);
@@ -94,7 +90,7 @@ public class GenerateButtonClickListener implements ActionListener {
         }
     }
 
-    private List<FileWrapper> getFileWrapperList(SetupWrapper setupWrapper, List<File> files) {
+    private List<FileWrapper> getFileWrapperList(PortalSetupWrapper setupWrapper, List<File> files) {
         List<FileWrapper> fileWrappers = null;
         try {
             fileWrappers = setupWrapper.getFileWrappers(files);

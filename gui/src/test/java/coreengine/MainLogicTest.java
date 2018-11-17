@@ -30,7 +30,7 @@ import java.util.ResourceBundle;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class MainLoginTest {
+public class MainLogicTest {
 
     @Test
     public void main() throws IOException {
@@ -64,10 +64,7 @@ public class MainLoginTest {
         List<Expression> thymeleafTextExpressions = collector.collect(readLineExpressions, thymeleafTextValuePatternSearcher);
 
         //search
-        List<Message> valueList = thymeleafTextExpressions.stream()
-                .map(value -> new Message(value.getValue()))
-                .collect(Collectors.toList());
-        List<SearchResult> searchResults = searcher.search(valueList, resourceTokenList);
+        List<SearchResult> searchResults = searcher.search(thymeleafTextExpressions, resourceTokenList);
 
         // generate or get
         SearchResultFilter searchResultFilter = new SearchResultFilter();
