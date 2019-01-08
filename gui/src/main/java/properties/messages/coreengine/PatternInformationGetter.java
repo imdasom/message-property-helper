@@ -1,8 +1,8 @@
 package properties.messages.coreengine;
 
-import com.konai.common.core.Expression;
-import com.konai.common.core.PatternSearcher;
-import com.konai.search.vo.ResultClass;
+import string.pattern.common.core.Expression;
+import string.pattern.common.core.PatternSearcher;
+import string.pattern.search.vo.ResultClass;
 import properties.messages.wrapper.PatternRuleWrapper;
 
 import java.util.List;

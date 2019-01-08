@@ -1,9 +1,9 @@
 package custom.portal;
 
-import com.konai.common.core.Expression;
-import com.konai.common.core.PatternSearcher;
-import com.konai.common.vo.KeyValue;
-import com.konai.search.vo.ResultClass;
+import string.pattern.common.core.Expression;
+import string.pattern.common.core.PatternSearcher;
+import string.pattern.common.vo.KeyValue;
+import string.pattern.search.vo.ResultClass;
 import properties.messages.coreengine.PatternInformationGetter;
 import properties.messages.wrapper.FileWrapper;
 import properties.messages.wrapper.PatternRuleWrapper;

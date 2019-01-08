@@ -1,8 +1,8 @@
 package custom.portal.pattern;
 
-import com.konai.common.core.PatternSearcher;
-import com.konai.common.core.Expression;
-import com.konai.common.core.PatternReplacer;
+import string.pattern.common.core.PatternSearcher;
+import string.pattern.common.core.Expression;
+import string.pattern.common.core.PatternReplacer;
 
 import java.util.ArrayList;
 import java.util.List;

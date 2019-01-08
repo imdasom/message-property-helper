@@ -1,6 +1,6 @@
 package custom.portal.gui.components;
 
-import com.konai.common.vo.KeyValue;
+import string.pattern.common.vo.KeyValue;
 
 import javax.swing.*;
 import java.io.File;

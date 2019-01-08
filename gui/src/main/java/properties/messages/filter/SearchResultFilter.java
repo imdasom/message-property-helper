@@ -1,9 +1,9 @@
 package properties.messages.filter;
 
-import com.konai.common.vo.Key;
-import com.konai.common.vo.KeyValue;
-import com.konai.search.vo.ResultClass;
-import com.konai.search.vo.SearchResult;
+import string.pattern.common.vo.Key;
+import string.pattern.common.vo.KeyValue;
+import string.pattern.search.vo.ResultClass;
+import string.pattern.search.vo.SearchResult;
 
 import java.util.ArrayList;
 import java.util.List;

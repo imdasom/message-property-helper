@@ -1,7 +1,7 @@
 package properties.messages.portal;
 
-import com.konai.common.vo.KeyValue;
-import com.konai.generate.core.KeyNameRule;
+import string.pattern.common.vo.KeyValue;
+import string.pattern.generate.core.KeyNameRule;
 import custom.portal.PortalFileWrapper;
 import custom.portal.PortalKeyNameRule;
 import org.junit.Assert;

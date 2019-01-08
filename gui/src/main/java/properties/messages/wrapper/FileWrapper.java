@@ -1,7 +1,7 @@
 package properties.messages.wrapper;
 
-import com.konai.common.core.Expression;
-import com.konai.common.util.FileUtils;
+import string.pattern.common.core.Expression;
+import string.pattern.common.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;

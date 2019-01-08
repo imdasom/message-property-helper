@@ -1,10 +1,10 @@
 package custom.portal;
 
-import com.konai.common.core.Expression;
-import com.konai.common.util.StringUtils;
-import com.konai.common.vo.Key;
-import com.konai.generate.core.KeyNameRule;
-import com.konai.search.vo.Message;
+import string.pattern.common.core.Expression;
+import string.pattern.common.util.StringUtils;
+import string.pattern.common.vo.Key;
+import string.pattern.generate.core.KeyNameRule;
+import string.pattern.search.vo.Message;
 
 import java.util.Map;
 import java.util.regex.Matcher;

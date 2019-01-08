@@ -1,11 +1,11 @@
 package properties.messages.filter;
 
-import com.konai.common.core.Expression;
-import com.konai.common.vo.KeyValue;
-import com.konai.generate.core.KeyNameRule;
-import com.konai.generate.core.KeyValueGenerator;
-import com.konai.search.vo.ResultClass;
-import com.konai.search.vo.SearchResult;
+import string.pattern.common.core.Expression;
+import string.pattern.common.vo.KeyValue;
+import string.pattern.generate.core.KeyNameRule;
+import string.pattern.generate.core.KeyValueGenerator;
+import string.pattern.search.vo.ResultClass;
+import string.pattern.search.vo.SearchResult;
 
 import java.util.List;
 import java.util.function.Function;

@@ -1,7 +1,7 @@
 package properties.messages.wrapper;
 
-import com.konai.common.core.PatternReplacer;
-import com.konai.common.core.PatternSearcher;
+import string.pattern.common.core.PatternReplacer;
+import string.pattern.common.core.PatternSearcher;
 
 public class PatternRuleWrapper {
 

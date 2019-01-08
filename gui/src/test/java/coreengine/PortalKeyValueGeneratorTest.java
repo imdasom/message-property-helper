@@ -1,9 +1,9 @@
 package coreengine;
 
-import com.konai.common.vo.KeyValue;
-import com.konai.generate.core.KeyNameRule;
-import com.konai.search.vo.ResultClass;
-import com.konai.search.vo.SearchResult;
+import string.pattern.common.vo.KeyValue;
+import string.pattern.generate.core.KeyNameRule;
+import string.pattern.search.vo.ResultClass;
+import string.pattern.search.vo.SearchResult;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,11 +1,11 @@
 package custom.portal.gui.event;
 
-import com.konai.common.util.CollectionUtils;
-import com.konai.common.util.StringUtils;
-import com.konai.common.vo.Key;
-import com.konai.common.vo.KeyValue;
-import com.konai.generate.core.KeyNameRule;
-import com.konai.search.vo.Message;
+import string.pattern.common.util.CollectionUtils;
+import string.pattern.common.util.StringUtils;
+import string.pattern.common.vo.Key;
+import string.pattern.common.vo.KeyValue;
+import string.pattern.generate.core.KeyNameRule;
+import string.pattern.search.vo.Message;
 import custom.portal.PortalFileWrapper;
 import custom.portal.PortalKeyNameRule;
 import custom.portal.PortalSetupConfiguration;

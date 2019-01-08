@@ -1,14 +1,14 @@
 package properties.messages.coreengine;
 
-import com.konai.collect.core.KeyValueCollector;
-import com.konai.common.core.Expression;
-import com.konai.common.core.PatternSearcher;
-import com.konai.common.vo.Key;
-import com.konai.common.vo.KeyValue;
-import com.konai.generate.core.KeyNameRule;
-import com.konai.search.core.KeyValueSearcher;
-import com.konai.search.vo.Message;
-import com.konai.search.vo.SearchResult;
+import string.pattern.collect.core.KeyValueCollector;
+import string.pattern.common.core.Expression;
+import string.pattern.common.core.PatternSearcher;
+import string.pattern.common.vo.Key;
+import string.pattern.common.vo.KeyValue;
+import string.pattern.generate.core.KeyNameRule;
+import string.pattern.search.core.KeyValueSearcher;
+import string.pattern.search.vo.Message;
+import string.pattern.search.vo.SearchResult;
 import properties.messages.filter.MessageFilter;
 import properties.messages.wrapper.PatternRuleWrapper;
 

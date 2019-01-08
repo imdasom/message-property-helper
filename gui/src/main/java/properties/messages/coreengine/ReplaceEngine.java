@@ -1,10 +1,10 @@
 package properties.messages.coreengine;
 
-import com.konai.common.core.PatternSearcher;
-import com.konai.common.core.Expression;
-import com.konai.common.vo.KeyValue;
-import com.konai.replace.core.KeyValueReplacer;
-import com.konai.common.core.PatternReplacer;
+import string.pattern.common.core.PatternSearcher;
+import string.pattern.common.core.Expression;
+import string.pattern.common.vo.KeyValue;
+import string.pattern.replace.core.KeyValueReplacer;
+import string.pattern.common.core.PatternReplacer;
 
 import java.util.List;
 

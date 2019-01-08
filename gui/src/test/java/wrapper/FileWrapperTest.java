@@ -1,6 +1,6 @@
 package wrapper;
 
-import com.konai.common.core.Expression;
+import string.pattern.common.core.Expression;
 import org.junit.Assert;
 import org.junit.Test;
 import properties.messages.wrapper.FileWrapper;

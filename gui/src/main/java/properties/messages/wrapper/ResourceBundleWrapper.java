@@ -1,11 +1,11 @@
 package properties.messages.wrapper;
 
-import com.konai.common.util.FileUtils;
-import com.konai.common.vo.Key;
-import com.konai.common.vo.KeyValue;
-import com.konai.common.vo.Value;
-import com.konai.search.util.KeyValueTokenizer;
-import com.konai.search.vo.Message;
+import string.pattern.common.util.FileUtils;
+import string.pattern.common.vo.Key;
+import string.pattern.common.vo.KeyValue;
+import string.pattern.common.vo.Value;
+import string.pattern.search.util.KeyValueTokenizer;
+import string.pattern.search.vo.Message;
 
 import java.io.IOException;
 import java.util.*;
