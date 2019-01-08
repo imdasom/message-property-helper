@@ -1,4 +1,4 @@
-package properties.messages.gui.components.panel;
+package custom.portal.gui.components.panel;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;

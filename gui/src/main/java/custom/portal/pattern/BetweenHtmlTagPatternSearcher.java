@@ -1,4 +1,4 @@
-package properties.messages.portal;
+package custom.portal.pattern;
 
 import com.konai.common.core.PatternSearcher;
 import com.konai.common.core.Expression;

@@ -1,4 +1,4 @@
-package properties.messages.portal;
+package custom.portal.pattern;
 
 import com.konai.common.core.PatternSearcher;
 import com.konai.common.core.Expression;
@@ -11,8 +11,17 @@ import java.util.regex.Pattern;
 
 public class ThymeleafTextValuePatternSearcher implements PatternSearcher, PatternReplacer {
 
+    private static ThymeleafTextValuePatternSearcher instance;
+    private ThymeleafTextValuePatternSearcher() {}
     private final String REGULA_REXPRESSION = "(th:text=\"){1}(.*?){1}(\"){1}";
     private final Pattern thymeleafTextExpression = Pattern.compile(REGULA_REXPRESSION);
+
+    public static ThymeleafTextValuePatternSearcher getInstance() {
+        if(instance == null) {
+            instance = new ThymeleafTextValuePatternSearcher();
+        }
+        return instance;
+    }
 
     @Override
     public List<Expression> get(Expression source) {

@@ -1,4 +1,4 @@
-package properties.messages.gui.components.panel;
+package custom.portal.gui.components.panel;
 
 import java.io.Serializable;
 

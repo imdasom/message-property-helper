@@ -1,6 +1,6 @@
-package properties.messages.gui.components.panel;
+package custom.portal.gui.components.panel;
 
-import properties.messages.gui.components.GenerateDataComponentsWrapper;
+import custom.portal.gui.components.GenerateDataComponentsWrapper;
 
 import javax.swing.*;
 
@@ -10,6 +10,8 @@ public class InputBoxGroupPanel extends JPanel {
     private JTextField projectPathField = new JTextField(30);
     private JLabel label2 = new JLabel("페이지 아이디");
     private JTextField keyNameField = new JTextField(30);
+    private JLabel label4 = new JLabel("대상파일경로");
+    private JTextField fileDirectoryField = new JTextField(30);
     private JLabel label3 = new JLabel("대상파일명");
     private JTextField fileNameField = new JTextField(30);
     private JLabel outputPathLabel = new JLabel("출력위치");
@@ -28,6 +30,7 @@ public class InputBoxGroupPanel extends JPanel {
                         layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                 .addComponent(label1)
                                 .addComponent(label2)
+                                .addComponent(label4)
                                 .addComponent(label3)
                                 .addComponent(outputPathLabel)
                                 .addComponent(outputMessagesLabel)
@@ -36,6 +39,7 @@ public class InputBoxGroupPanel extends JPanel {
                         layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(projectPathField)
                                 .addComponent(keyNameField)
+                                .addComponent(fileDirectoryField)
                                 .addComponent(fileNameField)
                                 .addComponent(outputPathField)
                                 .addComponent(outputMessagesField)
@@ -51,6 +55,11 @@ public class InputBoxGroupPanel extends JPanel {
                         layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(label2)
                                 .addComponent(keyNameField)
+                )
+                .addGroup(
+                        layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label4)
+                                .addComponent(fileDirectoryField)
                 )
                 .addGroup(
                         layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -71,7 +80,7 @@ public class InputBoxGroupPanel extends JPanel {
     }
 
     public GenerateDataComponentsWrapper getComponentsWrapper() {
-        return new GenerateDataComponentsWrapper(projectPathField, keyNameField, fileNameField, outputMessagesField);
+        return new GenerateDataComponentsWrapper(projectPathField, keyNameField, fileDirectoryField, fileNameField, outputMessagesField);
     }
 
 }

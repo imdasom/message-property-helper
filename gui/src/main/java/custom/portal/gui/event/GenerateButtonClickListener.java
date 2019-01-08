@@ -1,4 +1,4 @@
-package properties.messages.gui.event;
+package custom.portal.gui.event;
 
 import com.konai.common.core.Expression;
 import com.konai.common.util.CollectionUtils;
