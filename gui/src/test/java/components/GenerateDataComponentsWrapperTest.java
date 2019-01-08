@@ -2,7 +2,7 @@ package components;
 
 import org.junit.Assert;
 import org.junit.Test;
-import properties.messages.gui.components.GenerateDataComponentsWrapper;
+import custom.portal.gui.components.GenerateDataComponentsWrapper;
 
 import javax.swing.*;
 import java.io.File;
@@ -15,9 +15,8 @@ public class GenerateDataComponentsWrapperTest {
         GenerateDataComponentsWrapper generateDataComponentsWrapper = new GenerateDataComponentsWrapper(
                 new JTextField(),
                 new JTextField(),
-                new JTextField(),
-                new JTextArea()
-        );
+                new JTextField(), ,
+                new JTextArea());
         List<File> files = generateDataComponentsWrapper.getFileList();
         File file1 = files.get(0);
         File file2 = files.get(1);

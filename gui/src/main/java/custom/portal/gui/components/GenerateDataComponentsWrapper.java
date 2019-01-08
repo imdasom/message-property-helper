@@ -44,13 +44,20 @@ public class GenerateDataComponentsWrapper {
     }
 
     public List<File> getFileList() {
+        List<File> files;
         String fileNameFieldText = fileNameField.getText();
-        String[] fileNames = fileNameFieldText.split(",");
-        String htmlRootPath = this.projectPathField.getText() + "\\src\\test\\resources\\html";
-        List<File> files = new ArrayList<>();
-        for(String fileName : fileNames) {
-            File file = new File(htmlRootPath + "\\" + fileName);
-            files.add(file);
+        if(ALL_FILES.equals(fileNameFieldText)) {
+            String htmlRootPath = this.projectPathField.getText() + "\\" + this.fileDirectoryField.getText();
+            File directory = new File(htmlRootPath);
+            files = Arrays.stream(directory.listFiles()).collect(Collectors.toList());
+        } else {
+            String[] fileNames = fileNameFieldText.split(FILENAME_DELIMITER);
+            String htmlRootPath = this.projectPathField.getText() + "\\" + this.fileDirectoryField.getText();
+            files = new ArrayList<>();
+            for(String fileName : fileNames) {
+                File file = new File(htmlRootPath + "\\" + fileName);
+                files.add(file);
+            }
         }
         return files;
     }

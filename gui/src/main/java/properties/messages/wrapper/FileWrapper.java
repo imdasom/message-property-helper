@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class FileWrapper {
 
-    private List<Expression> expressions;
+    protected List<Expression> expressions;
 
     public FileWrapper(File file) throws IOException {
         InputStream inputStream = FileUtils.getInputStream(file);
@@ -22,4 +22,5 @@ public class FileWrapper {
     public List<Expression> getExpressions() {
         return expressions;
     }
+
 }

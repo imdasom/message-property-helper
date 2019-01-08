@@ -17,8 +17,8 @@ import com.konai.search.vo.ResultClass;
 import com.konai.search.vo.SearchResult;
 import org.junit.Test;
 import properties.messages.filter.SearchResultFilter;
-import properties.messages.portal.BetweenHtmlTagPatternSearcher;
-import properties.messages.portal.PortalKeyNameRule;
+import custom.portal.pattern.BetweenHtmlTagPatternSearcher;
+import custom.portal.PortalKeyNameRule;
 
 import java.io.File;
 import java.io.IOException;

@@ -20,4 +20,8 @@ public class StringUtils {
         }
         return paddingNum + num;
     }
+
+    public static String getString(String value, String defaultValue) {
+        return StringUtils.isEmpty(value) ? defaultValue : value;
+    }
 }

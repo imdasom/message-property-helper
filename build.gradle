@@ -1,6 +1,3 @@
-group 'text-patterner'
-version '1.0'
-
 // setting.gradle에 include된 프로젝트를 관리할 수 있다.
 // rootProject까지 관리하고 싶다면 allprojects 키워드 사용.
 subprojects {
@@ -29,3 +26,6 @@ project(':gui') {
         testCompile project(':core')
     }
 }
+
+group 'text-patterner'
+version '1.0'

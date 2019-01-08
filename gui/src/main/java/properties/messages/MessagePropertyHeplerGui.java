@@ -1,8 +1,8 @@
 package properties.messages;
 
-import properties.messages.gui.components.panel.ButtonAreaPanel;
-import properties.messages.gui.components.panel.InputBoxGroupPanel;
-import properties.messages.gui.event.GenerateButtonClickListener;
+import custom.portal.gui.components.panel.ButtonAreaPanel;
+import custom.portal.gui.components.panel.InputBoxGroupPanel;
+import custom.portal.gui.event.GenerateButtonClickListener;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;

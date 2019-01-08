@@ -7,8 +7,9 @@ import com.konai.search.vo.SearchResult;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import properties.messages.portal.PortalKeyNameRule;
-import properties.messages.portal.PortalMessagePropertyHelper;
+import custom.portal.PortalKeyNameRule;
+import properties.messages.coreengine.MessagePropertyPatterner;
+import properties.messages.filter.MessageFilter;
 import properties.messages.wrapper.FileWrapper;
 import properties.messages.wrapper.ResourceBundleWrapper;
 
@@ -23,7 +24,7 @@ public class PortalKeyValueGeneratorTest {
     private FileWrapper fileWrapper;
     private KeyNameRule keyNameRule;
 
-    private PortalMessagePropertyHelper helper = new PortalMessagePropertyHelper();
+    private MessagePropertyPatterner helper = new MessagePropertyPatterner();
 
     @Before
     public void setup() throws IOException {
@@ -39,32 +40,32 @@ public class PortalKeyValueGeneratorTest {
 
     @Test
     public void generateKey_띄어쓰기만다르면_같은문자로_인식하도록_하는_경우_fail_case() {
-        List<SearchResult> searchResults = helper.search(resourceBundleWrapper, fileWrapper.getExpressions());
-        List<KeyValue> messageProperties = helper.getFailureMessage(searchResults, keyNameRule, ResultClass.TotalSimilar);
+        List<SearchResult> searchResults = helper.search(resourceBundleWrapper.getResourceMap(), fileWrapper.getExpressions());
+        List<KeyValue> messageProperties = MessageFilter.getFailureMessage(searchResults, ResultClass.TotalSimilar, keyNameRule);
         Assert.assertEquals(1, messageProperties.size());
         messageProperties.stream().forEach(System.out::println);
     }
 
     @Test
     public void generateKey_띄어쓰기만다르면_같은문자로_인식하도록_하는_경우_success_case() {
-        List<SearchResult> searchResults = helper.search(resourceBundleWrapper, fileWrapper.getExpressions());
-        List<KeyValue> messageProperties = helper.getFailureMessage(searchResults, keyNameRule, ResultClass.TotalSimilar);
+        List<SearchResult> searchResults = helper.search(resourceBundleWrapper.getResourceMap(), fileWrapper.getExpressions());
+        List<KeyValue> messageProperties = MessageFilter.getFailureMessage(searchResults, ResultClass.TotalSimilar, keyNameRule);
         Assert.assertEquals(4, messageProperties.size());
         messageProperties.stream().forEach(System.out::println);
     }
 
     @Test
     public void generateKey_문자가_완전히_같아야_하는_경우_fail_case() {
-        List<SearchResult> searchResults = helper.search(resourceBundleWrapper, fileWrapper.getExpressions());
-        List<KeyValue> messageProperties = helper.getFailureMessage(searchResults, keyNameRule, ResultClass.TotalEqual);
+        List<SearchResult> searchResults = helper.search(resourceBundleWrapper.getResourceMap(), fileWrapper.getExpressions());
+        List<KeyValue> messageProperties = MessageFilter.getFailureMessage(searchResults, ResultClass.TotalEqual, keyNameRule);
         Assert.assertEquals(4, messageProperties.size());
         messageProperties.stream().forEach(System.out::println);
     }
 
     @Test
     public void generateKey_문자가_완전히_같아야_하는_경우_success_case() {
-        List<SearchResult> searchResults = helper.search(resourceBundleWrapper, fileWrapper.getExpressions());
-        List<KeyValue> messageProperties = helper.getFailureMessage(searchResults, keyNameRule, ResultClass.TotalEqual);
+        List<SearchResult> searchResults = helper.search(resourceBundleWrapper.getResourceMap(), fileWrapper.getExpressions());
+        List<KeyValue> messageProperties = MessageFilter.getFailureMessage(searchResults, ResultClass.TotalEqual, keyNameRule);
         Assert.assertEquals(1, messageProperties.size());
         messageProperties.stream().forEach(System.out::println);
     }

@@ -1,15 +1,16 @@
 package custom.portal.gui.event;
 
-import com.konai.common.core.Expression;
 import com.konai.common.util.CollectionUtils;
+import com.konai.common.util.StringUtils;
+import com.konai.common.vo.Key;
 import com.konai.common.vo.KeyValue;
 import com.konai.generate.core.KeyNameRule;
-import com.konai.search.vo.ResultClass;
-import properties.messages.gui.components.GenerateDataComponentsWrapper;
-import properties.messages.portal.PortalKeyNameRule;
-import properties.messages.portal.PortalMessagePropertyHelper;
-import properties.messages.portal.PortalSetupWrapper;
-import properties.messages.portal.ThymeleafTextValuePatternSearcher;
+import com.konai.search.vo.Message;
+import custom.portal.PortalFileWrapper;
+import custom.portal.PortalKeyNameRule;
+import custom.portal.PortalSetupConfiguration;
+import custom.portal.gui.components.GenerateDataComponentsWrapper;
+import properties.messages.coreengine.MessagePropertyPatterner;
 import properties.messages.wrapper.FileWrapper;
 import properties.messages.wrapper.ResourceBundleWrapper;
 
@@ -18,7 +19,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,54 +31,53 @@ public class GenerateButtonClickListener implements ActionListener {
         this.componentsWrapper = generateDataComponentsWrapper;
     }
 
+    private void putAllMessageMap(List<KeyValue> generatedMessages, Map<Key, Message> resourceTokenList) {
+        for(KeyValue keyValue : generatedMessages) {
+            resourceTokenList.put(keyValue.getKey(), new Message(keyValue.getValue().getValue()));
+        }
+    }
+
+    private void putAllStringMap(List<KeyValue> generatedMessages, Map<String, String> messageToMap) {
+        for(KeyValue keyValue : generatedMessages) {
+            messageToMap.put(keyValue.getKey().getValue(), keyValue.getValue().getValue());
+        }
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         String projectPath = componentsWrapper.getProjectPath();
-        String keyName = componentsWrapper.getKeyName();
+        String defaultKeyName = componentsWrapper.getKeyName();
         List<File> fileList = componentsWrapper.getFileList();
 
-        PortalSetupWrapper setupWrapper = new PortalSetupWrapper();
-        List<FileWrapper> fileWrappers = getFileWrapperList(setupWrapper, fileList);
+        PortalSetupConfiguration setupWrapper = new PortalSetupConfiguration();
+        List<PortalFileWrapper> fileWrappers = getFileWrapperList(setupWrapper, fileList);
         ResourceBundleWrapper resourceBundleWrapper = getResourceBundleWrapper(setupWrapper, projectPath);
-        KeyNameRule keyNameRule = new PortalKeyNameRule(keyName, "_", resourceBundleWrapper.getResourceMap());
-        ThymeleafTextValuePatternSearcher collectPattern = new ThymeleafTextValuePatternSearcher();
-
         if(resourceBundleWrapper == null || CollectionUtils.isEmpty(fileWrappers)) {
             return;
         }
 
-        FileWrapper fileWrapper = fileWrappers.get(0);
+        MessagePropertyPatterner patterner = new MessagePropertyPatterner();
 
-        PortalMessagePropertyHelper helper = new PortalMessagePropertyHelper();
-        List<KeyValue> generatedMessages = helper.generate(
-                fileWrapper,
-                resourceBundleWrapper,
-                keyNameRule,
-                ResultClass.TotalSimilar,
-                collectPattern
-        );
+        Map<Key, Message> resourceTokenList = resourceBundleWrapper.getResourceMap();
+        for(FileWrapper fileWrapper : fileWrappers) {
+            PortalFileWrapper portalFileWrapper = (PortalFileWrapper) fileWrapper;
+            String keyName = StringUtils.getString(portalFileWrapper.getKeyName(), defaultKeyName);
+            KeyNameRule keyNameRule = new PortalKeyNameRule(keyName, "_", resourceTokenList);
+            List<KeyValue> generatedMessages = patterner.generate(portalFileWrapper, resourceTokenList, keyNameRule);
+            portalFileWrapper.setGeneratedMessages(generatedMessages);
+            putAllMessageMap(generatedMessages, resourceTokenList);
+        }
 
-        List<KeyValue> allMessageProperties = new ArrayList<>();
-        allMessageProperties.addAll(resourceBundleWrapper.getResourceMapToList());
-        allMessageProperties.addAll(generatedMessages);
-
-        List<Expression> result = helper.replace(allMessageProperties, fileWrapper);
-
-        // print out replace result
-        generatedMessages.stream().forEach(System.out::println);
-        result.stream().forEach(
-                expression -> System.out.println(expression.getValue())
-        );
-
-        // set text area genereated key-value
         Map<String, String> messageToMap = new HashMap<>();
-        for(KeyValue keyValue : generatedMessages) {
-            messageToMap.put(keyValue.getKey().getValue(), keyValue.getValue().getValue());
+        for(FileWrapper fileWrapper : fileWrappers) {
+            PortalFileWrapper portalFileWrapper = (PortalFileWrapper) fileWrapper;
+            List<KeyValue> generatedMessages = portalFileWrapper.getGeneratedMessages();
+            putAllStringMap(generatedMessages, messageToMap);
         }
         componentsWrapper.setGeneratedMessages(messageToMap);
     }
 
-    private ResourceBundleWrapper getResourceBundleWrapper(PortalSetupWrapper setupWrapper, String projectPath) {
+    private ResourceBundleWrapper getResourceBundleWrapper(PortalSetupConfiguration setupWrapper, String projectPath) {
         ResourceBundleWrapper resourceBundleWrapper = null;
         try {
             resourceBundleWrapper = setupWrapper.getResourceBundleWrapper(projectPath);
@@ -90,8 +89,8 @@ public class GenerateButtonClickListener implements ActionListener {
         }
     }
 
-    private List<FileWrapper> getFileWrapperList(PortalSetupWrapper setupWrapper, List<File> files) {
-        List<FileWrapper> fileWrappers = null;
+    private List<PortalFileWrapper> getFileWrapperList(PortalSetupConfiguration setupWrapper, List<File> files) {
+        List<PortalFileWrapper> fileWrappers = null;
         try {
             fileWrappers = setupWrapper.getFileWrappers(files);
         } catch (IOException e) {

@@ -16,9 +16,9 @@ import com.konai.search.vo.ResultClass;
 import com.konai.search.vo.SearchResult;
 import org.junit.Test;
 import properties.messages.filter.SearchResultFilter;
-import properties.messages.portal.PortalKeyNameRule;
-import properties.messages.portal.ThymeleafTextValuePatternSearcher;
-import properties.messages.portal.ThymeleafTextValuePatterner;
+import custom.portal.PortalKeyNameRule;
+import custom.portal.pattern.ThymeleafTextValuePatternSearcher;
+import custom.portal.pattern.ThymeleafTextValuePatterner;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,7 +54,7 @@ public class MainLogicTest {
         List<Expression> readLineExpressions = lines.stream().map(Expression::new).collect(Collectors.toList());
 
         //regular expression pattern
-        ThymeleafTextValuePatternSearcher thymeleafTextValuePatternSearcher = new ThymeleafTextValuePatternSearcher();
+        ThymeleafTextValuePatternSearcher thymeleafTextValuePatternSearcher = ThymeleafTextValuePatternSearcher.getInstance();
         ThymeleafTextValuePatterner thymeleafTextValuePatterner = new ThymeleafTextValuePatterner();
 
         //key name rule
