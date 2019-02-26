@@ -14,6 +14,10 @@ public class FileUtils {
     public static InputStream getInputStream(File file) throws FileNotFoundException {
         return new FileInputStream(file);
     }
+    
+    public static OutputStream getOutputStream(File file) throws FileNotFoundException {
+        return new FileOutputStream(file);
+    }
 
     public static List<String> readLines(InputStream inputStream) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
