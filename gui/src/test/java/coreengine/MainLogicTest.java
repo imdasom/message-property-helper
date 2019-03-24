@@ -20,13 +20,8 @@ import custom.portal.PortalKeyNameRule;
 import custom.portal.pattern.ThymeleafTextValuePatternSearcher;
 import custom.portal.pattern.ThymeleafTextValuePatterner;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.io.*;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -49,7 +44,8 @@ public class MainLogicTest {
         Map<Key, Message> resourceTokenList = tokenizer.getTokenListFromMap(messageProertyMap);
 
         //resource : html file
-        InputStream inputStream = FileUtils.getInputStream(new File(".\\src\\test\\resources\\html\\productView.html"));
+        File htmlFile = new File(".\\src\\test\\resources\\html\\productView.html");
+        InputStream inputStream = FileUtils.getInputStream(htmlFile);
         List<String> lines = FileUtils.readLines(inputStream);
         List<Expression> readLineExpressions = lines.stream().map(Expression::new).collect(Collectors.toList());
 
@@ -100,13 +96,45 @@ public class MainLogicTest {
                 thymeleafTextValuePatterner,
                 thymeleafTextValuePatternSearcher);
 
-        for (KeyValue keyValue : oldMessageProperties) {
-            System.out.println(keyValue.toString());
+        for (KeyValue keyValue : newMessageProperties) {
+            System.out.println(keyValue.getKey().getValue() + "=" + keyValue.getValue().getValue());
         }
 
         for(Expression e : afterLines2) {
             System.out.println(e.getValue());
         }
+        
+        //write file
+        OutputStream outputStream = FileUtils.getOutputStream(htmlFile);
+        for (Expression e : afterLines2) {
+            outputStream.write(e.getValue().getBytes());
+            outputStream.write("\n".getBytes());
+        }
+        outputStream.flush();
+        outputStream.close();
+        
+        //set properties
+        Properties properties = new Properties();
+        for (KeyValue keyValue : newMessageProperties) {
+            properties.setProperty(keyValue.getKey().getValue(), keyValue.getValue().getValue());
+        }
+        
+        //ready properties output stream
+        OutputStream propertiesOutputStream_default  = new FileOutputStream(location + "\\messages.properties", true);
+        OutputStream propertiesOutputStream_ko = new FileOutputStream(location + "\\messages_ko.properties", true);
+        OutputStream propertiesOutputStream_en = new FileOutputStream(location + "\\messages_en.properties", true);
+        OutputStream[] propertiesOutputStreamList = new OutputStream[] {
+            propertiesOutputStream_default, propertiesOutputStream_ko, propertiesOutputStream_en
+        };
+        
+        //store properties
+        Arrays.stream(propertiesOutputStreamList).forEach(outputStrema1 -> {
+            try {
+                outputStream1.write("\n\n".getBytes());
+                properties.store(outputStream1, "comment");
+            } catch (IOException e) {
+                e.printStackTrace();
+        });
     }
 }
 
